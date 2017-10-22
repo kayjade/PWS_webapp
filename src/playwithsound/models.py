@@ -14,6 +14,11 @@ class Album(models.Model):
     album_name = models.CharField(max_length=100)
     # The time at which this album is created
     time = models.DateTimeField(default=timezone.now)
+    def __unicode__(self):
+        return self.user.username
+    def __str__(self):
+        return self.__unicode__()
+
 
 # The audio file uploaded by the user
 class Audio(models.Model):
@@ -21,7 +26,11 @@ class Audio(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # The time at which this audio file is uploaded
     time = models.DateTimeField(default=timezone.now)
-    audio_file = models.FileField(upload_to'audio/')
+    audio_file = models.FileField(upload_to='audio/')
+    def __unicode__(self):
+        return self.user.username
+    def __str__(self):
+        return self.__unicode__()
 
 
 # The paintings created by users
@@ -35,3 +44,7 @@ class Painting(models.Model):
     # The audio file which cooresponding to this image
     audio = models.OneToOneField(Audio, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='img/')
+    def __unicode__(self):
+        return self.user.username
+    def __str__(self):
+        return self.__unicode__()
