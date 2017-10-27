@@ -1,9 +1,9 @@
 Please complete all your project development in this directory and 
 its subdirectories (which you may create as neeeded).
 
-+ Reference
+# Reference
 
-++ Webpage Design
++ Webpage Design
 
 [alvarotrigo/fullPage.js](https://github.com/alvarotrigo/fullPage.js)
 

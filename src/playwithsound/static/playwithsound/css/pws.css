@@ -289,6 +289,10 @@ footer {
 	background: white;
 }
 
+#fp-nav.right {
+  margin-right: 30px;
+}
+
 .fp-slidesNav,
 .fp-slidesNav ul li {
 	bottom: 80px;
