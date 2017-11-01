@@ -52,9 +52,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle page-scroll" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Play<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="modes/mode1.html">Mode 1</a></li>
-                                <li><a href="modes/mode2.html">Mode 2</a></li>
-                                <li><a href="modes/mode3.html">Mode 3</a></li>
+                                <li><a href="{% url 'mode_1' %}">Mode 1</a></li>
+                                <li><a href="{% url 'mode_2' %}">Mode 2</a></li>
+                                <li><a href="{% url 'mode_3' %}">Mode 3</a></li>
                             </ul><!-- dropdown -->
                         </li>
                         <li><a class="page-scroll" href="#sec-gallery">Gallery</a></li>
@@ -65,11 +65,15 @@
         </nav>
     </div> <!-- header -->
 
-    <div id="footer">
-        <p>Copyright &copy; Team 330</p>
-    </div> <!-- footer -->
      
     {% block content %}{% endblock %}
+
+<footer>
+        <div class="container text-center" id="footer">
+            <p>Copyright &copy; Team 330</p>
+        </div>
+    </footer> <!-- footer -->
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
