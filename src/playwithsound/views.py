@@ -16,3 +16,7 @@ def mode_2(request):
 def mode_3(request):
     context={}
     return render(request, 'modes/mode3.html', context)
+
+def login(request):
+    context={}
+    return render(request,'login.html',context)

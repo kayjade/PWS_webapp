@@ -4,6 +4,8 @@ body {
   background-color: #fffdf1;
   letter-spacing: 1px;
   padding-top: 60px;
+  height: 100%;
+  overflow:hidden;
 }
 
 a {
@@ -311,23 +313,23 @@ footer {
 }
 
 #section-about {
-  background-image: url(../images/website/index_01.jpg);
+  background-image: url(../images/pws/index_01.jpg);
 }
 
 #section-gallery {
-  background-image: url(../images/website/index_03.jpg);
+  background-image: url(../images/pws/index_03.jpg);
 }
 
 #slide-mode1 {
-  background-image: url(../images/website/index_02_01.jpg);
+  background-image: url(../images/pws/index_02_01.jpg);
 }
 
 #slide-mode2 {
-  background-image: url(../images/website/index_02_02.jpg);
+  background-image: url(../images/pws/index_02_02.jpg);
 }
 
 #slide-mode3 {
-  background-image: url(../images/website/index_02_03.jpg);
+  background-image: url(../images/pws/index_02_03.jpg);
 }
 
 .mode-header {
@@ -341,17 +343,56 @@ footer {
 }
 
 #mode1 {
-  background-image: url(../images/website/mode1_01.jpg);
+  background-image: url(../images/pws/mode1_01.jpg);
 }
 
 #mode2 {
-  background-image: url(../images/website/mode2_01.jpg);
+  background-image: url(../images/pws/mode2_01.jpg);
 }
 
 #mode3 {
-  background-image: url(../images/website/mode3_01.jpg);
+  background-image: url(../images/pws/mode3_01.jpg);
 }
 
+.login-container{
+  background-image: url(../images/pws/index_01.jpg);
+  width:1300px;
+  height:100%;overflow:hidden;
+}
+
+.btn-login{
+  background-color: #a8505f;
+}
+
+.form-signin{
+  width: 400px;
+  margin:0 auto;
+  margin-top: 100px;
+  vertical-align: middle;
+  height: 300px;
+}
+
+.form-signin-heading{
+  text-align:center;
+  color:#a8505f;
+}
+
+.login-form{
+  height: 600px;
+  vertical-align: middle;
+}
+.login-input{
+  background-color: #fff !important;
+}
+
+.checkbox{
+  color:#000;
+}
+
+.password-link{
+  color:#75b9bd;
+  float: right;
+}
 .mode-body {
   display: block;
   color: #a8505f;

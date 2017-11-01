@@ -23,6 +23,9 @@
 
     <!-- custom CSS -->
     <link href="{% static "playwithsound/css/pws.css" %}" rel="stylesheet">
+
+    <script type="text/javascript" src="{% static "playwithsound/js/d3.js" %}"></script>
+
     {% block customCSS %}{% endblock %}
 </head>
 
@@ -65,14 +68,14 @@
         </nav>
     </div> <!-- header -->
 
-     
+
     {% block content %}{% endblock %}
 
-<footer>
-        <div class="container text-center" id="footer">
-            <p>Copyright &copy; Team 330</p>
-        </div>
-    </footer> <!-- footer -->
+
+    <div class="container text-center" id="footer">
+        <p>Copyright &copy; Team 330</p>
+    </div>
+
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
