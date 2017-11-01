@@ -1,7 +1,7 @@
 from django.template import Variable, Library, Node, TemplateSyntaxError
 from django.template.loader import render_to_string
 
-from grumblr.models import *
+from playwithsound.models import *
 
 register = Library()
 def is_following(user, object):
