@@ -438,9 +438,28 @@ footer {
     }
 }
 
-.fa-microphone {
+.mode-body .fa,
+.mode-body .glyphicon {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.mode-body .fa {
   font-size: 22px;
   vertical-align: middle;
+}
+
+.mode-body .glyphicon {
+  font-size: 24px;
+  vertical-align: bottom;
+}
+
+.fa-play,
+.glyphicon-pause {
+  cursor: pointer;
+}
+
+.fa-play:hover,
+.glyphicon-pause:hover {
+  color: #b4d5c4;
 }

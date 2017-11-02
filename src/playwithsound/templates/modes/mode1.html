@@ -13,12 +13,15 @@
         </div>
 
         <p>Click the button below to start recording.</p>
-        <div> <!-- control recording -->
-            <span class="btn btn-default btn-small">Start</span>
-            <i class="fa fa-microphone" aria-hidden="true"></i>
-            <span class="btn btn-default btn-small">End</span>
+        <div class="record-control"> <!-- control recording -->
+            <i class="fa fa-play" aria-hidden="true" id="start-record"></i>
+            <i class="fa fa-microphone" aria-hidden="true" id="ongoing-record"></i>
+            <i class="glyphicon glyphicon-pause" id="stop-record"></i>
         </div>
     </div>
 
     {% endblock %}
 
+    {% load static %}
+    {% block customJS %}
+<script type="text/javascript" src="{% static "playwithsound/js/mode1.js" %}"></script>{% endblock %}
