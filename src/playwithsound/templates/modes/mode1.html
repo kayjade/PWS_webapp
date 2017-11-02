@@ -8,8 +8,8 @@
     </div>
 
     <div class="container mode-body">
-        <div class="cavans"> <!-- painting area -->
-
+        <div class="svg"> <!-- painting area -->
+            <svg width="960" height="500"></svg>
         </div>
 
         <p>Click the button below to start recording.</p>
@@ -20,3 +20,8 @@
     </div>
 
     {% endblock %}
+
+{% block customJS %}
+    {% load static %}
+    <script type="text/javascript" src="{% static "playwithsound/js/model1.js" %}"></script>
+{% endblock %}
