@@ -437,3 +437,10 @@ footer {
         display:block !important;
     }
 }
+
+.fa-microphone {
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 22px;
+  vertical-align: middle;
+}
