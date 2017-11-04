@@ -7,7 +7,7 @@ $(document).ready(function() {
                           navigator.msGetUserMedia);
 
   var audioCtx;
-  var bufferSize=1024;
+  var bufferSize = 1024;
   
   $("#start-record").click( function() {
   	if(record=="0"){
