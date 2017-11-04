@@ -4,8 +4,6 @@ body {
   background-color: #fffdf1;
   letter-spacing: 1px;
   padding-top: 60px;
-  height: 100%;
-  overflow:hidden;
 }
 
 a {
@@ -449,14 +447,13 @@ footer {
   vertical-align: middle;
 }
 
+.fa-play {
+  cursor: pointer;
+}
+
 .mode-body .glyphicon {
   font-size: 24px;
   vertical-align: bottom;
-}
-
-.fa-play,
-.glyphicon-pause {
-  cursor: pointer;
 }
 
 .fa-play:hover,
