@@ -81,8 +81,8 @@
       <file leaf-file-name="mode1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/playwithsound/templates/modes/mode1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-78">
-              <caret line="11" column="48" lean-forward="false" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+            <state relative-caret-position="165">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -91,8 +91,18 @@
       <file leaf-file-name="model1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/playwithsound/static/playwithsound/js/model1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-631">
-              <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+            <state relative-caret-position="-23">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pws.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/playwithsound/static/playwithsound/css/pws.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="914">
+              <caret line="423" column="30" lean-forward="true" selection-start-line="423" selection-start-column="30" selection-end-line="423" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -141,9 +151,9 @@
         <option value="$PROJECT_DIR$/forms.py" />
         <option value="$PROJECT_DIR$/playwithsound/forms.py" />
         <option value="$PROJECT_DIR$/playwithsound/templates/registration/mode1.html" />
-        <option value="$PROJECT_DIR$/playwithsound/static/playwithsound/css/pws.css" />
         <option value="$PROJECT_DIR$/playwithsound/templates/base.html" />
         <option value="$PROJECT_DIR$/playwithsound/templates/modes/mode1.html" />
+        <option value="$PROJECT_DIR$/playwithsound/static/playwithsound/css/pws.css" />
         <option value="$PROJECT_DIR$/playwithsound/static/playwithsound/js/model1.js" />
       </list>
     </option>
@@ -156,9 +166,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="18" />
-    <option name="y" value="272" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="684" />
+    <option name="height" value="698" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -199,6 +209,14 @@
               <item name="playwithsound" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="playwithsound" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="playwithsound" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="playwithsound" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
@@ -288,10 +306,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="272" width="1280" height="684" extended-state="0" />
+    <frame x="18" y="23" width="1280" height="698" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="manage.py@src" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41086587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@src" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3217247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -474,14 +492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playwithsound/static/playwithsound/css/pws.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapps/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -520,16 +530,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/playwithsound/templates/modes/mode1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-78">
-          <caret line="11" column="48" lean-forward="false" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+        <state relative-caret-position="165">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playwithsound/static/playwithsound/css/pws.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="914">
+          <caret line="423" column="30" lean-forward="true" selection-start-line="423" selection-start-column="30" selection-end-line="423" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playwithsound/static/playwithsound/js/model1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-631">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+        <state relative-caret-position="-23">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>

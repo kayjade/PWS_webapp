@@ -1,15 +1,18 @@
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
 var n = 20, // number of layers
     m = 200, // number of samples per layer
     k = 10; // number of bumps per layer
 
-var stack = d3.stack().keys(d3.range(n)).offset(d3.stackOffsetWiggle),
+var stack = d3.stack()
+        .keys(d3.range(n))
+        .offset(d3.stackOffsetWiggle),
     layers0 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
     layers1 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
     layers = layers0.concat(layers1);
-
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+    console.log(layers0);
 
 var x = d3.scaleLinear()
     .domain([0, m - 1])
@@ -19,6 +22,7 @@ var y = d3.scaleLinear()
     .domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
     .range([height, 0]);
 
+//https://github.com/d3/d3-scale
 var z = d3.interpolateCool;
 
 var area = d3.area()
