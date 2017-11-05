@@ -4,8 +4,6 @@ body {
   background-color: #fffdf1;
   letter-spacing: 1px;
   padding-top: 60px;
-  height: 100%;
-  overflow:hidden;
 }
 
 a {
@@ -436,4 +434,29 @@ footer {
     .collapse.in{
         display:block !important;
     }
+}
+
+.mode-body .fa,
+.mode-body .glyphicon {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.mode-body .fa {
+  font-size: 22px;
+  vertical-align: middle;
+}
+
+.fa-play {
+  cursor: pointer;
+}
+
+.mode-body .glyphicon {
+  font-size: 24px;
+  vertical-align: bottom;
+}
+
+.fa-play:hover,
+.glyphicon-pause:hover {
+  color: #b4d5c4;
 }
