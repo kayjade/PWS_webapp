@@ -17,9 +17,11 @@ $(document).ready(function() {
   	  $("#ongoing-record").css("color","#a8505f");
   	  isRecording="0";
       recorder.stopRecording();
-      //console.log(recorder.getTimeData());
       //recorder.getTimeData();
   	}
+    // get audio data
+    console.log(recorder.timeData);
+    console.log(recorder.timeData);
   });
 
 });
