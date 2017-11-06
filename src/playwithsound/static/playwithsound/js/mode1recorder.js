@@ -12,61 +12,81 @@ function Recorder() {
 
   var requestId;
 
-  const bufferSize = 1024;
+  const bufferSize = 256;
   var originFreqBuffer = new Uint8Array(bufferSize);
   var originTimeBuffer = new Uint8Array(bufferSize);
+  var convFreqBuffer = new Uint8Array(bufferSize);
+  var convTimeBuffer = new Uint8Array(bufferSize);
   var tIndex = 0;
 
   function startRecording() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    reverbjs.extend(audioContext);
 
     var source;
     var stream;
-    var mediaRecorder; 
+    //var mediaRecorder; 
     var analyser1 = audioCtx.createAnalyser();
-    //var analyser2 = audioCtx.createAnalyser();
+    var analyser2 = audioCtx.createAnalyser();
 
-    //analyser.fftSize = 256;
+    // create convolver node and set buffer
+    var convolverNode = audioCtx.createConvolver();
+    var request = new XMLHttpRequest();
+    // use CORS
+    if ("withCredentials" in request) {
+      request.open("GET", "/get_conv_audio/", true);
+    } else if (typeof XDomainRequest != "undefined") {
+      request = new XDomainRequest();
+      request.open("GET", "/Library/concert-crowd.ogg");
+    }
+    request.responseType = 'arraybuffer';
+    request.onload = function() {
+      var audioData = request.response;
+
+      audioCtx.decodeAudioData(audioData, function(buffer) {
+        convolverNode.buffer = buffer;
+      });
+    }
+
+    request.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+    request.send();
 
     if(navigator.getUserMedia) {
       console.log('getUserMedia supported.');
-      navigator.getUserMedia (
-        {
-          audio: true
-        },
-        function(stream) {
-          mediaRecorder = new MediaRecorder(stream);
+      navigator.getUserMedia ({
+        audio: true
+      },
+      function(stream) {
+        //mediaRecorder = new MediaRecorder(stream);
 
-          source = audioCtx.createMediaStreamSource(stream);  
-          source.connect(analyser1);
-          analyser1.connect(audioCtx.destination);
-          
-          //source.connect(extractNode);
-          //extractNode.connect(audioCtx.destination);
-        },
-          function(err) {
-            console.log('The following gUM error occured: ' + err);
-          }
-        );
-      } else {
-        console.log('getUserMedia not supported on your browser!');
-      }
+        source = audioCtx.createMediaStreamSource(stream);  
+        source.connect(analyser1);
+        analyser1.connect(convolverNode);
+        convolverNode.connect(analyser2);
+        analyser2.connect(audioCtx.destination);
 
-      //mediaRecorder.start();
-      //console.log(mediaRecorder.state);
-      extractData();
+      },
+        function(err) {
+          console.log('The following gUM error occured: ' + err);
+        }
+      );
+    } else {
+      console.log('getUserMedia not supported on your browser!');
+    }
 
-      /* extract data from analyser node */
-      function extractData() {
-        analyser1.getByteFrequencyData(originFreqBuffer);
-        analyser1.getByteTimeDomainData(originTimeBuffer);
+    extractData();
 
-        //console.log(originFreqBuffer);
-        //console.log(originTimeBuffer);
+    /* extract data from analyser node */
+    function extractData() {
+      analyser1.getByteFrequencyData(originFreqBuffer);
+      analyser1.getByteTimeDomainData(originTimeBuffer);
+      analyser2.getByteFrequencyData(convFreqBuffer);
+      analyser2.getByteTimeDomainData(convTimeBuffer);
 
-        requestId = requestAnimationFrame(extractData);
-      }
+      requestId = requestAnimationFrame(extractData);
+    }
   }
 
   function stopRecording() {
@@ -78,7 +98,9 @@ function Recorder() {
     startRecording: startRecording,
     stopRecording: stopRecording,
     timeData: originTimeBuffer,
-    freqData: originFreqBuffer
+    freqData: originFreqBuffer,
+    convFreqData: convFreqBuffer,
+    convTimeData: convTimeBuffer
   };
 }
 
