@@ -1,10 +1,17 @@
+var mn=0;
 function drawpicture(recorder) {
     //mode1(recorder);
     mode2(recorder);
 }
 
 function stopdrawpicture() {
-    timer.stop();
+    if(mn==0) {
+        timer1.stop();
+        clearInterval(timer2);
+    }else {
+        clearInterval(timer1);
+        clearInterval(timer2);
+    }
 }
 
 function mode1(recorder) {
@@ -25,7 +32,7 @@ function mode1(recorder) {
     context.globalCompositeOperation = "source-over";
     context.lineWidth = 2;
 
-    timer = d3.timer(function () {
+    timer1 = d3.timer(function () {
         //context.clearRect(0, 0, width, height);
 
         var z = d3.hsl(++i % 360, 1, .5).rgb(),
@@ -54,12 +61,12 @@ function mode1(recorder) {
         y1 = height * Math.random();
     }
 
-    window.setInterval(getdata, 1000);
+    timer2=window.setInterval(getdata, 1000);
 }
 
 
 function mode2(recorder) {
-
+    mn=1;
     function getdata() {
         TD = recorder.timeData;
         FD = recorder.freqData;
@@ -68,8 +75,8 @@ function mode2(recorder) {
     }
 
     time = 1;
-    window.setInterval(getdata, 1000);
-    window.setInterval(area, 1000);
+    timer1=window.setInterval(getdata, 500);
+    timer2=window.setInterval(area, 500);
 
     var width = 960,
         height = 500;
@@ -117,7 +124,7 @@ function mode2(recorder) {
                 return y(d[1]);
             });
 
-        $('svg').empty()
+        $('svg').empty();
         svg.selectAll("path")
             .data(layers)
             .enter().append("path")
@@ -144,7 +151,7 @@ function mode2(recorder) {
 // Inspired by Lee Byron’s test data generator.
     function bumps(ln, time) {
         if(ln == 0) {
-            a[time] = d3.mean(FD)*50;
+            a[time] = d3.mean(FD)*5;
             return a;
         } else if(ln == 1) {
             b[time] = d3.mean(TD);
