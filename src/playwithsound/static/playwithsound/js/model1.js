@@ -144,13 +144,13 @@ function mode2(recorder) {
 // Inspired by Lee Byron’s test data generator.
     function bumps(ln, time) {
         if(ln == 0) {
-            a[time] = d3.mean(FD);
+            a[time] = d3.mean(FD)*50;
             return a;
         } else if(ln == 1) {
             b[time] = d3.mean(TD);
             return b;
         } else if(ln == 2) {
-            c[time] = d3.mean(CFD);
+            c[time] = d3.mean(CFD)*Math.random();
             return c;
         } else if(ln >= 3) {
             d[time] = d3.mean(CTD)*Math.random();
