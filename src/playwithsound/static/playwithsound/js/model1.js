@@ -8,9 +8,11 @@ function stopdrawpicture() {
     if(mn==0) {
         timer1.stop();
         clearInterval(timer2);
+        d3.select("canvas").remove();
     }else {
         clearInterval(timer1);
         clearInterval(timer2);
+        d3.select("svg").remove();
     }
 }
 
@@ -56,7 +58,7 @@ function mode1(recorder) {
     function getdata() {
         TD = recorder.timeData;
         FD = recorder.freqData;
-        r = Math.min(d3.mean(FD) * 4, 200);
+        r = Math.min(d3.mean(FD) , 100);
         x1 = width * Math.random();
         y1 = height * Math.random();
     }
@@ -75,8 +77,8 @@ function mode2(recorder) {
     }
 
     time = 1;
-    timer1=window.setInterval(getdata, 500);
-    timer2=window.setInterval(area, 500);
+    timer1=window.setInterval(getdata, 300);
+    timer2=window.setInterval(area, 300);
 
     var width = 960,
         height = 500;
@@ -150,16 +152,16 @@ function mode2(recorder) {
 
 // Inspired by Lee Byron’s test data generator.
     function bumps(ln, time) {
-        if(ln == 0) {
-            a[time] = d3.mean(FD)*5;
+        if(0<=ln <= 4) {
+            a[time] = d3.mean(FD)*2;
             return a;
-        } else if(ln == 1) {
-            b[time] = d3.mean(TD);
+        } else if(5<=ln <= 9) {
+            b[time] = d3.mean(TD)*0.1;
             return b;
-        } else if(ln == 2) {
+        } else if(10<=ln <= 14) {
             c[time] = d3.mean(CFD)*Math.random();
             return c;
-        } else if(ln >= 3) {
+        } else if(15<=ln <= 19) {
             d[time] = d3.mean(CTD)*Math.random();
             return d;
         }
