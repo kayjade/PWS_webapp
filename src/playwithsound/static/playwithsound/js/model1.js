@@ -1,4 +1,4 @@
-var mn=0;
+var mn=1;
 function drawpicture(recorder) {
 
      if(mn==0) {
@@ -157,16 +157,16 @@ function mode2(recorder) {
 
 // Inspired by Lee Byron’s test data generator.
     function bumps(ln, time) {
-        if(0<=ln <= 4) {
+        if(0<=ln && ln<= 4) {
             a[time] = d3.mean(FD)*2;
             return a;
-        } else if(5<=ln <= 9) {
+        } else if(5<=ln && ln<= 9) {
             b[time] = d3.mean(TD)*0.1;
             return b;
-        } else if(10<=ln <= 14) {
+        } else if(10<=ln && ln<= 14) {
             c[time] = d3.mean(CFD)*Math.random();
             return c;
-        } else if(15<=ln <= 19) {
+        } else if(15<=ln && ln<= 19) {
             d[time] = d3.mean(CTD)*Math.random();
             return d;
         }
