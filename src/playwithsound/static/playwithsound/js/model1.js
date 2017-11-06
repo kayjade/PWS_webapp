@@ -1,18 +1,22 @@
-var mn=0;
+var mn=1;
 function drawpicture(recorder) {
-    //mode1(recorder);
-    mode2(recorder);
+
+     if(mn==0) {
+         d3.select("canvas").remove();
+         mode1(recorder);
+    }else {
+         d3.select("svg").remove();
+         mode2(recorder);
+    }
 }
 
 function stopdrawpicture() {
     if(mn==0) {
         timer1.stop();
         clearInterval(timer2);
-        d3.select("canvas").remove();
     }else {
         clearInterval(timer1);
         clearInterval(timer2);
-        d3.select("svg").remove();
     }
 }
 
@@ -27,7 +31,7 @@ function mode1(recorder) {
     var x1 = width / 2,
         y1 = height / 2,
         i = 0,
-        r = 200,
+        r = 150,
         τ = 2 * Math.PI;
 
     var context = canvas.node().getContext("2d");
@@ -44,6 +48,7 @@ function mode1(recorder) {
 
         d3.select({}).transition()
             .duration(500)
+            .delay(500)
             .ease(Math.sqrt)
             .tween("circle", function () {
                 return function (t) {
@@ -58,12 +63,12 @@ function mode1(recorder) {
     function getdata() {
         TD = recorder.timeData;
         FD = recorder.freqData;
-        r = Math.min(d3.mean(FD) , 100);
+        r = Math.max(d3.mean(FD), 5);
         x1 = width * Math.random();
         y1 = height * Math.random();
     }
 
-    timer2=window.setInterval(getdata, 1000);
+    timer2=window.setInterval(getdata, 500);
 }
 
 
@@ -152,16 +157,16 @@ function mode2(recorder) {
 
 // Inspired by Lee Byron’s test data generator.
     function bumps(ln, time) {
-        if(0<=ln <= 4) {
+        if(0<=ln && ln<= 4) {
             a[time] = d3.mean(FD)*2;
             return a;
-        } else if(5<=ln <= 9) {
+        } else if(5<=ln && ln<= 9) {
             b[time] = d3.mean(TD)*0.1;
             return b;
-        } else if(10<=ln <= 14) {
+        } else if(10<=ln && ln<= 14) {
             c[time] = d3.mean(CFD)*Math.random();
             return c;
-        } else if(15<=ln <= 19) {
+        } else if(15<=ln && ln<= 19) {
             d[time] = d3.mean(CTD)*Math.random();
             return d;
         }

@@ -9,6 +9,7 @@ $(document).ready(function() {
   	  isRecording="1";
       recorder.startRecording();
       drawpicture(recorder);
+
   	}
   });
 
