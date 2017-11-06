@@ -1,18 +1,22 @@
 var mn=0;
 function drawpicture(recorder) {
-    //mode1(recorder);
-    mode2(recorder);
+
+     if(mn==0) {
+         d3.select("canvas").remove();
+         mode1(recorder);
+    }else {
+         d3.select("svg").remove();
+         mode2(recorder);
+    }
 }
 
 function stopdrawpicture() {
     if(mn==0) {
         timer1.stop();
         clearInterval(timer2);
-        d3.select("canvas").remove();
     }else {
         clearInterval(timer1);
         clearInterval(timer2);
-        d3.select("svg").remove();
     }
 }
 
@@ -27,7 +31,7 @@ function mode1(recorder) {
     var x1 = width / 2,
         y1 = height / 2,
         i = 0,
-        r = 200,
+        r = 150,
         τ = 2 * Math.PI;
 
     var context = canvas.node().getContext("2d");
@@ -44,6 +48,7 @@ function mode1(recorder) {
 
         d3.select({}).transition()
             .duration(500)
+            .delay(500)
             .ease(Math.sqrt)
             .tween("circle", function () {
                 return function (t) {
@@ -58,12 +63,12 @@ function mode1(recorder) {
     function getdata() {
         TD = recorder.timeData;
         FD = recorder.freqData;
-        r = Math.min(d3.mean(FD) , 100);
+        r = Math.max(d3.mean(FD), 5);
         x1 = width * Math.random();
         y1 = height * Math.random();
     }
 
-    timer2=window.setInterval(getdata, 1000);
+    timer2=window.setInterval(getdata, 500);
 }
 
 
