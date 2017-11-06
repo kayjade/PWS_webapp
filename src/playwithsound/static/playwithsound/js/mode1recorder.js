@@ -19,7 +19,6 @@ function Recorder() {
 
   function startRecording() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    reverbjs.extend(audioContext);
 
     var source;
     var stream;

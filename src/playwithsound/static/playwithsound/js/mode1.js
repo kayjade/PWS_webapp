@@ -8,6 +8,7 @@ $(document).ready(function() {
   	  $("#ongoing-record").css("color","#b4d5c4");
   	  isRecording="1";
       recorder.startRecording();
+      drawpicture(recorder);
   	}
   });
 
@@ -17,11 +18,13 @@ $(document).ready(function() {
   	  $("#ongoing-record").css("color","#a8505f");
   	  isRecording="0";
       recorder.stopRecording();
+      stopdrawpicture();
       //recorder.getTimeData();
   	}
     // get audio data
     console.log(recorder.timeData);
-    console.log(recorder.timeData);
+    console.log(recorder.freqData);
+
   });
 
 });
