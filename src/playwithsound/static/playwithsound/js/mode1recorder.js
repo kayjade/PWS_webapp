@@ -65,7 +65,7 @@ function Recorder() {
         source.connect(analyser1);
         analyser1.connect(convolverNode);
         convolverNode.connect(analyser2);
-        analyser2.connect(audioCtx.destination);
+        //analyser2.connect(audioCtx.destination);
 
       },
         function(err) {
