@@ -21,7 +21,9 @@ $(document).ready(function() {
   	}
     // get audio data
     console.log(recorder.timeData);
-    console.log(recorder.timeData);
+    console.log(recorder.freqData);
+    console.log(recorder.convTimeData);
+    console.log(recorder.convFreqData);
   });
 
 });

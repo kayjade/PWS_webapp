@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 
+
 from playwithsound.views import *
 
 urlpatterns = [
@@ -8,4 +9,5 @@ urlpatterns = [
     url(r'^it-takes-a-song-to-be-an-artist', mode_2, name='mode_2'),
     url(r'^is-this-what-you-want', mode_3, name='mode_3'),
     url(r'^login', login, name='login'),
+    url(r'^get_conv_audio/$', get_conv_audio, name='get_conv_audio'),
 ]

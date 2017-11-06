@@ -124,7 +124,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT=PROJECT_ROOT+'media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 
 MEDIA_URL=' media/'
 
@@ -132,3 +132,5 @@ MEDIA_URL=' media/'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/playwithsound/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'playwithsound/static/')
