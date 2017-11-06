@@ -454,9 +454,18 @@ footer {
 .mode-body .glyphicon {
   font-size: 24px;
   vertical-align: bottom;
+
 }
 
+.mode-body{
+  padding-top:0;
+}
 .fa-play:hover,
 .glyphicon-pause:hover {
   color: #b4d5c4;
+}
+.svg{
+  width: 960px;
+  height: 500px;
+  margin: 0 auto;
 }
