@@ -40,3 +40,8 @@ def get_conv_audio(request):
     response['Content-Length'] = os.path.getsize(file_url)
     print(os.path.getsize(file_url))
     return response
+
+# homepage of gallery
+def gallery_home(request):
+    context={}
+    return render(request, 'gallery/gallery_home.html', context)

@@ -314,8 +314,21 @@ footer {
   background-image: url(../images/pws/index_01.jpg);
 }
 
-#section-gallery {
+#section-gallery, #gallery-head {
   background-image: url(../images/pws/index_03.jpg);
+}
+
+#gallery-head h1,
+#gallery-head p {
+  text-align: center;
+}
+
+#gallery-head h1 {
+  padding-top: 45px;
+}
+
+#gallery-head p {
+  padding-bottom: 45px;
 }
 
 #slide-mode1 {
