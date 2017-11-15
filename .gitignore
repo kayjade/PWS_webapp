@@ -1,8 +1,16 @@
 # files created by pyChram
 .idea/
+misc.xml
+modules.xml
+src.iml
+workspace.xml
 
 # Class-specific section #
 
+# Byte-compiled / optimized /DLL
+__pycache__/
+*.py[cod]
+*$py.class
 
 # Java section #
 *.class
