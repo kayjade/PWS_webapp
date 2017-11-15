@@ -1,6 +1,6 @@
 # files created by pyChram
 .idea/
-misc.xml
+src/.idea/misc.xml
 modules.xml
 src.iml
 workspace.xml
