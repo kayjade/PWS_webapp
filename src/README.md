@@ -10,3 +10,5 @@ its subdirectories (which you may create as neeeded).
 [Non-responsive Bootstrap](https://getbootstrap.com/docs/3.3/examples/non-responsive/)
 
 [Change bootstrap navbar collapse breakpoint without using LESS](https://stackoverflow.com/questions/19827605/change-bootstrap-navbar-collapse-breakpoint-without-using-less)
+
+[Hover effect](https://miketricking.github.io/bootstrap-image-hover/)
