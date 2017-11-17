@@ -45,3 +45,11 @@ def get_conv_audio(request):
 def gallery_home(request):
     context={}
     return render(request, 'gallery/gallery_home.html', context)
+
+def gallery_view(request, page):
+    context={}
+    return render(request, 'gallery/gallery_view_more.html', context)
+
+def gallery_my_album(request):
+    context={}
+    return render(request, 'gallery/gallery_my_album.html', context)

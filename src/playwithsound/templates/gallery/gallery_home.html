@@ -16,7 +16,7 @@
     			<div class="col-md-4 col-sm-6">
     				<div class="browse-hovereffect">
     					<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    					<a href="#">
+    					<a href="#paintingModal1" data-toggle="modal">
     					<div class="browse-overlay">
     						<div class="browse-overlay-icon">
     							<i class="fa fa-expand" aria-hidden="true"></i>
@@ -29,7 +29,7 @@
                 <div class="col-md-4 col-sm-6">
     				<div class="browse-hovereffect">
     					<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    					<a href="#">
+    					<a href="#paintingModal1" data-toggle="modal">
     					<div class="browse-overlay">
     						<div class="browse-overlay-icon">
     							<i class="fa fa-expand" aria-hidden="true"></i>
@@ -42,7 +42,7 @@
                 <div class="col-md-4 col-sm-6">
     				<div class="browse-hovereffect">
     					<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    					<a href="#">
+    					<a href="#paintingModal1" data-toggle="modal">
     					<div class="browse-overlay">
     						<div class="browse-overlay-icon">
     							<i class="fa fa-expand" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
                 <div class="col-md-4 col-sm-6">
     				<div class="browse-hovereffect">
     					<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    					<a href="#">
+    					<a href="#paintingModal1" data-toggle="modal">
     					<div class="browse-overlay">
     						<div class="browse-overlay-icon">
     							<i class="fa fa-expand" aria-hidden="true"></i>
@@ -68,7 +68,7 @@
                 <div class="col-md-4 col-sm-6">
     				<div class="browse-hovereffect">
     					<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    					<a href="#">
+    					<a href="#paintingModal1" data-toggle="modal">
     					<div class="browse-overlay">
     						<div class="browse-overlay-icon">
     							<i class="fa fa-expand" aria-hidden="true"></i>
@@ -81,7 +81,7 @@
                 <div class="col-md-4 col-sm-6">
     				<div class="browse-hovereffect">
     					<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    					<a href="#">
+    					<a href="#paintingModal1" data-toggle="modal">
     					<div class="browse-overlay">
     						<div class="browse-overlay-icon">
     							<i class="fa fa-expand" aria-hidden="true"></i>
@@ -104,7 +104,7 @@
     		<div class="col-md-4 col-sm-6">
     			<div class="viewmore-hovereffect">
         			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-        			<a href="#">
+        			<a href="{% url 'gallery_view' 'popular' %}">
             		<div class="viewmore-overlay">
                 		<h2>POPULAR PAINTINGS</h2>
             		</div>
@@ -115,7 +115,7 @@
 			<div class="col-md-4 col-sm-6">
     			<div class="viewmore-hovereffect">
         			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-        			<a href="#">
+        			<a href="{% url 'gallery_view' 'new' %}">
             		<div class="viewmore-overlay">
                 		<h2>NEW PAINTINGS</h2>
             		</div>
@@ -126,7 +126,7 @@
 			<div class="col-md-4 col-sm-6">
     			<div class="viewmore-hovereffect">
         			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-        			</a>
+        			<a href="{% url 'gallery_my_album' %}">
             			<div class="viewmore-overlay">
                 			<h2>MY ALBUM</h2>
             			</div>
@@ -141,6 +141,37 @@
     <div class="container-fluid text-center" id="unfixed-footer">
     	<div>
         <p>Copyright &copy; Team 330</p>
+        </div>
+    </div>
+
+    <div class="painting-modal modal fade" id="paintingModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <img class="img-responsive img-centered" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
+                                <div class="intro-modal">
+                                    <p>
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                        <strong>xxx Kudos</strong>
+                                    </p>
+                                    <p><strong>creater </strong>description added by creater of the image #hashtags</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
