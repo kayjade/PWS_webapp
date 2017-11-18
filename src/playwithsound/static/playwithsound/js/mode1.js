@@ -4,6 +4,10 @@ $(document).ready(function() {
   
   $("#start-record").click( function() {
   	if(isRecording=="0"){
+  	  if ($('#is-authenticated').length <= 0) {
+        // unlogged in
+        alert("If you want to save your image and recording, please login.");
+      }
   	  $("#record-states").html("Recording now...");	
   	  $("#ongoing-record").css("color","#b4d5c4");
   	  isRecording="1";
