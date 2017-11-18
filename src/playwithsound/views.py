@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 #from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.templatetags.static import static
 
 from django.http import HttpResponse
 from django.conf import settings
+from django.urls.base import reverse
+
 from wsgiref.util import FileWrapper
 
 import os
@@ -28,6 +30,10 @@ def mode_3(request):
 def login(request):
     context={}
     return render(request,'login.html',context)
+
+def logout(request):
+    logout(request)
+    return redirect(reverse('home'))
 
 # get the static audio file for convolver
 def get_conv_audio(request):

@@ -51,7 +51,13 @@
                         <li class="hidden">
                           <a href="#"></a>
                         </li>
-                        <li><a class="page-scroll" href="{% url 'home' %}">About</a></li>
+                        <li>
+                            {% if user_is_authenticated %}
+                            <a class="page-scroll" href="{% url 'home' %}">Logout
+                            {% else %}
+                            <a class="page-scroll" href="{% url 'login' %}">Login
+                            {% endif %}</a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle page-scroll" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Play<span class="caret"></span></a>
                             <ul class="dropdown-menu">
