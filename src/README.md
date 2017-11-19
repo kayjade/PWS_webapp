@@ -14,3 +14,5 @@ its subdirectories (which you may create as neeeded).
 [Hover effect](https://miketricking.github.io/bootstrap-image-hover/)
 
 [Flush footer to the bottom of the page](https://chrisbracco.com/css-sticky-footer-effect/)
+
+https://github.com/blueimp/jQuery-File-Upload
