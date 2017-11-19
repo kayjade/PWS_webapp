@@ -5,6 +5,7 @@ $(document).ready(function () {
     var analyzer = new Analyzer();
     var isRecording = "0";
     var recordNum=0;
+    var mn; // user-selected style
 
     init();
 
@@ -20,12 +21,14 @@ $(document).ready(function () {
                 if (savebutton.length > 0) {
                     savebutton.remove();
                 }
+                mn= $("#select-style select").val();
                 $("#record-states").html("Recording now...");
                 $("#ongoing-record").css("color", "#b4d5c4");
                 isRecording = "1";
                 analyzer && analyzer.startRecording();
                 recorder && recorder.record();
-                drawpicture(analyzer);
+
+                drawpicture(analyzer, mn);
                 $("#record-result").hide();
                 $("#saveButton").hide();
         }
@@ -65,17 +68,17 @@ $(document).ready(function () {
             createDownloadLink(); // please look into this function below
             recorder.clear(); // important
 
-            stopdrawpicture();
+            stopdrawpicture(mn);
             $("#saveButton").show();
             $("#record-result").show();
             // $(".record-control").append("<button id=\'saveButton\'>Save you creation to your album</button>");
             // $(".mode-body").append("<button id='downloadimage'>Download you picture</button>");
             // $(".mode-body").append("<button id='downloadaudio'>Download you audio</button>");
             $("#saveButton").on('click', function () {
-                saveimage()
+                saveimage(mn)
             });
             $("#downloadimage").on('click', function () {
-                downloadimage()
+                downloadimage(mn)
             });
             $("#downloadaudio").on('click', function () {
                 var event = new MouseEvent("click");

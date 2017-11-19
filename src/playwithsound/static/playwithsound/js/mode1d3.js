@@ -1,8 +1,8 @@
-var mn = 0;
+//var mn = 0;
 var width = 960;
 var height = 500;
 
-function drawpicture(recorder) {
+function drawpicture(recorder, mn) {
 
     if (mn == 0) {
         d3.select("canvas").remove();
@@ -13,7 +13,7 @@ function drawpicture(recorder) {
     }
 }
 
-function stopdrawpicture() {
+function stopdrawpicture(mn) {
     if (mn == 0) {
         timer1.stop();
         clearInterval(timer2);
@@ -23,7 +23,7 @@ function stopdrawpicture() {
     }
 }
 
-function downloadimage() {
+function downloadimage(mn) {
     if (mn == 0) {
         var canvas = d3.select("canvas").node();
         var base64Data = canvas.toDataURL("image/jpeg", 1.0);
@@ -40,7 +40,7 @@ function downloadimage() {
     }
 }
 
-function saveimage() {
+function saveimage(mn) {
 var fd = new FormData();
     if (mn == 0) {//canvas
         var canvas = d3.select("canvas").node();

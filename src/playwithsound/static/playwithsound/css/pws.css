@@ -424,6 +424,27 @@ footer {
   vertical-align: baseline;
 }
 
+#select-style select {
+ background-color: #a8505f;
+  border: none;
+  font-size: 12px;
+  color:#fff;
+  letter-spacing: 1px;
+   height: 22px;
+   padding: 2px; /* If you add too much padding here, the options won't show in IE */
+  padding-left:10px;
+  margin-right: 10px;
+   width: 120px;
+  -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+#select-style select option {
+  background: #fff;
+  color: #a8505f;
+}
+
 /* ---------------------------- */
 
 .login-container{
