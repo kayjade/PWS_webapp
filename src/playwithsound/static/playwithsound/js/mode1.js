@@ -4,25 +4,29 @@ var recorder;
 $(document).ready(function() {
     var analyzer = new Analyzer();
     var isRecording = "0";
+    var recordNum=0;
 
     init();
 
     $("#start-record").click(function () {
         if (isRecording === "0") {
-            if ($('#is-authenticated').length <= 0) {
+            if (recordNum === 0 && $('#is-authenticated').length <= 0) {
                 // unlogged in
-                alert("If you want to save your image and recording, please login.");
+                //alert("If you want to save your image and recording, please login.");
+                $('#login-alert').modal('show');
+                recordNum=recordNum+1;
+            }else{
+                var savebutton = $(".record-control").find('button');
+                if (savebutton.length > 0) {
+                    savebutton.remove();
+                }
+                $("#record-states").html("Recording now...");
+                $("#ongoing-record").css("color", "#b4d5c4");
+                isRecording = "1";
+                analyzer && analyzer.startRecording();
+                recorder && recorder.record();
+                drawpicture(analyzer);
             }
-            var savebutton = $(".record-control").find('button');
-            if (savebutton.length > 0) {
-                savebutton.remove();
-            }
-            $("#record-states").html("Recording now...");
-            $("#ongoing-record").css("color", "#b4d5c4");
-            isRecording = "1";
-            analyzer && analyzer.startRecording();
-            recorder && recorder.record();
-            drawpicture(analyzer);
         }
     });
 
