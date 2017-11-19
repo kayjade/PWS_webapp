@@ -144,6 +144,7 @@
         </div>
     </div>
 
+    <div class="single-painting">
     <div class="painting-modal modal fade" id="paintingModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
             <div class="modal-content">
@@ -163,7 +164,7 @@
                                 <div class="intro-modal">
                                     <p>
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        <--i class="fa fa-play" aria-hidden="true"></--i>
+                                        <!--i class="fa fa-play" aria-hidden="true"></i-->
                                         <strong>xxx Kudos</strong>
                                     </p>
                                     <p><strong>creater </strong>description added by creater of the image #hashtags</p>
@@ -176,5 +177,12 @@
             </div>
         </div>
     </div>
+    </div>
+
+{% endblock %}
+
+{% block customJS %}
+    {% load static %}
+    <script type="text/javascript" src="{% static "playwithsound/js/gallery.js" %}"></script>
 
 {% endblock %}

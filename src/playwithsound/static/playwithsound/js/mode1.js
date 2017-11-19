@@ -16,16 +16,18 @@ $(document).ready(function () {
                 $('#login-alert').modal('show');
                 recordNum=recordNum+1;
             }
-            var savebutton = $(".record-control").find('button');
-            if (savebutton.length > 0) {
-                savebutton.remove();
-            }
-            $("#record-states").html("Recording now...");
-            $("#ongoing-record").css("color", "#b4d5c4");
-            isRecording = "1";
-            analyzer && analyzer.startRecording();
-            recorder && recorder.record();
-            drawpicture(analyzer);
+                var savebutton = $(".record-control").find('button');
+                if (savebutton.length > 0) {
+                    savebutton.remove();
+                }
+                $("#record-states").html("Recording now...");
+                $("#ongoing-record").css("color", "#b4d5c4");
+                isRecording = "1";
+                analyzer && analyzer.startRecording();
+                recorder && recorder.record();
+                drawpicture(analyzer);
+                $("#record-result").hide();
+                $("#saveButton").hide();
         }
 
         function getCookie(name) {
@@ -64,9 +66,11 @@ $(document).ready(function () {
             recorder.clear(); // important
 
             stopdrawpicture();
-            $(".record-control").append("<button id=\'saveButton\'>Save you creation to your album</button>");
-            $(".mode-body").append("<button id='downloadimage'>Download you picture</button>");
-            $(".mode-body").append("<button id='downloadaudio'>Download you audio</button>");
+            $("#saveButton").show();
+            $("#record-result").show();
+            // $(".record-control").append("<button id=\'saveButton\'>Save you creation to your album</button>");
+            // $(".mode-body").append("<button id='downloadimage'>Download you picture</button>");
+            // $(".mode-body").append("<button id='downloadaudio'>Download you audio</button>");
             $("#saveButton").on('click', function () {
                 saveimage()
             });
@@ -91,17 +95,17 @@ function createDownloadLink() {
         audioblob = blob;
         var url = URL.createObjectURL(blob);
         var li = document.createElement('li');
-        var au = document.createElement('audio');
+        var au = $("#usr-audio");
         hf = document.createElement('a');
 
         au.controls = true;
-        au.src = url;
+        au.attr("src", url);
         hf.href = url;
         hf.download = new Date().toISOString() + '.wav';
         hf.innerHTML = hf.download;
-        li.appendChild(au);
+        //li.appendChild(au);
         //li.appendChild(hf);
-        $("#recording-list").append(li);
+        //$("#recording-list").append(li);
 
     });
 }
@@ -131,4 +135,7 @@ function init() {
     navigator.getUserMedia({audio: true}, startUserMedia, function (e) {
         console.log('No live audio input: ' + e);
     });
+
+    $("#record-result").hide();
+    $("#saveButton").hide();
 }

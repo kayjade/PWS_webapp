@@ -399,13 +399,41 @@ footer {
   background-image: url(../images/pws/mode3_01.jpg);
 }
 
+/* -------------- mode 1-------------- */
+#record-result {
+  padding-top:15px;
+  padding-bottom:15px;
+}
+
+#record-result .btn-savefile {
+  border-style:none;
+  letter-spacing: 1px;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+#record-result .btn-savefile i {
+  font-size: 12px;
+}
+
+#record-result audio{
+  margin-bottom: 5px;
+}
+
+#record-control {
+  vertical-align: baseline;
+}
+
+/* ---------------------------- */
+
 .login-container{
   background-image: url(../images/pws/index_01.jpg);
   width:1300px;
   height:100%;overflow:hidden;
 }
 
-.btn-login, .btn-alert{
+.btn-login, .btn-alert,
+#record-result .btn-savefile {
   background-color: #a8505f;
 }
 .btn-login{
@@ -414,7 +442,9 @@ footer {
 }
 
 .btn-login:hover,
-.btn-login:focus {
+.btn-login:focus,
+#record-result .btn-savefile:hover,
+#record-result .btn-savefile:focus{
   background: #eceff1;
   color: #a8505f;
 }
@@ -707,6 +737,10 @@ filter:alpha(opacity=100);
   padding-top: 10px;
   font-size: 15px;
   letter-spacing: 1px;
+}
+
+.painting-modal .intro-modal i {
+  cursor:pointer;
 }
 
 .painting-modal .modal-content {
