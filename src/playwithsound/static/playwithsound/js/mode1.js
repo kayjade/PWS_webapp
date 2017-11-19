@@ -60,10 +60,18 @@ $(document).ready(function() {
             recorder.clear(); // important
 
             stopdrawpicture();
-            $(".record-control").append("<button id=\'saveButton\'>Save you audio and picture</button>");
-            $(".mode-body").append("<h4>Recordings</h4>");
+            $(".record-control").append("<button id=\'saveButton\'>Save you creation to your album</button>");
+            $(".mode-body").append("<button id='downloadimage'>Download you picture</button>");
+            $(".mode-body").append("<button id='downloadaudio'>Download you audio</button>");
             $("#saveButton").on('click',function(){
                 saveimage()
+            });
+            $("#downloadimage").on('click',function(){
+                downloadimage()
+            });
+            $("#downloadaudio").on('click',function(){
+                var event = new MouseEvent("click");
+                hf.dispatchEvent(event);
             });
 
             //recorder.getTimeData();
@@ -79,7 +87,7 @@ $(document).ready(function() {
       var url = URL.createObjectURL(blob);
       var li = document.createElement('li');
       var au = document.createElement('audio');
-      var hf = document.createElement('a');
+      hf = document.createElement('a');
 
       au.controls = true;
       au.src = url;
@@ -87,8 +95,9 @@ $(document).ready(function() {
       hf.download = new Date().toISOString() + '.wav';
       hf.innerHTML = hf.download;
       li.appendChild(au);
-      li.appendChild(hf);
+      //li.appendChild(hf);
       $("#recording-list").append(li);
+
     });
   }
 
