@@ -41,13 +41,13 @@ function downloadimage() {
 }
 
 function saveimage() {
+var fd = new FormData();
     if (mn == 0) {//canvas
         var canvas = d3.select("canvas").node();
         var base64Data = canvas.toDataURL("image/jpeg", 1.0);
         var blob = dataURItoBlob(base64Data);
-        var fd = new FormData();
-        fd.append("fileData", blob);
-        fd.append("fileName", btoa(unescape(encodeURIComponent(canvas))));
+        fd.append("ImageData", blob);
+        fd.append("AudioData",audioblob);
         console.log(blob);
         $.ajax({
             url: '/saveimage',
@@ -76,7 +76,6 @@ function saveimage() {
             context.drawImage(image, 0, 0, width, height);
             var base64Data = canvas.toDataURL("image/jpeg", 1.0);
             var blob = dataURItoBlob(base64Data);
-            var fd = new FormData();
             fd.append("fileData", blob);
             fd.append("fileName", btoa(unescape(encodeURIComponent(canvas))));
             $.ajax({
