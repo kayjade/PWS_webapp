@@ -697,6 +697,11 @@ filter:alpha(opacity=100);
   color: #37474f;
 }
 
+.painting-modal .modal-body audio {
+  display: block;
+  width: 100%;
+}
+
 .painting-modal .intro-modal {
   text-align: left;
   padding-top: 10px;

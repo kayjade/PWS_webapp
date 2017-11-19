@@ -62,6 +62,7 @@ def gallery_my_album(request):
 
 def saveimage(request):
     blob= request.FILES['fileData']
-    file=open("/Users/flora/Desktop/mioamiao.png","wb")
+    #file=open("/Users/flora/Desktop/mioamiao.png","wb")
+    file = open("/Users/kayjade/Desktop/mioamiao.png", "wb")
     file.writelines(blob.readlines())
     return HttpResponse()

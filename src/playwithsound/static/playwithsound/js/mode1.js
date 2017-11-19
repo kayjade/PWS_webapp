@@ -15,18 +15,17 @@ $(document).ready(function() {
                 //alert("If you want to save your image and recording, please login.");
                 $('#login-alert').modal('show');
                 recordNum=recordNum+1;
-            }else{
-                var savebutton = $(".record-control").find('button');
-                if (savebutton.length > 0) {
-                    savebutton.remove();
-                }
-                $("#record-states").html("Recording now...");
-                $("#ongoing-record").css("color", "#b4d5c4");
-                isRecording = "1";
-                analyzer && analyzer.startRecording();
-                recorder && recorder.record();
-                drawpicture(analyzer);
             }
+            var savebutton = $(".record-control").find('button');
+            if (savebutton.length > 0) {
+                savebutton.remove();
+            }
+            $("#record-states").html("Recording now...");
+            $("#ongoing-record").css("color", "#b4d5c4");
+            isRecording = "1";
+            analyzer && analyzer.startRecording();
+            recorder && recorder.record();
+            drawpicture(analyzer);
         }
         function getCookie(name) {
         var cookieValue = null;
