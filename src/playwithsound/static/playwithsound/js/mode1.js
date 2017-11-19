@@ -2,47 +2,52 @@ var audioCtx;
 var recorder;
 
 $(document).ready(function() {
-  var analyzer = new Analyzer();
-  var isRecording="0";
+    var analyzer = new Analyzer();
+    var isRecording = "0";
 
-  init();
+    init();
 
-  $("#start-record").click( function() {
-  	if(isRecording==="0"){
-  	  if ($('#is-authenticated').length <= 0) {
-        // unlogged in
-        //alert("If you want to save your image and recording, please login.");
-      }
-  	  $("#record-states").html("Recording now...");	
-  	  $("#ongoing-record").css("color","#b4d5c4");
-  	  isRecording="1";
-      analyzer && analyzer.startRecording();
-      recorder && recorder.record();
-      drawpicture(analyzer);
-  	}
-  });
+    $("#start-record").click(function () {
+        if (isRecording === "0") {
+            if ($('#is-authenticated').length <= 0) {
+                // unlogged in
+                alert("If you want to save your image and recording, please login.");
+            }
+            var savebutton = $(".record-control").find('button');
+            if (savebutton.length > 0) {
+                savebutton.remove();
+            }
+            $("#record-states").html("Recording now...");
+            $("#ongoing-record").css("color", "#b4d5c4");
+            isRecording = "1";
+            analyzer && analyzer.startRecording();
+            recorder && recorder.record();
+            drawpicture(analyzer);
+        }
+    });
 
-  $("#stop-record").click( function() {
-  	if(isRecording==="1"){
-  	  $("#record-states").html("Record ended. Click the button below to start recording again.");	
-  	  $("#ongoing-record").css("color","#a8505f");
-  	  isRecording="0";
-      analyzer.stopRecording();
-      recorder && recorder.stop();
-      createDownloadLink();
-      recorder.clear();
-      stopdrawpicture();
+    $("#stop-record").click(function () {
+        if (isRecording === "1") {
+            $("#record-states").html("Record ended. Click the button below to start recording again.");
+            $("#ongoing-record").css("color", "#a8505f");
+            isRecording = "0";
+            analyzer.stopRecording();
 
-  	}
-    // get audio data
-    // console.log(analyzer.timeData);
-    // console.log(analyzer.freqData);
-    // console.log(analyzer.convTimeData);
-    // console.log(analyzer.convFreqData);
+            recorder && recorder.stop();
+            createDownloadLink(); // please look into this function below
+            recorder.clear(); // important
 
-  });
+            stopdrawpicture();
+            $(".record-control").append("<button id=\'saveButton\'>Save you audio and picture</button>");
+            savepng();
+        }
+    });
+
+});
 
   function createDownloadLink() {
+      // .exportWAV(callback) generate a blob containing wav audio data
+      // visit https://github.com/mattdiamond/Recorderjs for more information
       recorder && recorder.exportWAV(function(blob) {
       var url = URL.createObjectURL(blob);
       var li = document.createElement('li');
@@ -59,8 +64,6 @@ $(document).ready(function() {
       $("#recording-list").append(li);
     });
   }
-
-});
 
 function startUserMedia(stream) {
     var input = audioCtx.createMediaStreamSource(stream);
@@ -88,4 +91,3 @@ function init() {
       console.log('No live audio input: ' + e);
     });
   }
-

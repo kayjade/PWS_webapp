@@ -13,7 +13,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
   /*background-color: #fffdf1;*/
-  background-color:#eceff1
+  background-color:#eceff1;
   letter-spacing: 1px;
   padding-top: 60px;
 
@@ -384,7 +384,7 @@ footer {
 }
 
 #mode1, #mode2, #mode3 {
-  height: 500px;
+  height: 545px;
 }
 
 #mode1 {
