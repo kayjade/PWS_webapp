@@ -59,3 +59,9 @@ def gallery_view(request, page):
 def gallery_my_album(request):
     context={}
     return render(request, 'gallery/gallery_my_album.html', context)
+
+def saveimage(request):
+    blob= request.FILES['fileData']
+    #file=open("/Users/flora/Desktop/mioamiao.png","wb")
+    #file.writelines(blob.readlines())
+    return HttpResponse()
