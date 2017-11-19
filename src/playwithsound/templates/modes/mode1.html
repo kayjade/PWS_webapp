@@ -24,7 +24,7 @@
             <i class="fa fa-microphone" aria-hidden="true" id="ongoing-record"></i>
             <i class="glyphicon glyphicon-pause" id="stop-record"></i>
         </div>
-    <h2>Recordings</h2>
+
   <ul id="recording-list"></ul>
     </div>
 
@@ -40,11 +40,11 @@
                  <div>
                      <div class="intro">
                          <p>Don't worry, you can do whatever you like!</p>
-                         <p>But remember to login first if you would like to save and manage your images and audio.</p>
+                         <p>But if you would like to save and manage your images and audio, remember to login first.</p>
                          <p>Enjoy! :)</p>
                      </div>
                      <a href="{% url 'login' %}" class="btn btn-small btn-primary btn-alert">Awesome! Take me to login now.</a>
-                     <button class="btn btn-small btn-primary btn-alert" data-dismiss="modal">Thanks, but let me have some fun first!</button>
+                     <button class="btn btn-small btn-primary btn-alert" data-dismiss="modal">Thanks, but I just wanna have some fun!</button>
                  </div>
              </div>
             </div>
@@ -61,7 +61,7 @@
 
     <script type="text/javascript" src="{% static "playwithsound/js/mode1.js" %}"></script>
 
-<script type="text/javascript" src="{% static "playwithsound/js/recorder.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/recorder.js" %}"></script>
 
     <script type="text/javascript" src="{% static "playwithsound/js/analyzer.js" %}"></script>
 

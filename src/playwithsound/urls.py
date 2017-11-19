@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^gallery/home/$', gallery_home, name='gallery_home'),
     url(r'gallery/view/my_album', gallery_my_album, name='gallery_my_album'),
     url(r'gallery/view/(?P<page>[a-z]+)/$', gallery_view, name='gallery_view'),
+    url(r'^saveimage', saveimage, name='saveimage'),
+
 ]
