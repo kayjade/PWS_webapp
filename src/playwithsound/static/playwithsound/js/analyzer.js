@@ -1,6 +1,6 @@
 'use strict';
 
-function Recorder() {
+function Analyzer() {
 
   navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -24,7 +24,7 @@ function Recorder() {
 
     var source;
     var stream;
-    //var mediaRecorder; 
+    //var mediaRecorder;
     var analyser1 = audioCtx.createAnalyser();
     var analyser2 = audioCtx.createAnalyser();
 
@@ -61,7 +61,7 @@ function Recorder() {
       function(stream) {
         //mediaRecorder = new MediaRecorder(stream);
 
-        source = audioCtx.createMediaStreamSource(stream);  
+        source = audioCtx.createMediaStreamSource(stream);
         source.connect(analyser1);
         analyser1.connect(convolverNode);
         convolverNode.connect(analyser2);
