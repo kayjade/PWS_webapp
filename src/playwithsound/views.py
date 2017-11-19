@@ -61,8 +61,9 @@ def gallery_my_album(request):
     return render(request, 'gallery/gallery_my_album.html', context)
 
 def saveimage(request):
-    blob= request.FILES['fileData']
-    #file=open("/Users/flora/Desktop/mioamiao.png","wb")
-    file = open("/Users/kayjade/Desktop/mioamiao.png", "wb")
-    file.writelines(blob.readlines())
+    imagefile= request.FILES['ImageData']
+    audiofile=request.FILES['AudioData']
+
+    #file=open("/Users/flora/Desktop/mioamiao.wav","wb")
+    #file.writelines(audiofile.readlines())
     return HttpResponse()
