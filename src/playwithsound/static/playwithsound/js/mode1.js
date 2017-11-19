@@ -61,6 +61,7 @@ $(document).ready(function() {
 
             stopdrawpicture();
             $(".record-control").append("<button id=\'saveButton\'>Save you audio and picture</button>");
+            $(".mode-body").append("<h4>Recordings</h4>");
             $("#saveButton").on('click',function(){
                 saveimage()
             });

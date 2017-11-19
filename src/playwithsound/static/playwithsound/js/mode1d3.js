@@ -72,7 +72,7 @@ function mode1(recorder) {
         .attr("width", width)
         .attr("height", height);
 
-    canvas.node().getContext("2d").fillStyle='#fffdf1';
+    canvas.node().getContext("2d").fillStyle='#ffffff';
     canvas.node().getContext("2d").fillRect(0,0,width,height);
 
     var x1 = width / 2,
