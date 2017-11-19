@@ -75,8 +75,34 @@ $(document).ready(function () {
             // $(".mode-body").append("<button id='downloadimage'>Download you picture</button>");
             // $(".mode-body").append("<button id='downloadaudio'>Download you audio</button>");
             $("#saveButton").on('click', function () {
-                saveimage(mn)
+                $("#save-modal").modal("show");
+                //saveimage(mn)
+
+                // confirm save to album
+                $("#confirm-save-btn").on('click', function () {
+                    $("#save-modal").modal("hide");
+                    saveimage(mn)
+                });
+
+                // create a new album
+                $("#create-new-album").on('click', function(e) {
+                    e.preventDefault();
+                    $("#modal-confirm-save").hide();
+                    $("#modal-create-new").show();
+                });
+
+                $("#confirm-create").on('click', function(e) {
+                    e.preventDefault();
+                });
+
+                // cancel create new album. go back to save page
+                $("#cancel-create").on('click', function(e) {
+                    e.preventDefault();
+                    $("#modal-create-new").hide();
+                    $("#modal-confirm-save").show();
+                });
             });
+
             $("#downloadimage").on('click', function () {
                 downloadimage(mn)
             });

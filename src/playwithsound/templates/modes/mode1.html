@@ -69,6 +69,56 @@
              </div>
             </div>
         </div>
+
+        <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+             <div class="modal-content container">
+                 <div id="modal-confirm-save">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Save to album</h4>
+                    </div>
+                    <div class="modal-body">
+                        Choose an album
+                        <span id="select-album">
+                            <select>
+                                <option>Default album</option>
+                                <option>Style 2</option>
+                            </select>
+                        </span>
+                        <div class="modal-btn-group">
+                            <button class="btn btn-small btn-primary btn-savealbum" id="create-new-album">create a new album</button>
+                            <button class="btn btn-small btn-primary btn-savealbum" id="confirm-save-btn">save</button>
+                            <button class="btn btn-small btn-primary btn-savealbum" data-dismiss="modal">cancel</button>
+                        </div>
+                    </div>
+                 </div>
+                 <div id="modal-create-new" hidden>
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Create a new album</h4>
+                     </div>
+                     <div class="modal-body">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="email">Name of the album:</label>
+                                <input type="text" class="form-control" placeholder="my album">
+                            </div>
+                            <div class="modal-btn-group">
+                                <button type="submit" class="btn btn-small btn-default btn-savealbum" id="confirm-create">
+                                    create</button>
+                                <button class="btn btn-small btn-default btn-savealbum" id="cancel-create">
+                                    go back to save</button>
+                                <button class="btn btn-small btn-default btn-savealbum" data-dismiss="modal">
+                                    cancel</button>
+                            </div>
+
+                        </form>
+                    </div>
+                 </div>
+             </div>
+            </div>
+        </div>
     {% endblock %}
 
 {% block customJS %}
