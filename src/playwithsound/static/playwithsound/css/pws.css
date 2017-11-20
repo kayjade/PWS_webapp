@@ -255,7 +255,7 @@ footer {
 }
 
 .mode-title {
-  padding-top: 55px;
+  padding-top: 30px;
 }
 
 .section-title {
@@ -383,12 +383,13 @@ footer {
   margin: 0 auto;
 }
 
-#mode1, #mode2, #mode3 {
+/*#mode1, #mode2, #mode3 {
   height: 545px;
-}
+}*/
 
 #mode1 {
-  background-image: url(../images/pws/mode1_01.jpg);
+  /*background-image: url(../images/pws/mode1_01.jpg);*/
+  color: #212121;
 }
 
 #mode2 {
@@ -397,6 +398,16 @@ footer {
 
 #mode3 {
   background-image: url(../images/pws/mode3_01.jpg);
+}
+
+.introduction{
+  vertical-align: middle;
+  margin: 0 auto;
+  margin-top:20px;
+  margin-bottom:20px;
+  width: 650px;
+  font-size: 15px;
+  letter-spacing: 1px;
 }
 
 /* -------------- mode 1-------------- */
@@ -451,19 +462,19 @@ footer {
   background-image: url(../images/pws/index_01.jpg);
   width:100%;
   overflow:hidden;
-  height: 545px;
+  /*height: 545px;*/
 }
 
 .signup-container{
   background-image: url(../images/pws/index_01.jpg);
-  width:1300px;
+  width:100%;
   overflow:hidden;
-  height: 545px;
+  /*height: 545px;*/
 }
 
 .btn-login, .btn-alert,
 #record-result .btn-savefile,
-#save-modal .btn-savealbum .btn-signup{
+#save-modal .btn-savealbum, .btn-signup{
   background-color: #a8505f;
 }
 
@@ -527,7 +538,7 @@ footer {
   color: #a8505f;
   text-align: center;
   padding-top: 200px;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
 }
 
 @media (max-width: 960px) {
@@ -599,14 +610,6 @@ footer {
   width: 960px;
   height: 500px;
   margin: 0 auto;
-}
-
-.introduction{
-  vertical-align: middle;
-  margin: 0 auto;
-  margin-top:100px;
-  width: 500px;
-  font-size: 16px;
 }
 
 /* Browsw section hover effet */
