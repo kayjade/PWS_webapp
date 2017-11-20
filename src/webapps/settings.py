@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'playwithsound',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,12 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'playwithsound',
 ]
 
 #URL to use if the authentication system requires a user to login
-LOGIN_URL='/playwithsound/login'
+LOGIN_URL='/login'
 #Default URL to redirect to after a user logs in
-LOGIN_REDIRECT_URL='/playwithsound/'
+LOGIN_REDIRECT_URL='/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

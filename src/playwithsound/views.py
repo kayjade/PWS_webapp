@@ -13,7 +13,7 @@ from playwithsound.forms import *
 
 # Used to create and manually log in a user
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login as auth_login, authenticate
 
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
@@ -24,8 +24,7 @@ import os
 
 # Create your views here.
 def home(request):
-    context={}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', {})
 
 
 # Action when people click register button.
@@ -41,7 +40,7 @@ def register(request):
 
     context['form'] = form
     if not form.is_valid():
-        return render(request, 'registration.html', context)
+        return render(request, 'register.html', context)
     new_user = User.objects.create_user(username=form.cleaned_data['username'],
                                         first_name=form.cleaned_data['firstname'],
                                         last_name=form.cleaned_data['lastname'],
@@ -74,35 +73,30 @@ def registeration_confirm(request, uidb64, token):
     user = User.objects.filter(pk=uid)[0]
     # Verify if input uidb64 corresponds to a existed user
     if not user:
-        return render(request, 'grumblr/templates/registration/needemailvalidation.html', {})
+        return render(request, 'registration/needemailvalidation.html', {})
     if default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
-        return redirect(reverse('index'))
+        auth_login(request, user)
+        return redirect(reverse('home'))
     else:
-        return render(request, 'grumblr/templates/registration/needemailvalidation.html', {})
+        return render(request, 'registration/needemailvalidation.html', {})
 
 
 def mode_1(request):
     context={}
     return render(request, 'modes/mode1.html', context)
 
+
 def mode_2(request):
     context={}
     return render(request, 'modes/mode2.html', context)
+
 
 def mode_3(request):
     context={}
     return render(request, 'modes/mode3.html', context)
 
-def login(request):
-    context={}
-    return render(request,'login.html',context)
-
-def logout(request):
-    logout(request)
-    return redirect(reverse('home'))
 
 # get the static audio file for convolver
 def get_conv_audio(request):
@@ -116,23 +110,62 @@ def get_conv_audio(request):
     print(os.path.getsize(file_url))
     return response
 
+
 # homepage of gallery
+@login_required
+@transaction.atomic
 def gallery_home(request):
-    context={}
+    imageIDs = Painting.getImageIDs(request.user)
+
+    context={'imageIDs':imageIDs}
     return render(request, 'gallery/gallery_home.html', context)
 
+
+@login_required
+@transaction.atomic
 def gallery_view(request, page):
     context={}
     return render(request, 'gallery/gallery_view_more.html', context)
 
+
+@login_required
+@transaction.atomic
 def gallery_my_album(request):
     context={}
     return render(request, 'gallery/gallery_my_album.html', context)
 
-def saveimage(request):
-    imagefile= request.FILES['ImageData']
-    audiofile=request.FILES['AudioData']
 
+@login_required
+@transaction.atomic
+def saveimage(request):
+    if request.method == "POST":
+        imagefile= request.FILES['ImageData']
+        audiofile=request.FILES['AudioData']
+        album = Album.objects.filter(user=request.user)[0]
+        audio = Audio(user = request.user, audio_file = audiofile)
+        audio.save()
+        painting = Painting(user=request.user,image=imagefile, audio = audio,album=album)
+        painting.save()
+        return HttpResponse('Success')
+    else:
+        raise Http404
     #file=open("/Users/flora/Desktop/mioamiao.wav","wb")
     #file.writelines(audiofile.readlines())
-    return HttpResponse()
+
+
+@login_required
+@transaction.atomic
+def getimage(request, image_id):
+    user = request.user
+    if image_id and Painting.objects.filter(id=image_id).exists():
+        painting = Painting.objects.filter(id__exact=image_id)[0]
+    return HttpResponse(painting.image, content_type='image/png')
+
+
+@login_required
+@transaction.atomic
+def getaudio(request, image_id):
+    user = request.user
+    if image_id and Painting.objects.filter(id=image_id).exists():
+        painting = Painting.objects.filter(id__exact=image_id)[0]
+    return HttpResponse(painting.audio.audio_file, content_type='audio/wav')

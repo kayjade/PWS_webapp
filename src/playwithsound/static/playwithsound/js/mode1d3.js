@@ -43,7 +43,7 @@ function downloadimage(mn) {
 }
 
 function saveimage(mn) {
-var fd = new FormData();
+    var fd = new FormData();
     if (mn == 0) {//canvas
         var canvas = d3.select("canvas").node();
         var base64Data = canvas.toDataURL("image/jpeg", 1.0);
@@ -58,7 +58,8 @@ var fd = new FormData();
             processData: false,
             contentType: false
         }).done(function (data) {
-            if (data['isSuccess']) {
+            if (data === "Success") {
+                alert('Success')
             } else {
                 alert('Failed to save image');
             }
@@ -78,8 +79,8 @@ var fd = new FormData();
             context.drawImage(image, 0, 0, width, height);
             var base64Data = canvas.toDataURL("image/jpeg", 1.0);
             var blob = dataURItoBlob(base64Data);
-            fd.append("fileData", blob);
-            fd.append("fileName", btoa(unescape(encodeURIComponent(canvas))));
+            fd.append("ImageData", blob);
+            fd.append("AudioData",audioblob);
             $.ajax({
                 url: '/saveimage',
                 type: 'POST',
@@ -87,13 +88,15 @@ var fd = new FormData();
                 processData: false,
                 contentType: false
             }).done(function (data) {
-                if (data['isSuccess']) {
+                if (data === "Success") {
+                alert('Success')
                 } else {
                     alert('Failed to save image');
                 }
             }).fail(function (data) {
             });
         };
+
         image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgContent)));
 
     }

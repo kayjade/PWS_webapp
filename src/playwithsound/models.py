@@ -52,3 +52,11 @@ class Painting(models.Model):
         return self.user.username
     def __str__(self):
         return self.__unicode__()
+
+    @staticmethod
+    def getImageIDs(user):
+        idList = []
+        images = Painting.objects.filter(user=user)
+        for image in images:
+            idList.append(image.id)
+        return idList

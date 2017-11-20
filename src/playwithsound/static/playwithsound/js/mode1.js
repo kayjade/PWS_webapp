@@ -69,44 +69,45 @@ $(document).ready(function () {
             recorder.clear(); // important
 
             stopdrawpicture(mn);
-            $("#saveButton").show();
+            if($('#is-authenticated').length > 0){
+            $("#saveButton").show();}
             $("#record-result").show();
             // $(".record-control").append("<button id=\'saveButton\'>Save you creation to your album</button>");
             // $(".mode-body").append("<button id='downloadimage'>Download you picture</button>");
             // $(".mode-body").append("<button id='downloadaudio'>Download you audio</button>");
-            $("#saveButton").on('click', function () {
+            $("#saveButton").unbind('click').on('click', function () {
                 $("#save-modal").modal("show");
                 //saveimage(mn)
 
                 // confirm save to album
-                $("#confirm-save-btn").on('click', function () {
+                $("#confirm-save-btn").unbind('click').on('click', function () {
                     $("#save-modal").modal("hide");
                     saveimage(mn)
                 });
 
                 // create a new album
-                $("#create-new-album").on('click', function(e) {
+                $("#create-new-album").unbind('click').on('click', function(e) {
                     e.preventDefault();
                     $("#modal-confirm-save").hide();
                     $("#modal-create-new").show();
                 });
 
-                $("#confirm-create").on('click', function(e) {
+                $("#confirm-create").unbind('click').on('click', function(e) {
                     e.preventDefault();
                 });
 
                 // cancel create new album. go back to save page
-                $("#cancel-create").on('click', function(e) {
+                $("#cancel-create").unbind('click').on('click', function(e) {
                     e.preventDefault();
                     $("#modal-create-new").hide();
                     $("#modal-confirm-save").show();
                 });
             });
 
-            $("#downloadimage").on('click', function () {
+            $("#downloadimage").unbind('click').on('click', function () {
                 downloadimage(mn)
             });
-            $("#downloadaudio").on('click', function () {
+            $("#downloadaudio").unbind('click').on('click', function () {
                 var event = new MouseEvent("click");
                 hf.dispatchEvent(event);
             });

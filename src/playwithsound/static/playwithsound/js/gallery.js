@@ -11,4 +11,11 @@ $(document).ready(function() {
     }
   });
 
+  $("a[id^='aModal']").each(function(){
+      $(this).unbind('click').on('click', function(){
+          var aid = this.id.substr(6);
+          $("#audioModal"+aid).attr("src","/getaudio/"+aid);
+      });
+    });
+
 });
