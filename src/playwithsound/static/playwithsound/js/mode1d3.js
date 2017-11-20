@@ -6,8 +6,10 @@ function drawpicture(recorder, mn) {
 
     if (mn == 0) {
         d3.select("canvas").remove();
+        d3.select("svg").remove();
         mode1(recorder);
     } else {
+        d3.select("canvas").remove();
         d3.select("svg").remove();
         mode2(recorder);
     }
@@ -91,7 +93,7 @@ var fd = new FormData();
                 }
             }).fail(function (data) {
             });
-        }
+        };
         image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgContent)));
 
     }

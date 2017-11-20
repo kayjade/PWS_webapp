@@ -4,43 +4,53 @@
 
 {% block content %}
     <div class="container-fluid login-container">
-            <div class="login-form">
-                <form class="form-signin" action= method="post">
-                    {% csrf_token %}
-                    <h2 class="form-signin-heading">Log into your account</h2>
-                    <div class="username-inputdiv">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <label for="inputUsername" class="sr-only">Username</label>
-                        <input type="text" name="username" id="inputUsername" class="form-control login-input"
-                               placeholder="Username" required
-                               autofocus>
-                    </div>
-                    <div class="password-inputdiv">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control login-input"
-                               placeholder="Password"
-                               required>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" class="checkbox-agree" value="remember-me"> Remember me
-                        </label>
-                        <a class="password-link" href=>I've lost my password</a>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Log in
-                    </button>
-                    <a href="#" class="btn btn-lg btn-primary btn-block btn-login">Register
-                    </a>
-                    <input type="hidden" name="next" value="=">
-                </form>
+        <div class="login-form">
+            <h2 class="form-signin-heading"> Log into your account </h2>
+            <div class="middle">
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+            </div>
+            <form class="form-signin" action={% url 'login' %} method="post">
+                {% csrf_token %}
+                <div class="username-inputdiv">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <label for="inputUsername" class="sr-only">Username</label>
+                    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username"
+                           required
+                           autofocus>
+                </div>
+                <div class="password-inputdiv">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control"
+                           placeholder="Password"
+                           required>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="checkbox-agree" value="remember-me"> Remember me
+                    </label>
+                    <a class="password-link" href={% url 'password_reset' %}>I've lost my password</a>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Log in
+                </button>
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+            <button class="btn btn-lg btn-primary btn-block btn-login btn-signup"
+                    onclick="window.location.href='{% url 'register' %}'">
+                Register
+            </button>
+            <input type="hidden" name="next" value="=">
+            </form>
 
         </div>
     </div>
+    </div>
 
     <div class="container-fluid text-center" id="unfixed-footer">
-    	<div>
-        <p>Copyright &copy; Team 330</p>
+        <div>
+            <p>Copyright &copy; Team 330</p>
         </div>
     </div>
 {% endblock %}

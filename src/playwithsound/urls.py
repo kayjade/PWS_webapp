@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
-
-
+from django.contrib.auth import views as auth_views
+from django.contrib import admin
 from playwithsound.views import *
 
 urlpatterns = [
@@ -15,5 +15,11 @@ urlpatterns = [
     url(r'gallery/view/my_album', gallery_my_album, name='gallery_my_album'),
     url(r'gallery/view/(?P<page>[a-z]+)/$', gallery_view, name='gallery_view'),
     url(r'^saveimage', saveimage, name='saveimage'),
+    url(r'^register', register, name='register'),
+    url(r'^validate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', registeration_confirm, name='confirm-email'),
+    url(r'^password/reset/$',auth_views.password_reset,{'post_reset_redirect':'resetdone'},name="password_reset"),
+    url(r'^password/reset/done/$',auth_views.password_reset_done,name='resetdone'),
+    url(r'^password/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', auth_views.password_reset_confirm,{'post_reset_redirect':'resetcomplete'},name='reset-confirm'),
+    url(r'^password/reset/complete/$', auth_views.password_reset_complete,name='resetcomplete'),
 
 ]

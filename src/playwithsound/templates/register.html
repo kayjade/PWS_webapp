@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Paint With Sound - Register{% endblock %}
+
+{% block content %}
+    <div class="container-fluid signup-container">
+        <div class="login-form">
+            <div class="middle">
+                {% for error in form.non_field_errors %}
+                    <p>
+                        {{ error }}
+                    </p>
+                {% endfor %}
+                {% for error in form.password1.errors %}
+                    <p>
+                        {{ error }}
+                    </p>
+                {% endfor %}
+                {% for error in form.username.errors %}
+                    <p>
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <form class="form-signup registrationform" action={% url 'register' %} method="post">
+                {% csrf_token %}
+                <h2 class="form-signin-heading">Sign up for your account</h2>
+                <div class="username-inputdiv fieldWrapper">
+                    <label for="{{ form.username.id_for_label }}" class="sr-only">Username:</label>
+                    {{ form.username }}
+                </div>
+                <div class="name-inputdiv">
+                    <label for="{{ form.firstname.id_for_label }}" class="sr-only">First name</label>
+                    {{ form.firstname }}
+                    <label for="{{ form.lastname.id_for_label }}" class="sr-only">Last name</label>
+                    {{ form.lastname }}
+                </div>
+                <div class="password-inputdiv">
+                    <label for="{{ form.password1.id_for_label }}" class="sr-only">Password</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="passwordconfirm-inputdiv">
+                    <label for="{{ form.password2.id_for_label }}" class="sr-only">Password confirmation</label>
+                    {{ form.password2 }}
+                </div>
+                <div>
+                    <label for="{{ form.email.id_for_label }}" class="sr-only">Email</label>
+                    {{ form.email }}
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="checkbox-agree" value=""> I agree to <a class="policy" href=" ">Service
+                        and Pirvacy Policy</a>
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Sign up</button>
+                <button class="btn btn-lg btn-primary btn-block btn-login btn-signup"
+                    onclick="window.location.href='{% url 'login' %}'">
+                Already have an account? Sign in
+            </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center" id="unfixed-footer">
+        <div>
+            <p>Copyright &copy; Team 330</p>
+        </div>
+    </div>
+
+{% endblock %}

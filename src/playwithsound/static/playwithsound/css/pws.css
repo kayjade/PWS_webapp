@@ -450,22 +450,33 @@ footer {
 .login-container{
   background-image: url(../images/pws/index_01.jpg);
   width:1300px;
-  height:100%;overflow:hidden;
+  overflow:hidden;
+  height: 545px;
+}
+
+.signup-container{
+  background-image: url(../images/pws/index_01.jpg);
+  width:1300px;
+  overflow:hidden;
+  height: 545px;
 }
 
 .btn-login, .btn-alert,
 #record-result .btn-savefile,
-#save-modal .btn-savealbum{
+#save-modal .btn-savealbum .btn-signup{
   background-color: #a8505f;
 }
 
 .btn-login{
   margin-bottom:10px;
   border-style: none;
+  width: 400px;
 }
 
 .btn-login:hover,
 .btn-login:focus,
+.btn-signup:hover,
+.btn-signup:focus,
 #record-result .btn-savefile:hover,
 #record-result .btn-savefile:focus,
 #save-modal .btn-savealbum:hover,
@@ -477,12 +488,20 @@ footer {
 .form-signin{
   width: 400px;
   margin:0 auto;
-  margin-top: 100px;
+  margin-top: 0px;
   vertical-align: middle;
-  height: 300px;
+  height: 200px;
+}
+.form-signup{
+  width: 400px;
+  margin:0 auto;
+  margin-top: 0px;
+  vertical-align: middle;
+  height: 400px;
 }
 
 .form-signin-heading{
+  margin-top: 100px;
   text-align:center;
   color:#a8505f;
 }
@@ -902,4 +921,44 @@ filter:alpha(opacity=100);
 }
 .graph-svg-component {
     background-color: AliceBlue;
+}
+.btn-signup{
+  border-style: none;
+  margin: 0 auto;
+}
+
+
+/* --- register css*/
+
+.registrationform input[type="password"] {
+    margin-bottom: 5px;
+}
+
+.registrationform button[type="regissubmit"] {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.registrationform .checkbox {
+    display: inline;
+}
+
+.registrationform .username-inputdiv,
+.registrationform .form-signup .password-inputdiv {
+    margin-left: 0px;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.registrationform .name-inputdiv .name-1:focus,
+.registrationform .name-inputdiv .name-2:focus {
+    z-index: 2;
+}
+
+.registrationform .name-inputdiv .name-1,
+.registrationform .name-inputdiv .name-2 {
+    margin-bottom: 5px;
+    margin-right: -3px;
+    width: 199px !important;
+    display:inline;
 }
