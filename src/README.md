@@ -1,4 +1,4 @@
-Please complete all your project development in this directory and 
+Please complete all your project development in this directory and
 its subdirectories (which you may create as neeeded).
 
 # Reference
@@ -15,4 +15,8 @@ its subdirectories (which you may create as neeeded).
 
 [Flush footer to the bottom of the page](https://chrisbracco.com/css-sticky-footer-effect/)
 
-https://github.com/blueimp/jQuery-File-Upload
+[jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload)
+
+[D3 Stream Graph](https://bl.ocks.org/mbostock/4060954)
+
+[Save SVG as PNG](https://bl.ocks.org/mbostock/6466603)
