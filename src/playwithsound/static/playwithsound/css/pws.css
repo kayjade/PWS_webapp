@@ -1002,3 +1002,33 @@ filter:alpha(opacity=100);
     left: 510px;
   font-size: 20px !important;
 }
+
+
+/*
+hr style
+ */
+.dash {
+    font-size: 15px;
+    text-align: center;
+    color: #b4d5c4;
+    margin-bottom: 10px;
+}
+
+.dash .hr-1,
+.dash .hr-2{
+    width: 180px;
+    border-color: #b4d5c4;
+    margin: 0 auto;
+    display: inline-block;
+    margin-bottom: 5px;
+
+}
+
+.registration_message{
+    color:black;
+    max-width: fit-content;
+    max-height:fit-content;
+    margin: 0 auto !important;
+    margin-top: 100px !important;
+    font-size:20px;
+}
