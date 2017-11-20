@@ -14,18 +14,18 @@
         <div class="container">
             <div class="row">
                 {% for imageID in imageIDs %}
-                    <div class="col-md-4 col-sm-6">
-                        <div class="browse-hovereffect">
-                            <img class="img-responsive" src="{% url 'getimage' imageID %}" alt="">
-                            <a id="aModal{{ imageID }}" href="#paintingModal{{ imageID }}" data-toggle="modal">
-                                <div class="browse-overlay">
-                                    <div class="browse-overlay-icon">
-                                        <i class="fa fa-expand" aria-hidden="true"></i>
-                                    </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="browse-hovereffect">
+                        <img class="img-responsive" src="{% url 'getimage' imageID %}" alt="">
+                        <a id="aModal{{ imageID }}" href="#paintingModal{{ imageID }}" data-toggle="modal">
+                            <div class="browse-overlay">
+                                <div class="browse-overlay-icon">
+                                    <i class="fa fa-expand" aria-hidden="true"></i>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
+                </div>
                 {% endfor %}
                 <div class="col-md-4 col-sm-6">
                     <div class="browse-hovereffect">
@@ -40,7 +40,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="col-md-4 col-sm-6">
                     <div class="browse-hovereffect">
                         <img class="img-responsive"
