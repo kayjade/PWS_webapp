@@ -87,8 +87,14 @@ $(document).ready(function () {
                 // create a new album
                 $("#create-new-album").on('click', function(e) {
                     e.preventDefault();
-                    $("#modal-confirm-save").hide();
-                    $("#modal-create-new").show();
+                    if($('#is-authenticated').length <= 0){
+                        // unauthenticated
+                        $("#save-modal").modal("hide");
+                        $('#login-alert').modal('show');
+                    }else{
+                        $("#modal-confirm-save").hide();
+                        $("#modal-create-new").show();
+                    }
                 });
 
                 $("#confirm-create").on('click', function(e) {
