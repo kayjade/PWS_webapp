@@ -39,7 +39,7 @@ class Audio(models.Model):
 
 # The paintings created by users
 class Painting(models.Model):
-	# The user who creates this painting
+    # The user who creates this painting
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # The album to which this painting belongs to
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
