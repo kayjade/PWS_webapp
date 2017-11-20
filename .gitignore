@@ -1,3 +1,6 @@
+#db file
+*.sqlite3
+
 # files created by pyChram
 .idea/
 
