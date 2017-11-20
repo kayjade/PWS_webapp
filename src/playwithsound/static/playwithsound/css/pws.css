@@ -462,14 +462,14 @@ footer {
   background-image: url(../images/pws/index_01.jpg);
   width:100%;
   overflow:hidden;
-  height: 545px;
+  /*height: 545px;*/
 }
 
 .signup-container{
   background-image: url(../images/pws/index_01.jpg);
-  width:1300px;
+  width:100%;
   overflow:hidden;
-  height: 545px;
+  /*height: 545px;*/
 }
 
 .btn-login, .btn-alert,
