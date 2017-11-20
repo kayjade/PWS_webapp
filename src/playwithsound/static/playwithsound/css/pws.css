@@ -449,7 +449,7 @@ footer {
 
 .login-container{
   background-image: url(../images/pws/index_01.jpg);
-  width:1300px;
+  width:100%;
   overflow:hidden;
   height: 545px;
 }
