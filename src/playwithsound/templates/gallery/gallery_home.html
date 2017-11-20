@@ -27,6 +27,61 @@
                         </div>
                     </div>
                 {% endfor %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="browse-hovereffect">
+                        <img class="img-responsive" src="{% static "playwithsound/images/example/01-process.jpg" %}"
+                             alt="">
+                        <a id="aModal" href="#paintingModal2" data-toggle="modal">
+                            <div class="browse-overlay">
+                                <div class="browse-overlay-icon">
+                                    <i class="fa fa-expand" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="browse-hovereffect">
+                        <img class="img-responsive"
+                             src="{% static "playwithsound/images/example/02-process2.jpg" %}"
+                             alt="">
+                        <a id="aModal" href="#paintingModal3" data-toggle="modal">
+                            <div class="browse-overlay">
+                                <div class="browse-overlay-icon">
+                                    <i class="fa fa-expand" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="browse-hovereffect">
+                        <img class="img-responsive" src="{% static "playwithsound/images/example/02-process.jpg" %}"
+                             alt="">
+                        <a id="aModal" href="#paintingModal4" data-toggle="modal">
+                            <div class="browse-overlay">
+                                <div class="browse-overlay-icon">
+                                    <i class="fa fa-expand" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="browse-hovereffect">
+                        <img class="img-responsive" src="{% static "playwithsound/images/example/04-process.jpg" %}"
+                             alt="">
+                        <a id="aModal" href="#paintingModal5" data-toggle="modal">
+                            <div class="browse-overlay">
+                                <div class="browse-overlay-icon">
+                                    <i class="fa fa-expand" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -34,13 +89,12 @@
     <section id="view-more">
         <div class="container">
             <div class="text-center">
-                <h3 class="section-heading" id="viewmore-heading">View More</h2>
+                <h2 class="section-heading" id="viewmore-heading">View More</h2>
             </div>
-
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="viewmore-hovereffect">
-                        <img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}"
+                        <img class="img-responsive" src="{% static "playwithsound/images/example/02-process2.jpg" %}"
                              alt="">
                         <a href="{% url 'gallery_view' 'popular' %}">
                             <div class="viewmore-overlay">
@@ -52,7 +106,7 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="viewmore-hovereffect">
-                        <img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}"
+                        <img class="img-responsive" src="{% static "playwithsound/images/example/03-process.jpg" %}"
                              alt="">
                         <a href="{% url 'gallery_view' 'new' %}">
                             <div class="viewmore-overlay">
@@ -64,7 +118,7 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="viewmore-hovereffect">
-                        <img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}"
+                        <img class="img-responsive" src="{% static "playwithsound/images/example/04-process.jpg" %}"
                              alt="">
                         <a href="{% url 'gallery_my_album' %}">
                             <div class="viewmore-overlay">
@@ -86,7 +140,44 @@
 
     <div class="single-painting">
         {% for imageID in imageIDs %}
-        <div class="painting-modal modal fade" id="paintingModal{{ imageID }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="painting-modal modal fade" id="paintingModal{{ imageID }}" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="close-modal" data-dismiss="modal">
+                            <div class="lr">
+                                <div class="rl">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    <div class="modal-body">
+                                        <!-- Project Details Go Here -->
+                                        <img class="img-responsive img-centered"
+                                             src="{% url 'getimage' imageID %}" alt="">
+                                        <audio controls id="audioModal{{ imageID }}" src=""></audio>
+                                        <div class="intro-modal">
+                                            <p>
+                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                <!--i class="fa fa-play" aria-hidden="true"></i-->
+                                                <strong>xxx Kudos</strong>
+                                            </p>
+                                            <p><strong>creater </strong>description added by creater of the image
+                                                #hashtags
+                                            </p>
+                                            <p class="text-muted small">YYYY/MM/DD HH:MM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="painting-modal modal fade" id="paintingModal2" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-dismiss="modal">
@@ -101,8 +192,8 @@
                                 <div class="modal-body">
                                     <!-- Project Details Go Here -->
                                     <img class="img-responsive img-centered"
-                                         src="{% url 'getimage' imageID %}" alt="">
-                                    <audio controls id="audioModal{{ imageID }}" src=""></audio>
+                                         src="{% static "playwithsound/images/example/01-process.jpg" %}" alt="">
+                                    <audio controls id="audioModal" src=""></audio>
                                     <div class="intro-modal">
                                         <p>
                                             <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -120,10 +211,112 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="painting-modal modal fade" id="paintingModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <img class="img-responsive img-centered"
+                                         src="{% static "playwithsound/images/example/02-process2.jpg" %}" alt="">
+                                    <audio controls id="audioModal" src=""></audio>
+                                    <div class="intro-modal">
+                                        <p>
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <!--i class="fa fa-play" aria-hidden="true"></i-->
+                                            <strong>xxx Kudos</strong>
+                                        </p>
+                                        <p><strong>creater </strong>description added by creater of the image #hashtags
+                                        </p>
+                                        <p class="text-muted small">YYYY/MM/DD HH:MM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="painting-modal modal fade" id="paintingModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <img class="img-responsive img-centered"
+                                         src="{% static "playwithsound/images/example/02-process.jpg" %}" alt="">
+                                    <audio controls id="audioModal" src=""></audio>
+                                    <div class="intro-modal">
+                                        <p>
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <!--i class="fa fa-play" aria-hidden="true"></i-->
+                                            <strong>xxx Kudos</strong>
+                                        </p>
+                                        <p><strong>creater </strong>description added by creater of the image #hashtags
+                                        </p>
+                                        <p class="text-muted small">YYYY/MM/DD HH:MM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="painting-modal modal fade" id="paintingModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <img class="img-responsive img-centered"
+                                         src="{% static "playwithsound/images/example/04-process.jpg" %}" alt="">
+                                    <audio controls id="audioModal" src=""></audio>
+                                    <div class="intro-modal">
+                                        <p>
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <!--i class="fa fa-play" aria-hidden="true"></i-->
+                                            <strong>xxx Kudos</strong>
+                                        </p>
+                                        <p><strong>creater </strong>description added by creater of the image #hashtags
+                                        </p>
+                                        <p class="text-muted small">YYYY/MM/DD HH:MM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
+
 
 {% block customJS %}
     {% load static %}
