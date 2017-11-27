@@ -94,6 +94,21 @@ $(document).ready(function () {
 
                 $("#confirm-create").unbind('click').on('click', function(e) {
                     e.preventDefault();
+                    var formData = $("#create-album-form").serialize();
+                    $.post("/create-new-album/", formData, function(data){
+                        alert(data['info']);
+                        if(data['success']){
+                            // create new album success
+                            // update album list
+                            var album_list = $('#select-album select');
+                            var new_album = $("<option selected=\"selected\"></option>").text(data['new_album']);
+                            album_list.append(new_album);
+                            // clear former input
+                            $("input#album-name:text").val("");
+                            $("#modal-create-new").hide();
+                            $("#modal-confirm-save").show();
+                        }
+                    });
                 });
 
                 // cancel create new album. go back to save page

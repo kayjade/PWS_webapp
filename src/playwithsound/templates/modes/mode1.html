@@ -85,8 +85,9 @@
                         Choose an album
                         <span id="select-album">
                             <select>
-                                <option>Default album</option>
-                                <option>Style 2</option>
+                                {% for album in albums %}
+                                <option>{{ album.album_name }}</option>
+                                {% endfor %}
                             </select>
                         </span>
                         <div class="modal-btn-group">
@@ -102,11 +103,15 @@
                         <h4 class="modal-title">Create a new album</h4>
                      </div>
                      <div class="modal-body">
-                        <form class="form-inline">
+                        <form class="form-inline" id="create-album-form">
                             <div class="form-group">
-                                <label for="email">Name of the album:</label>
-                                <input type="text" class="form-control" placeholder="my album">
+                                <label for="name">Name of the album:</label>
+                                <input type="text" name="album_name" class="form-control" placeholder="my album" id="album-name" required>
+                                {% if user.is_authenticated %}
+                                <input type="hidden" name="user_id" value={{ user.id }}>
+                                {% endif %}
                             </div>
+                            <div><p class="error-info"></p></div>
                             <div class="modal-btn-group">
                                 <button type="submit" class="btn btn-small btn-default btn-savealbum" id="confirm-create">
                                     create</button>
@@ -126,6 +131,8 @@
 
 {% block customJS %}
     {% load static %}
+
+
     <script type="text/javascript" src="{% static "playwithsound/js/mode1d3.js" %}"></script>
 
     <script type="text/javascript" src="{% static "playwithsound/js/FileSaver.js" %}"></script>

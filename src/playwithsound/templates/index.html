@@ -31,13 +31,6 @@
                 </div>
                 <a href="{% url 'mode_2' %}" class="btn btn-default btn-small btn-nav">Play Now</a>
             </div> <!-- mode 2 -->
-            <div class="slide" data-anchor="slide3" id="slide-mode3">
-                <h1 class="slide-title">Is This What You Want?</h1>
-                <div class="intro-text">
-                    <p>Talk to us and we will choose an image that we thing you will relate to for you!</p>
-                </div>
-                <a href="{% url 'mode_3' %}" class="btn btn-default btn-small btn-nav">Play Now</a>
-            </div> <!-- mode 3 -->
         </div> <!-- section mode -->
         <div class="section" id="section-gallery">
         <h1 class="section-title">Gallery</h1>
@@ -52,4 +45,11 @@
     <div class="container text-center" id="footer">
         <p>Copyright &copy; Team 330</p>
     </div>
+{% endblock %}
+
+{% block customJS %}
+{% load static %}
+<script type="text/javascript" src="{% static "playwithsound/fullpage/jquery.fullPage.js" %}"></script>
+
+    <script type="text/javascript" src="{% static "playwithsound/js/pws.js" %}"></script>
 {% endblock %}

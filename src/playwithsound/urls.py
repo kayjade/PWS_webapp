@@ -7,7 +7,6 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^what-you-sing-is-what-you-see', mode_1, name='mode_1'),
     url(r'^it-takes-a-song-to-be-an-artist', mode_2, name='mode_2'),
-    url(r'^is-this-what-you-want', mode_3, name='mode_3'),
     url(r'^login$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout$', auth_views.logout_then_login, name='logout'),
     url(r'^get_conv_audio/$', get_conv_audio, name='get_conv_audio'),
@@ -23,5 +22,6 @@ urlpatterns = [
     url(r'^password/reset/complete/$', auth_views.password_reset_complete,name='resetcomplete'),
     url(r'^getimage/(?P<image_id>[0-9]+)',getimage, name='getimage'),
     url(r'^getaudio/(?P<image_id>[0-9]+)',getaudio, name='getaudio'),
-
+    # create new album
+    url(r'^create-new-album/$', create_new_album, name='create_new_album'),
 ]

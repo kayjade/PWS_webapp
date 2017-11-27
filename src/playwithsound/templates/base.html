@@ -63,7 +63,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'mode_1' %}">Mode 1</a></li>
                                 <li><a href="{% url 'mode_2' %}">Mode 2</a></li>
-                                <li><a href="{% url 'mode_3' %}">Mode 3</a></li>
                             </ul><!-- dropdown -->
                         </li>
                         <li><a class="page-scroll" href="{% url 'gallery_home' %}">Gallery</a></li>
@@ -79,14 +78,9 @@
     {% endif %}
     {% block content %}{% endblock %}
 
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="{% static "playwithsound/fullpage/jquery.fullPage.js" %}"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% static "playwithsound/js/jquery-3.2.1.min.js" %}"></script>
 <script src="{% static "playwithsound/js/bootstrap.min.js" %}"></script>
-
-<script type="text/javascript" src="{% static "playwithsound/js/pws.js" %}"></script>
 
 {% block customJS %}{% endblock %}
 </body>

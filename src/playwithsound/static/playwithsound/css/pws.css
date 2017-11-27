@@ -905,6 +905,12 @@ filter:alpha(opacity=100);
   margin-right: 5px;
 }
 
+.error-info {
+  color: red;
+  font-size: smaller;
+  padding-top:5px;
+}
+
 /* ------------------- */
 
 #view-paintings, #view-my-album {

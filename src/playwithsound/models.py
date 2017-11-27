@@ -19,7 +19,7 @@ class Album(models.Model):
     # The time at which this album is created
     time = models.DateTimeField(default=timezone.now)
     def __unicode__(self):
-        return self.user.username
+        return '%s %s' % (self.user.username, self.album_name)
     def __str__(self):
         return self.__unicode__()
 

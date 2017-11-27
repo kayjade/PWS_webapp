@@ -49,6 +49,7 @@ def register(request):
                                         is_active=False
                                         )
     new_user.save()
+    # each new user has a default album
     Album(user=new_user,album_name="Default").save()
     uidb64 = urlsafe_base64_encode(force_bytes(new_user.pk))
     token = default_token_generator.make_token(new_user)
@@ -85,17 +86,17 @@ def registeration_confirm(request, uidb64, token):
 
 def mode_1(request):
     context={}
+    if request.user.is_authenticated():
+        context['albums'] = request.user.album_set.all()
     return render(request, 'modes/mode1.html', context)
+
+
+
 
 
 def mode_2(request):
     context={}
     return render(request, 'modes/mode2.html', context)
-
-
-def mode_3(request):
-    context={}
-    return render(request, 'modes/mode3.html', context)
 
 
 # get the static audio file for convolver
@@ -169,3 +170,21 @@ def getaudio(request, image_id):
     if image_id and Painting.objects.filter(id=image_id).exists():
         painting = Painting.objects.filter(id__exact=image_id)[0]
     return HttpResponse(painting.audio.audio_file, content_type='audio/wav')
+
+
+@login_required
+@transaction.atomic
+# create a new album
+def create_new_album(request):
+    if request.method == 'POST':
+        form = CreateAlbumForm(request.POST)
+        if form.is_valid():
+            # create a new album
+            new_album = Album(album_name = form.cleaned_data['album_name'],
+                              user = request.user)
+            new_album.save()
+            return JsonResponse({'success':True, 'info':'Create new album success!',
+                                 'new_album':form.cleaned_data['album_name']})
+        else:
+            #print(' '.join(form.errors['__all__']))
+            return JsonResponse({'success': False, 'info':' '.join(form.errors['__all__'])})
