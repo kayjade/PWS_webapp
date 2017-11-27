@@ -90,6 +90,10 @@ $(document).ready(function () {
                     e.preventDefault();
                     $("#modal-confirm-save").hide();
                     $("#modal-create-new").show();
+                    // clear former input
+                    $("input#album-name:text").val("");
+                    $("p.error-info").text("");
+
                 });
 
                 $("#confirm-create").unbind('click').on('click', function(e) {
