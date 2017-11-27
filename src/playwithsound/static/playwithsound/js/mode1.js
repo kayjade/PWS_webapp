@@ -94,9 +94,12 @@ $(document).ready(function () {
 
                 $("#confirm-create").unbind('click').on('click', function(e) {
                     e.preventDefault();
+                    if($("input#album-name:text").val().length<=0){
+                        $("p.error-info").text("Please enter a valid album name!");
+                        $("input#album-name:text").val("");
+                    }
                     var formData = $("#create-album-form").serialize();
                     $.post("/create-new-album/", formData, function(data){
-                        alert(data['info']);
                         if(data['success']){
                             // create new album success
                             // update album list
@@ -105,8 +108,11 @@ $(document).ready(function () {
                             album_list.append(new_album);
                             // clear former input
                             $("input#album-name:text").val("");
+                            $("p.error-info").text("");
                             $("#modal-create-new").hide();
                             $("#modal-confirm-save").show();
+                        }else{
+                            $("p.error-info").text(data['info']);
                         }
                     });
                 });
