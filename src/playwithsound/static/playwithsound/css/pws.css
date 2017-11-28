@@ -353,7 +353,7 @@ footer {
 }
 
 #gallery-head h1,
-#gallery-head p {
+#gallery-head h2 {
   text-align: center;
 }
 
@@ -915,7 +915,7 @@ filter:alpha(opacity=100);
 /* ------------------- */
 
 #view-paintings, #view-my-album {
-  padding-top: 80px;
+  padding-top: 30px;
 }
 /*
 #view-paintings .browse-hovereffect {

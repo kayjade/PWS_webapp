@@ -5,13 +5,17 @@
 {% block title %}Paint With Sound - Gallery{% endblock %}
 
 {% block content %}
+    <div class="container-fluid" id="gallery-head">
+        <h2 class="mode-title">{{ gallery_title }}</h2>
+    </div>
 
-<div class="container" id="view-paintings">
-	<div class="row">
+<div class="container">
+	<div class="row" id="view-paintings">
+        {% for painting in paintings %}
 		<div class="col-md-4 col-sm-6">
     		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    			<a href="#paintingModal1" data-toggle="modal">
+    			<img class="img-responsive" src="{% url 'getimage' painting.id %}" alt="">
+    			<a id="aModal{{ painting.id }}" href="#paintingModal{{ painting.id }}" data-toggle="modal">
     			<div class="browse-overlay">
     				<div class="browse-overlay-icon">
     					<i class="fa fa-expand" aria-hidden="true"></i>
@@ -20,71 +24,7 @@
         		</a>
             </div>
         </div>
-
-        <div class="col-md-4 col-sm-6">
-    		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    			<a href="#paintingModal1" data-toggle="modal">
-    			<div class="browse-overlay">
-    				<div class="browse-overlay-icon">
-    					<i class="fa fa-expand" aria-hidden="true"></i>
-           			</div>
-        		</div>
-        		</a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-    		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    			<a href="#paintingModal1" data-toggle="modal">
-    			<div class="browse-overlay">
-    				<div class="browse-overlay-icon">
-    					<i class="fa fa-expand" aria-hidden="true"></i>
-           			</div>
-        		</div>
-        		</a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-    		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    			<a href="#paintingModal1" data-toggle="modal">
-    			<div class="browse-overlay">
-    				<div class="browse-overlay-icon">
-    					<i class="fa fa-expand" aria-hidden="true"></i>
-           			</div>
-        		</div>
-        		</a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-    		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    			<a href="#paintingModal1" data-toggle="modal">
-    			<div class="browse-overlay">
-    				<div class="browse-overlay-icon">
-    					<i class="fa fa-expand" aria-hidden="true"></i>
-           			</div>
-        		</div>
-        		</a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-    		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-    			<a href="#paintingModal1" data-toggle="modal">
-    			<div class="browse-overlay">
-    				<div class="browse-overlay-icon">
-    					<i class="fa fa-expand" aria-hidden="true"></i>
-           			</div>
-        		</div>
-        		</a>
-            </div>
-        </div>
+        {% endfor %}
 
 	</div>
 </div>
@@ -100,7 +40,9 @@
 </div>
 
     <div class="single-painting">
-    <div class="painting-modal modal fade" id="paintingModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    {% for painting in paintings %}
+    <div class="painting-modal modal fade" id="paintingModal{{ painting.id }}" tabindex="-1" role="dialog"
+                 aria-hidden="true">
     <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-dismiss="modal">
@@ -113,9 +55,8 @@
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2">
                             <div class="modal-body">
-                                <!-- Project Details Go Here -->
-                                <img class="img-responsive img-centered" src="{% static "playwithsound/images/pws/gallery_test.jpg" %}" alt="">
-                                <audio controls src=""></audio>
+                                <img class="img-responsive img-centered" src="{% url 'getimage' painting.id %}" alt="">
+                                <audio controls id="audioModal{{ painting.id }}" src=""></audio>
                                 <div class="intro-modal">
                                     <p>
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -131,6 +72,7 @@
             </div>
         </div>
     </div>
+    {% endfor %}
     </div>
 
 {% endblock %}

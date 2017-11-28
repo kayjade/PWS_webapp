@@ -118,9 +118,9 @@ def gallery_home(request):
     images = Painting.objects.all()[:6]
     context={}
     context['images']=images
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and Painting.objects.filter(user=request.user):
         # set the cover of my album
-        context['cover']=request.user.album_set.all()[0].painting_set.all()[0]
+        context['cover']=Painting.objects.filter(user=request.user).all()[0]
     return render(request, 'gallery/gallery_home.html', context)
 
 
@@ -147,6 +147,9 @@ def gallery_view_album(request, album):
         return redirect(reverse('gallery_home'))
 
     context={}
+    view_album = Album.objects.get(id=album)
+    context['paintings']=view_album.painting_set.all()
+    context['gallery_title']=view_album.album_name + " album"
     return render(request, 'gallery/gallery_view_more.html', context)
 
 
