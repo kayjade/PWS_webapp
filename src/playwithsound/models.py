@@ -71,3 +71,7 @@ class Painting(models.Model):
         for image in images:
             idList.append(image.id)
         return idList
+
+    # order by the reversed time of the post
+    class Meta:
+        ordering = ['-time']

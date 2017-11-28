@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^gallery/home/$', gallery_home, name='gallery_home'),
     url(r'^gallery/view/my_album', gallery_my_album, name='gallery_my_album'),
     url(r'^gallery/view/(?P<page>[a-z]+)/$', gallery_view, name='gallery_view'),
+    url(r'^gallery/view/album/(?P<album>[0-9]+)/$', gallery_view_album, name='gallery_view_album'),
+
     url(r'^saveimage', saveimage, name='saveimage'),
     url(r'^register', register, name='register'),
     url(r'^validate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', registeration_confirm, name='confirm-email'),

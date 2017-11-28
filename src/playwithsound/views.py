@@ -114,11 +114,13 @@ def get_conv_audio(request):
 
 # homepage of gallery
 def gallery_home(request):
-    #imageIDs = Painting.getImageIDs(request.user)
     # display at most 6 paintings in the main page og gallery
     images = Painting.objects.all()[:6]
-
-    context={'images':images}
+    context={}
+    context['images']=images
+    if request.user.is_authenticated:
+        # set the cover of my album
+        context['cover']=request.user.album_set.all()[0].painting_set.all()[0]
     return render(request, 'gallery/gallery_home.html', context)
 
 
@@ -135,6 +137,17 @@ def gallery_my_album(request):
     context={}
     context['albums']=request.user.album_set.all()
     return render(request, 'gallery/gallery_my_album.html', context)
+
+
+@login_required
+@transaction.atomic
+def gallery_view_album(request, album):
+    # each user can only view & manage his/her own albums
+    if not request.user.album_set.filter(id=album):
+        return redirect(reverse('gallery_home'))
+
+    context={}
+    return render(request, 'gallery/gallery_view_more.html', context)
 
 
 @login_required

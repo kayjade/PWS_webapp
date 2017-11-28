@@ -66,8 +66,13 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="viewmore-hovereffect">
+                        {% if user.is_authenticated %}
+                        <img class="img-responsive" src="{% url 'getimage' cover.id %}"
+                             alt="">
+                        {% else %}
                         <img class="img-responsive" src="{% static "playwithsound/images/example/04-process.jpg" %}"
                              alt="">
+                        {% endif %}
                         <a href="{% url 'gallery_my_album' %}">
                             <div class="viewmore-overlay">
                                 <h2>MY ALBUM</h2>
