@@ -113,10 +113,10 @@ def get_conv_audio(request):
 
 
 # homepage of gallery
-@login_required
-@transaction.atomic
 def gallery_home(request):
-    imageIDs = Painting.getImageIDs(request.user)
+    #imageIDs = Painting.getImageIDs(request.user)
+    # display at most 6 paintings in the main page og gallery
+    imageIDs = Painting.objects.all().values('id')[:6]
 
     context={'imageIDs':imageIDs}
     return render(request, 'gallery/gallery_home.html', context)
@@ -154,8 +154,7 @@ def saveimage(request):
     #file.writelines(audiofile.readlines())
 
 
-@login_required
-@transaction.atomic
+# get image from the database
 def getimage(request, image_id):
     user = request.user
     if image_id and Painting.objects.filter(id=image_id).exists():
@@ -163,8 +162,7 @@ def getimage(request, image_id):
     return HttpResponse(painting.image, content_type='image/png')
 
 
-@login_required
-@transaction.atomic
+# get audio from the database
 def getaudio(request, image_id):
     user = request.user
     if image_id and Painting.objects.filter(id=image_id).exists():

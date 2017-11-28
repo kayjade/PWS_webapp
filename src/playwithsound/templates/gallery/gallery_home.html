@@ -17,8 +17,8 @@
 
                     <div class="col-md-4 col-sm-6">
                         <div class="browse-hovereffect">
-                            <img class="img-responsive" src="{% url 'getimage' imageID %}" alt="">
-                            <a id="aModal{{ imageID }}" href="#paintingModal{{ imageID }}" data-toggle="modal">
+                            <img class="img-responsive" src="{% url 'getimage' imageID.id %}" alt="">
+                            <a id="aModal{{ imageID.id }}" href="#paintingModal{{ imageID.id }}" data-toggle="modal">
                                 <div class="browse-overlay">
                                     <div class="browse-overlay-icon">
                                         <i class="fa fa-expand" aria-hidden="true"></i>
@@ -30,7 +30,7 @@
 
                 {% endfor %}
 
-                <div class="col-md-4 col-sm-6">
+                <!--div class="col-md-4 col-sm-6">
                     <div class="browse-hovereffect">
                         <img class="img-responsive" src="{% static "playwithsound/images/example/01-process.jpg" %}"
                              alt="">
@@ -84,7 +84,7 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div-->
 
             </div> <!-- row -->
         </div>
@@ -144,7 +144,7 @@
 
     <div class="single-painting">
         {% for imageID in imageIDs %}
-            <div class="painting-modal modal fade" id="paintingModal{{ imageID }}" tabindex="-1" role="dialog"
+            <div class="painting-modal modal fade" id="paintingModal{{ imageID.id }}" tabindex="-1" role="dialog"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -160,8 +160,8 @@
                                     <div class="modal-body">
                                         <!-- Project Details Go Here -->
                                         <img class="img-responsive img-centered"
-                                             src="{% url 'getimage' imageID %}" alt="">
-                                        <audio controls id="audioModal{{ imageID }}" src=""></audio>
+                                             src="{% url 'getimage' imageID.id %}" alt="">
+                                        <audio controls id="audioModal{{ imageID.id }}" src=""></audio>
                                         <div class="intro-modal">
                                             <p>
                                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
