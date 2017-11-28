@@ -11,7 +11,8 @@ html {
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: white;
+  /*color: white;*/
+  color: #a8505f;
   background-color: #ffffff;
   /*background-color:#eceff1;*/
   letter-spacing: 1px;

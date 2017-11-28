@@ -8,18 +8,25 @@
 
 <div class="container" id="view-my-album">
 	<div class="row">
+        <!-- display the albums of the current user -->
+        {% for album in albums %}
 		<div class="col-md-4 col-sm-6">
     		<div class="viewmore-hovereffect">
-        		<img class="img-responsive" src="{% static "playwithsound/images/example/04-process.jpg" %}" alt="">
+                {% if album.painting_set.all %}
+        		<img class="img-responsive" src="{% url 'getimage' album.painting_set.all.0.id %}" alt="">
+                {% else %}
+        		<img class="img-responsive" src="{% static "playwithsound/images/pws/empty_album_cover.jpg" %}" alt="">
+                {% endif %}
         		<a href="{% url 'gallery_view' 'user' %}">
             		<div class="viewmore-overlay">
-                		<h2>Default Album</h2>
+                		<h2>{{ album.album_name }}</h2>
             		</div>
             	</a>
     		</div>
 		</div>
+        {% endfor %}
 
-	</div>
+	</div> <!--row-->
 </div>
 
 <div class="container-fluid text-center" id="unfixed-footer">

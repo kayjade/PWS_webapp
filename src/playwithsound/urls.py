@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^login$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout$', auth_views.logout_then_login, name='logout'),
     url(r'^get_conv_audio/$', get_conv_audio, name='get_conv_audio'),
+    # gallery view
     url(r'^gallery/home/$', gallery_home, name='gallery_home'),
     url(r'^gallery/view/my_album', gallery_my_album, name='gallery_my_album'),
     url(r'^gallery/view/(?P<page>[a-z]+)/$', gallery_view, name='gallery_view'),

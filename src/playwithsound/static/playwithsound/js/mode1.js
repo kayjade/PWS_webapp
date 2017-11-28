@@ -82,7 +82,8 @@ $(document).ready(function () {
                 // confirm save to album
                 $("#confirm-save-btn").unbind('click').on('click', function () {
                     $("#save-modal").modal("hide");
-                    saveimage(mn)
+                    var choosen_album = $("#select-album option:selected").text();
+                    saveimage(mn, choosen_album);
                 });
 
                 // create a new album

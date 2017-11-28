@@ -116,9 +116,9 @@ def get_conv_audio(request):
 def gallery_home(request):
     #imageIDs = Painting.getImageIDs(request.user)
     # display at most 6 paintings in the main page og gallery
-    imageIDs = Painting.objects.all().values('id')[:6]
+    images = Painting.objects.all()[:6]
 
-    context={'imageIDs':imageIDs}
+    context={'images':images}
     return render(request, 'gallery/gallery_home.html', context)
 
 
@@ -133,6 +133,7 @@ def gallery_view(request, page):
 @transaction.atomic
 def gallery_my_album(request):
     context={}
+    context['albums']=request.user.album_set.all()
     return render(request, 'gallery/gallery_my_album.html', context)
 
 
@@ -142,7 +143,9 @@ def saveimage(request):
     if request.method == "POST":
         imagefile= request.FILES['ImageData']
         audiofile=request.FILES['AudioData']
-        album = Album.objects.filter(user=request.user)[0]
+        if not request.user.album_set.filter(album_name=request.POST['Album']):
+            raise Http404
+        album = request.user.album_set.get(album_name=request.POST['Album'])
         audio = Audio(user = request.user, audio_file = audiofile)
         audio.save()
         painting = Painting(user=request.user,image=imagefile, audio = audio,album=album)

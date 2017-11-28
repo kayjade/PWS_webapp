@@ -42,7 +42,7 @@ function downloadimage(mn) {
     }
 }
 
-function saveimage(mn) {
+function saveimage(mn, choosen_album) {
     var fd = new FormData();
     if (mn == 0) {//canvas
         var canvas = d3.select("canvas").node();
@@ -50,6 +50,7 @@ function saveimage(mn) {
         var blob = dataURItoBlob(base64Data);
         fd.append("ImageData", blob);
         fd.append("AudioData",audioblob);
+        fd.append("Album", choosen_album);
         console.log(blob);
         $.ajax({
             url: '/saveimage',
@@ -81,6 +82,7 @@ function saveimage(mn) {
             var blob = dataURItoBlob(base64Data);
             fd.append("ImageData", blob);
             fd.append("AudioData",audioblob);
+            fd.append("Album", choosen_album);
             $.ajax({
                 url: '/saveimage',
                 type: 'POST',
