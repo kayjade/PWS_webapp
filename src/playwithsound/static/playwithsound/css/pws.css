@@ -924,7 +924,7 @@ filter:alpha(opacity=100);
   margin-bottom: 30px;
 }
 */
-#load-more, #album-load-more {
+#stream-load-more, #album-load-more {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 80px;

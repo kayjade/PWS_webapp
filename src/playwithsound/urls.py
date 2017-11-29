@@ -13,10 +13,13 @@ urlpatterns = [
     # gallery view
     url(r'^gallery/home/$', gallery_home, name='gallery_home'),
     url(r'^gallery/view/my_album', gallery_my_album, name='gallery_my_album'),
-    url(r'^gallery/view/(?P<page>[a-z]+)/$', gallery_view, name='gallery_view'),
+    url(r'^gallery/view/popular/$', gallery_view_popular, name='gallery_view_popular'),
+    url(r'^gallery/view/new/$', gallery_view_new, name='gallery_view_new'),
     url(r'^gallery/view/album/(?P<album>[0-9]+)/$', gallery_view_my_album, name='gallery_view_my_album'),
     #load more
     url(r'^gallery-load-more-album/$', gallery_album_load_more, name='gallery_album_load_more'),
+    #url(r'^gallery-load-more-popular/$', gallery_popular_load_more, name='gallery_popular_load_more'),
+    url(r'^gallery-load-more-new/$', gallery_new_load_more, name='gallery_new_load_more'),
 
     url(r'^saveimage', saveimage, name='saveimage'),
     url(r'^register', register, name='register'),

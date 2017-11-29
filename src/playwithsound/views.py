@@ -116,20 +116,42 @@ def get_conv_audio(request):
 # homepage of gallery
 def gallery_home(request):
     # display at most 6 paintings in the main page og gallery
-    images = Painting.objects.all()[:6]
+    paintings = Painting.objects.all()[:6]
     context={}
-    context['images']=images
+    context['paintings']=paintings
     if request.user.is_authenticated and Painting.objects.filter(user=request.user):
         # set the cover of my album
         context['cover']=Painting.objects.filter(user=request.user).all()[0]
     return render(request, 'gallery/gallery_home.html', context)
 
 
-@login_required
 @transaction.atomic
-def gallery_view(request, page):
+def gallery_view_popular(request):
     context={}
     return render(request, 'gallery/gallery_view_more.html', context)
+
+
+@transaction.atomic
+def gallery_view_new(request):
+    context={}
+    context['gallery_title']="New Paintings"
+    context['paintings']=Painting.objects.all()[:6]
+    context['view_type']=1
+    return render(request, 'gallery/gallery_view_more.html', context)
+
+
+@transaction.atomic
+def gallery_new_load_more(request):
+    if request.method=='POST':
+        form = NewLoadMoreForm(request.POST)
+        context={}
+        if form.is_valid():
+            context['success']=True
+            paintings = Painting.objects.filter(id__lt=form.cleaned_data['last_id'])[:6]
+            context['paintings']=paintings
+
+        rendered = render_to_string('gallery/paintings.json', context)
+        return JsonResponse(rendered, safe=False)
 
 
 @login_required
@@ -156,6 +178,21 @@ def gallery_view_my_album(request, album):
         context['info'] = "This album is empty."
     context['gallery_title']=view_album.album_name + " album"
     return render(request, 'gallery/gallery_view_my_album.html', context)
+
+
+def gallery_album_load_more(request):
+    if request.method =='POST':
+        form = AlbumLoadMoreForm(request.POST)
+        context={}
+        if form.is_valid():
+            context['success'] = True
+            album = Album.objects.get(id = form.cleaned_data['album_id'])
+            paintings = Painting.objects.filter(album=album,
+                                                id__lt=form.cleaned_data['last_id'])[:6]
+            context['paintings'] = paintings
+
+        rendered = render_to_string('gallery/paintings.json', context)
+        return JsonResponse(rendered, safe=False)
 
 
 @login_required
@@ -210,18 +247,3 @@ def create_new_album(request):
         else:
             #print(' '.join(form.errors['__all__']))
             return JsonResponse({'success': False, 'info':' '.join(form.errors['__all__'])})
-
-
-def gallery_album_load_more(request):
-    if request.method =='POST':
-        form = AlbumLoadMoreForm(request.POST)
-        context={}
-        if form.is_valid():
-            context['success'] = True
-            album = Album.objects.get(id = form.cleaned_data['album_id'])
-            paintings = Painting.objects.filter(album=album,
-                                                id__lt=form.cleaned_data['last_id'])
-            context['paintings'] = paintings
-
-        rendered = render_to_string('gallery/paintings.json', context)
-        return JsonResponse(rendered, safe=False)

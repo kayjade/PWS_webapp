@@ -12,31 +12,21 @@
 <div class="container">
 	<div class="row" id="view-paintings">
         {% for painting in paintings %}
-		<div class="col-md-4 col-sm-6" painting_id="{{ painting.id }}">
-    		<div class="browse-hovereffect">
-    			<img class="img-responsive" src="{% url 'getimage' painting.id %}" alt="">
-    			<a id="aModal{{ painting.id }}" href="#paintingModal{{ painting.id }}" data-toggle="modal">
-    			<div class="browse-overlay">
-    				<div class="browse-overlay-icon">
-    					<i class="fa fa-expand" aria-hidden="true"></i>
-           			</div>
-        		</div>
-        		</a>
-            </div>
-        </div>
+		{% include 'gallery/painting.html' %}
         {% endfor %}
 
 	</div>
 </div>
 
-<div id="load-more">
+<div id="stream-load-more">
     {% if paintings %}
     <form>
         <input type="hidden" name="last_id" value="">
-        <input type="hidden" name="album_id" value="{{ album_id }}">
-        <!-- view type=0: popular; view_type=1: new; view_type=2:album -->
+        <!-- view type=0: popular paintings; view_type=1: newpaintings -->
         <input type="hidden" name="view_type" value="{{ view_type }}">
+        <input type="hidden" name="last_kudos" value="">
         <button type="button" class="btn btn-default">Load More</button>
+    {% csrf_token %}
     </form>
     {% endif %}
     <p>{{ info }}</p>
@@ -49,40 +39,9 @@
     </div>
 </div>
 
-    <div class="single-painting">
+    <div id="single-painting">
     {% for painting in paintings %}
-    <div class="painting-modal modal fade" id="paintingModal{{ painting.id }}" tabindex="-1" role="dialog"
-                 aria-hidden="true">
-    <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <div class="modal-body">
-                                <img class="img-responsive img-centered" src="{% url 'getimage' painting.id %}" alt="">
-                                <audio controls id="audioModal{{ painting.id }}" src=""></audio>
-                                <div class="intro-modal">
-                                    <p>
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        <!--i class="fa fa-play" aria-hidden="true"></i-->
-                                        <strong>xxx Kudos</strong>
-                                    </p>
-                                    <p><strong>creater </strong>description added by creater of the image #hashtags</p>
-                                    <p class="text-muted small">{{ image.time|date:"Y/m/d D h:i a" }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'gallery/painting_modal.html' %}
     {% endfor %}
     </div>
 

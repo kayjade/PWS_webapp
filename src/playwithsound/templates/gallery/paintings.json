@@ -19,6 +19,5 @@
     }
     {% endif %}
     {% endfor %}
-  ],
-  "last_painting":"{% if paintings %}{{ paintings.last.id }}{% endif %}"
+  ]
 }

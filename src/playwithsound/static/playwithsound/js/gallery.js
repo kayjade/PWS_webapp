@@ -19,11 +19,19 @@ $(document).ready(function() {
     });
 
   // load more images in popular & new stream
-  $("#load-more button").on('click', function(e){
+  $("#stream-load-more button").on('click', function(e){
       e.preventDefault();
-      setLastID(1);
-      var formData=$("#load-more form").serialize();
-      console.log(formData);
+      // check the stream type
+      var view_type=$("#album-load-more input:nth-child(2)").val();
+      if(view_type==0){ // popular paintings
+
+      }else{ // new paintings
+          setLastID(1);
+          var formData=$("#stream-load-more form").serialize();
+          $.post("/gallery-load-more-new/", formData, function(data){
+              streamLoadPainting(data);
+          });
+      }
 
       // get the id of the last painting
       //$("#view-paintings .col-md-4:last-child").attr("painting_id");
@@ -55,13 +63,18 @@ $(document).ready(function() {
 
 // set last_id in load_more form
 function setLastID( type ) {
-  last_id = $("#view-paintings .col-md-4:last-child").attr("painting_id");
+  var last_id = $("#view-paintings .col-md-4:last-child").attr("painting_id");
   if(type==0){
       // in view my album page
      $("#album-load-more input:first-child").attr("value", last_id);
   }else if(type==1){
-      $("#load-more input:first-child").attr("value", last_id);
+      $("#stream-load-more input:first-child").attr("value", last_id);
   }
+}
+
+// set the kudos number of the last painting in load more form
+function setLastKudos(){
+
 }
 
 // load more paintings
@@ -86,4 +99,19 @@ function loadPainting( res ){
         tmpModal.find(".paintingTime").html(res.paintings[i].time);
         modalList.append(tmpModal);
     }
+}
+
+function streamLoadPainting( data ){
+    var res = JSON.parse(data);
+        if(res.success){
+            if(res.exist){
+                loadPainting(res);
+            }else{
+                // no more paintings to load
+                $("#stream-load-more button").hide();
+                $("#stream-load-more p").html("No more paintings.")
+            }
+        }else{
+            alert("Oops! Something went wrong");
+        }
 }

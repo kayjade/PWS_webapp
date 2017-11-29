@@ -1,0 +1,12 @@
+<div class="col-md-4 col-sm-6" painting_id="{{ painting.id }}">
+    		<div class="browse-hovereffect">
+    			<img class="img-responsive" src="{% url 'getimage' painting.id %}" alt="">
+    			<a id="aModal{{ painting.id }}" href="#paintingModal{{ painting.id }}" data-toggle="modal">
+    			<div class="browse-overlay">
+    				<div class="browse-overlay-icon">
+    					<i class="fa fa-expand" aria-hidden="true"></i>
+           			</div>
+        		</div>
+        		</a>
+            </div>
+        </div>

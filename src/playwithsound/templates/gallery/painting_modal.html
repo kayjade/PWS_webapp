@@ -1,0 +1,31 @@
+<div class="painting-modal modal fade" id="paintingModal{{ painting.id }}" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <img class="img-responsive img-centered" src="{% url 'getimage' painting.id %}" alt="">
+                                <audio controls id="audioModal{{ painting.id }}" src=""></audio>
+                                <div class="intro-modal">
+                                    <p>
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        <strong class="kudos">{{ painting.kudos }} Kudos</strong>
+                                    </p>
+                                    <p><strong class="paintingUser">{{ painting.user.username }} </strong>description added by creater of the image #hashtags</p>
+                                    <p class="text-muted small paintingTime">{{ painting.time|date:"Y/m/d D h:i a" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

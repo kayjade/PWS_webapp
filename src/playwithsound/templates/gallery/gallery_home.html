@@ -13,21 +13,8 @@
     <section id="browse">
         <div class="container">
             <div class="row">
-                {% for image in images %}
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="browse-hovereffect">
-                            <img class="img-responsive" src="{% url 'getimage' image.id %}" alt="">
-                            <a id="aModal{{ image.id }}" href="#paintingModal{{ image.id }}" data-toggle="modal">
-                                <div class="browse-overlay">
-                                    <div class="browse-overlay-icon">
-                                        <i class="fa fa-expand" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
+                {% for painting in paintings %}
+                    {% include 'gallery/painting.html' %}
                 {% endfor %}
 
             </div> <!-- row -->
@@ -44,7 +31,7 @@
                     <div class="viewmore-hovereffect">
                         <img class="img-responsive" src="{% static "playwithsound/images/example/02-process2.jpg" %}"
                              alt="">
-                        <a href="{% url 'gallery_view' 'popular' %}">
+                        <a href="{% url 'gallery_view_popular' %}">
                             <div class="viewmore-overlay">
                                 <h2>POPULAR PAINTINGS</h2>
                             </div>
@@ -56,7 +43,7 @@
                     <div class="viewmore-hovereffect">
                         <img class="img-responsive" src="{% static "playwithsound/images/example/03-process.jpg" %}"
                              alt="">
-                        <a href="{% url 'gallery_view' 'new' %}">
+                        <a href="{% url 'gallery_view_new' %}">
                             <div class="viewmore-overlay">
                                 <h2>NEW PAINTINGS</h2>
                             </div>
@@ -92,43 +79,8 @@
     </div>
 
     <div class="single-painting">
-        {% for image in images %}
-            <div class="painting-modal modal fade" id="paintingModal{{ image.id }}" tabindex="-1" role="dialog"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="close-modal" data-dismiss="modal">
-                            <div class="lr">
-                                <div class="rl">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 col-lg-offset-2">
-                                    <div class="modal-body">
-                                        <!-- Project Details Go Here -->
-                                        <img class="img-responsive img-centered"
-                                             src="{% url 'getimage' image.id %}" alt="">
-                                        <audio controls id="audioModal{{ image.id }}" src=""></audio>
-                                        <div class="intro-modal">
-                                            <p>
-                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                                <!--i class="fa fa-play" aria-hidden="true"></i-->
-                                                <strong>{{ image.kudos }} Kudos</strong>
-                                            </p>
-                                            <p><strong>{{ image.user.username }} </strong>description added by creater of the image
-                                                #hashtags
-                                            </p>
-                                            <p class="text-muted small">{{ image.time|date:"Y/m/d D h:i a" }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {% for painting in paintings %}
+            {% include 'gallery/painting_modal.html' %}
         {% endfor %}
 
     </div>

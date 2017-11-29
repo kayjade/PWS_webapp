@@ -65,3 +65,17 @@ class AlbumLoadMoreForm(forms.Form):
         if not Painting.objects.filter(id = last_id):
             raise forms.ValidationError('painting does not exist!')
         return cleaned_data
+
+
+class NewLoadMoreForm(forms.Form):
+    last_id = forms.IntegerField()
+    view_type = forms.IntegerField()
+
+    def clean(self):
+        cleaned_data = super(NewLoadMoreForm, self).clean()
+        last_id = cleaned_data.get('last_id')
+        view_type = cleaned_data.get('view_type')
+
+        if view_type != 1:
+            raise forms.ValidationError("incorrect stream view type!")
+        return cleaned_data
