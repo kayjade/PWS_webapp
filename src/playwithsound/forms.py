@@ -49,3 +49,19 @@ class CreateAlbumForm(forms.Form):
         if user.album_set.filter(album_name = album_name):
             raise forms.ValidationError('Album name already exist!')
         return cleaned_data
+
+
+class AlbumLoadMoreForm(forms.Form):
+    last_id = forms.IntegerField()
+    album_id = forms.IntegerField()
+
+    def clean(self):
+        cleaned_data = super(AlbumLoadMoreForm, self).clean()
+        last_id = cleaned_data.get('last_id')
+        album_id = cleaned_data.get('album_id')
+
+        if not Album.objects.filter(id=album_id):
+            raise forms.ValidationError('album does not exist!')
+        if not Painting.objects.filter(id = last_id):
+            raise forms.ValidationError('painting does not exist!')
+        return cleaned_data

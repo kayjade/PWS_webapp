@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Paint With Sound - Gallery{% endblock %}
+{% block title %}Paint With Sound - My Album - {{ galler_title }}{% endblock %}
 
 {% block content %}
     <div class="container-fluid" id="gallery-head">
@@ -29,14 +29,13 @@
 	</div>
 </div>
 
-<div id="load-more">
+<div id="album-load-more">
     {% if paintings %}
     <form>
         <input type="hidden" name="last_id" value="">
         <input type="hidden" name="album_id" value="{{ album_id }}">
-        <!-- view type=0: popular; view_type=1: new; view_type=2:album -->
-        <input type="hidden" name="view_type" value="{{ view_type }}">
         <button type="button" class="btn btn-default">Load More</button>
+    {% csrf_token %}
     </form>
     {% endif %}
     <p>{{ info }}</p>
@@ -49,7 +48,7 @@
     </div>
 </div>
 
-    <div class="single-painting">
+    <div id="single-painting">
     {% for painting in paintings %}
     <div class="painting-modal modal fade" id="paintingModal{{ painting.id }}" tabindex="-1" role="dialog"
                  aria-hidden="true">
@@ -71,10 +70,10 @@
                                     <p>
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                         <!--i class="fa fa-play" aria-hidden="true"></i-->
-                                        <strong>xxx Kudos</strong>
+                                        <strong class="kudos">{{ painting.kudos }} Kudos</strong>
                                     </p>
-                                    <p><strong>creater </strong>description added by creater of the image #hashtags</p>
-                                    <p class="text-muted small">{{ image.time|date:"Y/m/d D h:i a" }}</p>
+                                    <p><strong class="paintingUser">{{ painting.user.username }} </strong>description added by creater of the image #hashtags</p>
+                                    <p class="text-muted small paintingTime">{{ painting.time|date:"Y/m/d D h:i a" }}</p>
                                 </div>
                             </div>
                         </div>

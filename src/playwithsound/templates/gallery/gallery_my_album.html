@@ -20,7 +20,7 @@
                 {% else %}
         		<img class="img-responsive" src="{% static "playwithsound/images/pws/empty_album_cover.jpg" %}" alt="">
                 {% endif %}
-        		<a href="{% url 'gallery_view_album' album.id %}">
+        		<a href="{% url 'gallery_view_my_album' album.id %}">
             		<div class="viewmore-overlay">
                 		<h2>{{ album.album_name }}</h2>
             		</div>

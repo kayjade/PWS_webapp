@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.templatetags.static import static
+from django.template.loader import render_to_string
 
 from django.http import Http404, HttpResponse, JsonResponse
 from django.conf import settings
@@ -141,16 +142,20 @@ def gallery_my_album(request):
 
 @login_required
 @transaction.atomic
-def gallery_view_album(request, album):
+def gallery_view_my_album(request, album):
     # each user can only view & manage his/her own albums
     if not request.user.album_set.filter(id=album):
         return redirect(reverse('gallery_home'))
 
     context={}
     view_album = Album.objects.get(id=album)
-    context['paintings']=view_album.painting_set.all()
+    if view_album.painting_set.all():
+        context['paintings']=view_album.painting_set.all()[:6]
+        context['album_id']=album
+    else:
+        context['info'] = "This album is empty."
     context['gallery_title']=view_album.album_name + " album"
-    return render(request, 'gallery/gallery_view_more.html', context)
+    return render(request, 'gallery/gallery_view_my_album.html', context)
 
 
 @login_required
@@ -205,3 +210,18 @@ def create_new_album(request):
         else:
             #print(' '.join(form.errors['__all__']))
             return JsonResponse({'success': False, 'info':' '.join(form.errors['__all__'])})
+
+
+def gallery_album_load_more(request):
+    if request.method =='POST':
+        form = AlbumLoadMoreForm(request.POST)
+        context={}
+        if form.is_valid():
+            context['success'] = True
+            album = Album.objects.get(id = form.cleaned_data['album_id'])
+            paintings = Painting.objects.filter(album=album,
+                                                id__lt=form.cleaned_data['last_id'])
+            context['paintings'] = paintings
+
+        rendered = render_to_string('gallery/paintings.json', context)
+        return JsonResponse(rendered, safe=False)

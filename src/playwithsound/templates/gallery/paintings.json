@@ -1,0 +1,24 @@
+{
+  "success":{% if success %}true{% else %}false{% endif %},
+  "exist":{% if paintings %}true{% else %}false{% endif %},
+  "paintings":[
+    {% for painting in paintings %}
+    {% if not forloop.last %}
+    {
+      "id": "{{ painting.id }}",
+      "username": "{{ painting.user.username }}",
+      "kudos": "{{ painting.kudos }}",
+      "time": "{{ painting.time|date:'Y/m/d D h:i a' }}"
+    },
+    {% else %}
+    {
+      "id": "{{ painting.id }}",
+      "username": "{{ painting.user.username }}",
+      "kudos": "{{ painting.kudos }}",
+      "time": "{{ painting.time|date:'Y/m/d D h:i a' }}"
+    }
+    {% endif %}
+    {% endfor %}
+  ],
+  "last_painting":"{% if paintings %}{{ paintings.last.id }}{% endif %}"
+}

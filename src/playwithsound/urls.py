@@ -14,7 +14,9 @@ urlpatterns = [
     url(r'^gallery/home/$', gallery_home, name='gallery_home'),
     url(r'^gallery/view/my_album', gallery_my_album, name='gallery_my_album'),
     url(r'^gallery/view/(?P<page>[a-z]+)/$', gallery_view, name='gallery_view'),
-    url(r'^gallery/view/album/(?P<album>[0-9]+)/$', gallery_view_album, name='gallery_view_album'),
+    url(r'^gallery/view/album/(?P<album>[0-9]+)/$', gallery_view_my_album, name='gallery_view_my_album'),
+    #load more
+    url(r'^gallery-load-more-album/$', gallery_album_load_more, name='gallery_album_load_more'),
 
     url(r'^saveimage', saveimage, name='saveimage'),
     url(r'^register', register, name='register'),
