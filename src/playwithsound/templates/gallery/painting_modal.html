@@ -16,8 +16,12 @@
                                 <audio controls id="audioModal{{ painting.id }}" src=""></audio>
                                 <div class="intro-modal">
                                     <p>
+                                        {% if user.is_authenticated and user in painting.kudos_user.all %}
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        {% else %}
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        <strong class="kudos">{{ painting.kudos }} Kudos</strong>
+                                        {% endif %}
+                                        <strong><span class="kudos">{{ painting.kudos }}</span> Kudos</strong>
                                     </p>
                                     <p><strong class="paintingUser">{{ painting.user.username }} </strong>description added by creater of the image #hashtags</p>
                                     <p class="text-muted small paintingTime">{{ painting.time|date:"Y/m/d D h:i a" }}</p>

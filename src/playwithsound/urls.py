@@ -18,8 +18,12 @@ urlpatterns = [
     url(r'^gallery/view/album/(?P<album>[0-9]+)/$', gallery_view_my_album, name='gallery_view_my_album'),
     #load more
     url(r'^gallery-load-more-album/$', gallery_album_load_more, name='gallery_album_load_more'),
-    #url(r'^gallery-load-more-popular/$', gallery_popular_load_more, name='gallery_popular_load_more'),
+    url(r'^gallery-load-more-popular/$', gallery_popular_load_more, name='gallery_popular_load_more'),
     url(r'^gallery-load-more-new/$', gallery_new_load_more, name='gallery_new_load_more'),
+    # like & unlike paintings
+    url(r'^like/(?P<paintingId>[0-9]+)/$', like_painting, name='like_painting'),
+    url(r'^unlike/(?P<paintingId>[0-9]+)/$', unlike_painting, name='unlike_painting'),
+
 
     url(r'^saveimage', saveimage, name='saveimage'),
     url(r'^register', register, name='register'),

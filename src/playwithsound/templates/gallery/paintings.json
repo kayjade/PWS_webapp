@@ -15,6 +15,7 @@
       "id": "{{ painting.id }}",
       "username": "{{ painting.user.username }}",
       "kudos": "{{ painting.kudos }}",
+      "kudos_user":{% if user.is_authenticated and user in painting.kudos_user.all %}true{% else %}false{% endif %},
       "time": "{{ painting.time|date:'Y/m/d D h:i a' }}"
     }
     {% endif %}

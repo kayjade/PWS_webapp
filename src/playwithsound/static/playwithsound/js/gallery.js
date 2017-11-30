@@ -1,14 +1,28 @@
 $(document).ready(function() {
-  var kudos=0; // do not like this image
 
-  $(".single-painting").on("click", "i", function(event){
-    if(kudos===0){
-        $(this).attr("class", "fa fa-heart");
-        kudos=1;
-    }else{
-        $(this).attr("class","fa fa-heart-o");
-        kudos=0;
-    }
+    // like & unlike paintings
+  $("#single-painting").on("click", "i", function(event){
+      if($('#is-authenticated').length <= 0){ //unauthorized user
+          alert("Oops! You have to login to give kudos :P");
+      }else{
+          var paintingId = $(this).closest(".painting-modal").attr("id").substr(13);
+          var icon = $(this);
+          if($(this).attr("class")=="fa fa-heart-o"){ // like this painting
+              $.post("/like/" + paintingId + "/", function(res) {
+                  if(res.length>0){ // success
+                      icon.attr("class", "fa fa-heart");
+                      icon.next().find(".kudos").html(res);
+                  }
+              });
+          }else{ // unlike this painting
+              $.post("/unlike/" + paintingId + "/", function(res) {
+                  if(res.length>0){ // success
+                      icon.attr("class", "fa fa-heart-o");
+                      icon.next().find(".kudos").html(res);
+                  }
+              });
+          }
+      }
   });
 
   $("a[id^='aModal']").each(function(){
@@ -22,9 +36,13 @@ $(document).ready(function() {
   $("#stream-load-more button").on('click', function(e){
       e.preventDefault();
       // check the stream type
-      var view_type=$("#album-load-more input:nth-child(2)").val();
+      var view_type=$("#stream-load-more input:nth-child(2)").val();
       if(view_type==0){ // popular paintings
-
+          setPaintingNum();
+          var formData=$("#stream-load-more form").serialize();
+          $.post("/gallery-load-more-popular/", formData, function(data){
+              streamLoadPainting(data);
+          });
       }else{ // new paintings
           setLastID(1);
           var formData=$("#stream-load-more form").serialize();
@@ -59,6 +77,38 @@ $(document).ready(function() {
           }
       })
   });
+
+   // using jQuery
+  // https://docs.djangoproject.com/en/1.11/ref/csrf/
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+  var csrftoken = getCookie('csrftoken');
+
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+  $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+      }
+  });
 });
 
 // set last_id in load_more form
@@ -73,8 +123,9 @@ function setLastID( type ) {
 }
 
 // set the kudos number of the last painting in load more form
-function setLastKudos(){
-
+function setPaintingNum(){
+    var num = $("#view-paintings .col-md-4").length;
+    $("#stream-load-more input:nth-child(3)").attr("value", num);
 }
 
 // load more paintings
@@ -94,9 +145,14 @@ function loadPainting( res ){
         tmpModal.attr("id", "paintingModal" + res.paintings[i].id);
         tmpModal.find(".img-responsive").attr("src", "/getimage/" + res.paintings[i].id);
         tmpModal.find("audio").attr("id", "audioModal" + res.paintings[i].id);
-        tmpModal.find(".kudos").html(res.paintings[i].kudos + " Kudos");
+        tmpModal.find(".kudos").html(res.paintings[i].kudos);
         tmpModal.find(".paintingUser").html(res.paintings[i].username + " ");
         tmpModal.find(".paintingTime").html(res.paintings[i].time);
+        if(res.paintings[i].kudos_user){
+            tmpModal.find("i").attr("class", "fa fa-heart");
+        }else{
+            tmpModal.find("i").attr("class", "fa fa-heart-o");
+        }
         modalList.append(tmpModal);
     }
 }

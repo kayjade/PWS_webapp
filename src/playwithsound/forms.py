@@ -79,3 +79,17 @@ class NewLoadMoreForm(forms.Form):
         if view_type != 1:
             raise forms.ValidationError("incorrect stream view type!")
         return cleaned_data
+
+
+class PopularLoadMoreForm(forms.Form):
+    painting_num = forms.IntegerField()
+    view_type = forms.IntegerField()
+
+    def clean(self):
+        cleaned_data = super(PopularLoadMoreForm, self).clean()
+        painting_num = cleaned_data.get('painting_num')
+        view_type = cleaned_data.get('view_type')
+
+        if view_type != 0:
+            raise forms.ValidationError("incorrect stream view type!")
+        return cleaned_data

@@ -125,10 +125,63 @@ def gallery_home(request):
     return render(request, 'gallery/gallery_home.html', context)
 
 
+@login_required
+@transaction.atomic
+def like_painting(request, paintingId):
+    # check paintingId exist
+    if not Painting.objects.filter(id=paintingId):
+        return HttpResponse("")
+    p = Painting.objects.get(id=paintingId)
+    # cannot like the same painting repeatedly
+    if request.user in p.kudos_user.all():
+        return HttpResponse("")
+
+    p.kudos_user.add(request.user)
+    p.kudos = p.kudos + 1
+    p.save()
+    return HttpResponse(p.kudos)
+
+
+@login_required
+@transaction.atomic
+def unlike_painting(request, paintingId):
+    # check paintingId exist
+    if not Painting.objects.filter(id=paintingId):
+        return HttpResponse("")
+    p = Painting.objects.get(id=paintingId)
+    # cannot unlike the painting if the user hasnt given kudos
+    if not request.user in p.kudos_user.all():
+        return HttpResponse("")
+
+    p.kudos_user.remove(request.user)
+    p.kudos = p.kudos - 1
+    p.save()
+    return HttpResponse(p.kudos)
+
+
 @transaction.atomic
 def gallery_view_popular(request):
     context={}
+    context['gallery_title'] = "Popular Paintings"
+    context['paintings']=Painting.objects.all().order_by('-kudos')[:6]
+    context['view_type']=0
     return render(request, 'gallery/gallery_view_more.html', context)
+
+
+@transaction.atomic
+def gallery_popular_load_more(request):
+    if request.method =='POST':
+        form = PopularLoadMoreForm(request.POST)
+        context={}
+        if form.is_valid():
+            context['success'] = True
+            startIndex = form.cleaned_data['painting_num']
+            endIndex = startIndex + 6 - 1
+            paintings = Painting.objects.all().order_by('-kudos')[startIndex:endIndex]
+            context['paintings'] = paintings
+
+        rendered = render_to_string('gallery/paintings.json', context)
+        return JsonResponse(rendered, safe=False)
 
 
 @transaction.atomic
