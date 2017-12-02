@@ -13,7 +13,6 @@ $(document).ready(function () {
         if (isRecording === "0") {
             if (recordNum === 0 && $('#is-authenticated').length <= 0) {
                 // unlogged in
-                //alert("If you want to save your image and recording, please login.");
                 $('#login-alert').modal('show');
                 recordNum=recordNum+1;
             }

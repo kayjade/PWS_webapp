@@ -24,7 +24,6 @@ urlpatterns = [
     url(r'^like/(?P<paintingId>[0-9]+)/$', like_painting, name='like_painting'),
     url(r'^unlike/(?P<paintingId>[0-9]+)/$', unlike_painting, name='unlike_painting'),
 
-
     url(r'^saveimage', saveimage, name='saveimage'),
     url(r'^register', register, name='register'),
     url(r'^validate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', registeration_confirm, name='confirm-email'),
@@ -36,4 +35,6 @@ urlpatterns = [
     url(r'^getaudio/(?P<image_id>[0-9]+)',getaudio, name='getaudio'),
     # create new album
     url(r'^create-new-album/$', create_new_album, name='create_new_album'),
+    # delete a album
+    url(r'^delete-album/(?P<album_id>[0-9]+)/$', delete_album, name='delete_album'),
 ]

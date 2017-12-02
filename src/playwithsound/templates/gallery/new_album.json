@@ -1,0 +1,10 @@
+{% load static %}
+{
+  "success":{% if success %}true{% else %}false{% endif %},
+  "info": "{{ info }}"{% if success %},
+   "new_album": "{{ new_album }}",
+  "album_id": "{{ album_id }}",
+  "cover": "{% static "playwithsound/images/pws/empty_album_cover.jpg" %}",
+  "link": "{% url 'gallery_view_my_album' album_id %}"
+ {% endif %}
+}

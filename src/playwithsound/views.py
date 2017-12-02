@@ -290,14 +290,33 @@ def getaudio(request, image_id):
 # create a new album
 def create_new_album(request):
     if request.method == 'POST':
+        context={}
         form = CreateAlbumForm(request.POST)
         if form.is_valid():
             # create a new album
             new_album = Album(album_name = form.cleaned_data['album_name'],
                               user = request.user)
             new_album.save()
-            return JsonResponse({'success':True, 'info':'Create new album success!',
-                                 'new_album':form.cleaned_data['album_name']})
+            context['success'] = True
+            context['info']='Create new album success!'
+            context['album_id'] = new_album.id
+            context['new_album']=form.cleaned_data['album_name']
         else:
-            #print(' '.join(form.errors['__all__']))
-            return JsonResponse({'success': False, 'info':' '.join(form.errors['__all__'])})
+            context['info']=' '.join(form.errors['__all__'])
+
+        rendered = render_to_string('gallery/new_album.json', context)
+        return JsonResponse(rendered, safe=False)
+
+
+@login_required
+@transaction.atomic
+# delete a album
+def delete_album(request, album_id):
+    if request.method == 'POST':
+        # a user could only delete his/her own album
+        if not Album.objects.filter(id=album_id, user=request.user):
+            return HttpResponse("")
+
+        to_be_delete = Album.objects.get(id=album_id)
+        to_be_delete.delete()
+        return HttpResponse("success")

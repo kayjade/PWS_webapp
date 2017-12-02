@@ -123,12 +123,6 @@ function setLastID( type ) {
   }
 }
 
-// set the kudos number of the last painting in load more form
-// function setPaintingNum(){
-//     var num = $("#view-paintings .col-md-4").length;
-//     $("#stream-load-more input:nth-child(3)").attr("value", num);
-// }
-
 function setPaintingIds(){
     var idSet = "";
     $("#view-paintings").children().each(function(){
