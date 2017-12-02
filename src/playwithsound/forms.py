@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from playwithsound.models import *
 from django import forms
 
+import re
+
 class RegistrationForm(forms.Form):
     username=forms.CharField(max_length=42,required=True,widget=forms.TextInput(attrs={'class': 'form-control','autofocus':True,'placeholder':'Username'}))
     firstname = forms.CharField(max_length=42,required=True,widget=forms.TextInput(attrs={'class': 'form-control name-1','placeholder':'First Name'}))
@@ -82,14 +84,19 @@ class NewLoadMoreForm(forms.Form):
 
 
 class PopularLoadMoreForm(forms.Form):
-    painting_num = forms.IntegerField()
+    painting_ids = forms.CharField()
     view_type = forms.IntegerField()
 
     def clean(self):
         cleaned_data = super(PopularLoadMoreForm, self).clean()
-        painting_num = cleaned_data.get('painting_num')
+        painting_ids = cleaned_data.get('painting_ids')
         view_type = cleaned_data.get('view_type')
 
         if view_type != 0:
             raise forms.ValidationError("incorrect stream view type!")
+        id_list = painting_ids.split("_")
+        for id in id_list:
+            if not re.match("^\d+$", id):
+                raise forms.ValidationError("incorrect id format!")
+
         return cleaned_data

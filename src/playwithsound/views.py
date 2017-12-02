@@ -175,9 +175,10 @@ def gallery_popular_load_more(request):
         context={}
         if form.is_valid():
             context['success'] = True
-            startIndex = form.cleaned_data['painting_num']
-            endIndex = startIndex + 6 - 1
-            paintings = Painting.objects.all().order_by('-kudos')[startIndex:endIndex]
+            painting_ids = form.cleaned_data['painting_ids']
+            id_list = painting_ids.split('_')
+            id_list = map(int, id_list)
+            paintings = Painting.objects.all().exclude(id__in=id_list).order_by('-kudos')[:6]
             context['paintings'] = paintings
 
         rendered = render_to_string('gallery/paintings.json', context)
