@@ -396,17 +396,8 @@ footer {
   height: 545px;
 }*/
 
-#mode1 {
-  /*background-image: url(../images/pws/mode1_01.jpg);*/
+#mode1, #mode2 {
   color: #212121;
-}
-
-#mode2 {
-  background-image: url(../images/pws/mode2_01.jpg);
-}
-
-#mode3 {
-  background-image: url(../images/pws/mode3_01.jpg);
 }
 
 .introduction{
@@ -425,15 +416,16 @@ footer {
   padding-bottom:15px;
 }
 
-#record-result .btn-savefile,
+ .btn-savefile,
 .btn-manage, .btn-delete {
+  color:white;
   border-style:none;
   letter-spacing: 1px;
   font-size: 13px;
   margin-bottom: 5px;
 }
 
-#record-result .btn-savefile i,
+.btn-savefile i,
 .btn-manage i,
 .btn-delete i {
   font-size: 12px;
@@ -485,7 +477,7 @@ footer {
 }
 
 .btn-login, .btn-alert,
-#record-result .btn-savefile,
+ .btn-savefile,
 .btn-delete, .btn-manage,
 #save-modal .btn-savealbum, .btn-signup,
 #create-album-modal .btn-savealbum {
@@ -506,8 +498,8 @@ footer {
 .btn-login:focus,
 .btn-signup:hover,
 .btn-signup:focus,
-#record-result .btn-savefile:hover,
-#record-result .btn-savefile:focus,
+ .btn-savefile:hover,
+.btn-savefile:focus,
 .btn-manage:hover, .btn-manage:focus,
 .btn-delete:hover, .btn-delete:focus,
 #save-modal .btn-savealbum:hover,
@@ -1078,10 +1070,13 @@ hr style
     font-size:20px;
 }
 
-/*
- * view my album page
- */
+/* view my album page */
 
 .delete-btn-group {
   margin-bottom:20px;
+}
+
+/* mode 2 */
+#upload-audio{
+  display: none;
 }
