@@ -25,11 +25,22 @@
                 <button class="btn btn-default btn-small btn-savefile" id="upload-button" type="submit">Upload</button>
             </span>
         </div>
-        <div id="result" hidden>
+        <div id="load-wrapper">
+            <div class="loader center-block"></div>
+            <p>Hold on tight! Your artwork is on the way...</p>
+        </div>
+        <div id="result">
+            <div>
+                <button class="btn btn-small btn-primary btn-savefile" id="saveButton">
+                save to my album</button>
+                <button class="btn btn-small btn-primary btn-savefile" id="downloadimage">
+                download image</button>
+            </div>
             <p>Here's your result picture:</p>
             {% load static %}
             <img src="{% static "playwithsound/images/example/03-process.jpg" %}" width="960" height="500">
         </div>
+
     </div>
 
     <div class="container-fluid text-center" id="unfixed-footer">

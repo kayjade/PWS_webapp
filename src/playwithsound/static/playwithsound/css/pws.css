@@ -425,10 +425,8 @@ footer {
   margin-bottom: 5px;
 }
 
-.btn-savefile i,
-.btn-manage i,
-.btn-delete i {
-  font-size: 12px;
+.btn-savefile i {
+  font-size: 10px;
 }
 
 #record-result audio{
@@ -1079,4 +1077,31 @@ hr style
 /* mode 2 */
 #upload-audio{
   display: none;
+}
+
+#load-wrapper {
+  text-align: center;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #a8505f;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s ease-in-out infinite;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
