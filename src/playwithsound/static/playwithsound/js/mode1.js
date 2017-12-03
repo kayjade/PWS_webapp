@@ -9,13 +9,14 @@ $(document).ready(function () {
 
     init();
 
+    if (recordNum === 0 && $('#is-authenticated').length <= 0) {
+        // unlogged in
+        $('#login-alert').modal('show');
+        recordNum=recordNum+1;
+    }
+
     $("#start-record").click(function () {
         if (isRecording === "0") {
-            if (recordNum === 0 && $('#is-authenticated').length <= 0) {
-                // unlogged in
-                $('#login-alert').modal('show');
-                recordNum=recordNum+1;
-            }
                 var savebutton = $(".record-control").find('button');
                 if (savebutton.length > 0) {
                     savebutton.remove();

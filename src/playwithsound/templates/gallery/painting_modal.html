@@ -19,7 +19,11 @@
                                         {% if user.is_authenticated and user in painting.kudos_user.all %}
                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                         {% else %}
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            {% if user.is_authenticated %}
+                                                <i class="fa fa-heart-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Like me!"></i>
+                                                {% else %}
+                                                <i class="fa fa-heart-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="You have to login to give kudos!"></i>
+                                                {% endif %}
                                         {% endif %}
                                         <strong><span class="kudos">{{ painting.kudos }}</span> Kudos</strong>
                                     </p>

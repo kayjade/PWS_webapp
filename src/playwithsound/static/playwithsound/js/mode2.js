@@ -55,7 +55,12 @@ function fileInfo(event) {
 
 $(document).ready(function(){
 
-     $("#upload-button").on("click", function(){
+	if ($('#is-authenticated').length <= 0) {
+        // unlogged in
+        $('#login-alert').modal('show');
+    }
+
+	$("#upload-button").on("click", function(){
      	// upload the audio file to the server
 		if(file){
 			var formData = new FormData();
