@@ -1,5 +1,5 @@
 # audio and img files
-#media/
+media/
 
 # db file
 *.sqlite3

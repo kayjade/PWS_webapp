@@ -332,4 +332,4 @@ def upload_audio(request):
         tmp.save()
         # call other process method
 
-        return HttpResponse("Success")
+        return HttpResponse(tmp.data.name)

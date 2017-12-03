@@ -89,6 +89,6 @@ class TempAudio(models.Model):
     data = models.FileField(upload_to=tmp_audio_filepath)
 
     def __unicode__(self):
-        return '%s' % self.id
+        return '%s' % self.data.name
     def __str__(self):
         return self.__unicode__()
