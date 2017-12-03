@@ -37,4 +37,6 @@ urlpatterns = [
     url(r'^create-new-album/$', create_new_album, name='create_new_album'),
     # delete a album
     url(r'^delete-album/(?P<album_id>[0-9]+)/$', delete_album, name='delete_album'),
+    # upload audio file
+    url(r'^upload-audio/$', upload_audio, name='upload_audio'),
 ]

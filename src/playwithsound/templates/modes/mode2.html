@@ -16,7 +16,7 @@
     </div>
 
     <div class="container mode-body">
-        <p>Choose an audio file: <span class='label label-info' id="upload-file-info"></span></p>
+        <p>Choose an audio file (*.mp3, *.wav): <span class='label label-info' id="upload-file-info"></span></p>
         <div id="upload">
             <label class="btn btn-small btn-primary btn-savefile" >Gimme A Song!
                 <input type="file" id="upload-audio" required onchange="fileInfo(event)" />
@@ -24,12 +24,12 @@
             <span>
                 <button class="btn btn-default btn-small btn-savefile" id="upload-button" type="submit">Upload</button>
             </span>
-        </div>
-        <div id="load-wrapper">
+        </div> <!-- upload -->
+        <div id="load-wrapper" hidden>
             <div class="loader center-block"></div>
             <p>Hold on tight! Your artwork is on the way...</p>
-        </div>
-        <div id="result">
+        </div> <!-- load -->
+        <div id="result" hidden>
             <div>
                 <button class="btn btn-small btn-primary btn-savefile" id="saveButton">
                 save to my album</button>
@@ -39,7 +39,7 @@
             <p>Here's your result picture:</p>
             {% load static %}
             <img src="{% static "playwithsound/images/example/03-process.jpg" %}" width="960" height="500">
-        </div>
+        </div> <!-- result -->
 
     </div>
 
@@ -67,9 +67,6 @@
     <script type="text/javascript" src="{% static "playwithsound/js/deepart/simpleHttpClient.js" %}"></script>
     <script type="text/javascript" src="{% static "playwithsound/js/deepart/utils.js" %}"></script>
     <script type="text/javascript" src="{% static "playwithsound/js/deepart/apigClient.js" %}"></script>
-
-    <!-- Fancybox for artwork preview -->
-	<script src="{% static "playwithsound/js/fancybox.js" %}"></script>
 
 	<!-- Image tools -->
 	<script src="{% static "playwithsound/js/imageTools.js" %}"></script>
