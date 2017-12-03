@@ -320,3 +320,15 @@ def delete_album(request, album_id):
         to_be_delete = Album.objects.get(id=album_id)
         to_be_delete.delete()
         return HttpResponse("success")
+
+
+# upload an audio file to the server
+@login_required
+@transaction.atomic
+def upload_audio(request):
+    if request.method == "POST":
+        audiofile= request.FILES['audio']
+        tmp = TempAudio(data = audiofile)
+        tmp.save()
+        # call other process method
+        return HttpResponse("Success")

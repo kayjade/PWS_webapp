@@ -75,3 +75,13 @@ class Painting(models.Model):
     # order by the reversed time of the post
     class Meta:
         ordering = ['-time']
+
+
+# temp audio files uploaded by users
+class TempAudio(models.Model):
+    data = models.FileField(upload_to='tmp/')
+
+    def __unicode__(self):
+        return self.id
+    def __str__(self):
+        return self.__unicode__()

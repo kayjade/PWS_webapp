@@ -1,4 +1,5 @@
 var imageBinary;
+var file;
 // var styles;
 var style;
 var resultCheck;
@@ -32,10 +33,15 @@ var styles = ["01ab8da6-1b89-11e7-afe2-06d95fe194ed", "c7984d3c-1560-11e7-afe2-0
 // show infomation of uploaded image in edit profile page
 function fileInfo(event) {
     var files = event.target.files;
-    var file = files[0];
+    file = files[0];
     if(files && file) {
-        $('#upload-file-info').html(file.name);
-        ImageTools.resize(file, {width: maxImageSize, height: maxImageSize},
+    	//if(file.name.match(/\.wav$/i) || file.name.match(/\.mp3$/i)){
+    	if(file.name.match(/\.wav$/i)){
+			$('#upload-file-info').html(file.name);
+    	}else{
+    		alert('Sorry, only *.wav files are supported currently.');
+		}
+        /*ImageTools.resize(file, {width: maxImageSize, height: maxImageSize},
 	    	function(blob, didItResize) {
 				var reader = new FileReader();
 				reader.onload = function(readerEvt) {
@@ -43,17 +49,72 @@ function fileInfo(event) {
 	        	};
         		reader.readAsBinaryString(blob);
 	    	}
-	    );
+	    );*/
     }
 }
 
 $(document).ready(function(){
 
      $("#upload-button").on("click", function(){
-     	 var id = 1 + Math.floor(Math.random() * 42);
+     	// upload the audio file to the server
+		if(file){
+			var formData = new FormData();
+			formData.append('audio', file);
+			$.ajax({
+            url: '/upload-audio/',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (data === "Success") {
+                alert('Success')
+            } else {
+                alert('Failed to save image');
+            }
+        }).fail(function (data) {
+        });
+		} else {
+			alert("Please choose a file first!");
+		}
+     	// upload image to deep art effects server
+     	 /*var id = 1 + Math.floor(Math.random() * 42);
          style=styles[id].id;
-         uploadImage(style);
-     })
+         uploadImage(style);*/
+     });
+
+     // ajax setup
+	// using jQuery
+  	// https://docs.djangoproject.com/en/1.11/ref/csrf/
+  	function getCookie(name) {
+    	var cookieValue = null;
+    	if (document.cookie && document.cookie !== '') {
+        	var cookies = document.cookie.split(';');
+        	for (var i = 0; i < cookies.length; i++) {
+            	var cookie = jQuery.trim(cookies[i]);
+            	// Does this cookie string begin with the name we want?
+            	if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                	cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                	break;
+            	}
+        	}
+    	}
+    	return cookieValue;
+  	}
+  	var csrftoken = getCookie('csrftoken');
+
+	function csrfSafeMethod(method) {
+    	// these HTTP methods do not require CSRF protection
+    	return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  	}
+
+	$.ajaxSetup({
+      	beforeSend: function(xhr, settings) {
+          	if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              	xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          	}
+      	}
+  	});
 });
 
 function uploadImage(styleId) {
