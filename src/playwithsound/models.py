@@ -8,6 +8,9 @@ from django.core.exceptions import ValidationError
 from django.db.models import Max
 from django.utils.html import escape
 
+import time
+#from playwithsound.views import tmp_audio_filepath
+
 # Create your models here.
 
 # User can create albums to manage their paintings
@@ -76,12 +79,16 @@ class Painting(models.Model):
     class Meta:
         ordering = ['-time']
 
+def tmp_audio_filepath(instance, filename):
+    filepath = 'tmp/' + str(time.time()) + ".wav"
+    return filepath
+
 
 # temp audio files uploaded by users
 class TempAudio(models.Model):
-    data = models.FileField(upload_to='tmp/')
+    data = models.FileField(upload_to=tmp_audio_filepath)
 
     def __unicode__(self):
-        return self.id
+        return '%s' % self.data.name
     def __str__(self):
         return self.__unicode__()

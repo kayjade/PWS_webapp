@@ -72,11 +72,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false
         }).done(function (data) {
-            if (data === "Success") {
-                alert('Success')
-            } else {
-                alert('Failed to save image');
-            }
+            console.log(data);
         }).fail(function (data) {
         });
 		} else {

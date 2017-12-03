@@ -9,8 +9,9 @@ from django.db import transaction
 
 from wsgiref.util import FileWrapper
 
-from playwithsound.models import *
+from django.contrib.auth.models import User
 from playwithsound.forms import *
+from playwithsound.models import *
 
 # Used to create and manually log in a user
 from django.contrib.auth.decorators import login_required
@@ -20,8 +21,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
-
 import os
+import time
 
 # Create your views here.
 def home(request):
@@ -323,7 +324,6 @@ def delete_album(request, album_id):
 
 
 # upload an audio file to the server
-@login_required
 @transaction.atomic
 def upload_audio(request):
     if request.method == "POST":
@@ -331,4 +331,5 @@ def upload_audio(request):
         tmp = TempAudio(data = audiofile)
         tmp.save()
         # call other process method
-        return HttpResponse("Success")
+
+        return HttpResponse(tmp.data.name)
