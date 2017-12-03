@@ -38,7 +38,8 @@ $(document).ready(function() {
       // check the stream type
       var view_type=$("#stream-load-more input:nth-child(2)").val();
       if(view_type==0){ // popular paintings
-          setPaintingNum();
+          setPaintingIds();
+          //setPaintingNum();
           var formData=$("#stream-load-more form").serialize();
           $.post("/gallery-load-more-popular/", formData, function(data){
               streamLoadPainting(data);
@@ -122,10 +123,12 @@ function setLastID( type ) {
   }
 }
 
-// set the kudos number of the last painting in load more form
-function setPaintingNum(){
-    var num = $("#view-paintings .col-md-4").length;
-    $("#stream-load-more input:nth-child(3)").attr("value", num);
+function setPaintingIds(){
+    var idSet = "";
+    $("#view-paintings").children().each(function(){
+        idSet = idSet + $(this).attr("painting_id") + "_";
+    });
+    $("#stream-load-more input:nth-child(3)").attr("value", idSet.substr(0, idSet.length-1));
 }
 
 // load more paintings

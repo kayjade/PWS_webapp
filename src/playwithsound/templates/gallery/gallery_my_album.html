@@ -7,13 +7,18 @@
 {% block content %}
     <div class="container-fluid" id="gallery-head">
         <h2 class="mode-title">My Albums</h2>
+        <button type="button" class="btn btn-small btn-default btn-manage" id="manage-album">Manage my album</button>
+        <div id="create-btn-group" hidden>
+            <button type="button" class="btn btn-small btn-default btn-manage" id="create-album">Create new album</button>
+            <button type="button" class="btn btn-small btn-default btn-manage" id="cancel-create">Cancel</button>
+        </div>
     </div>
 
 <div class="container" id="view-my-album">
 	<div class="row">
         <!-- display the albums of the current user -->
         {% for album in albums %}
-		<div class="col-md-4 col-sm-6">
+		<div class="col-md-4 col-sm-6" album_id="{{ album.id }}">
     		<div class="viewmore-hovereffect">
                 {% if album.painting_set.all %}
         		<img class="img-responsive" src="{% url 'getimage' album.painting_set.all.0.id %}" alt="">
@@ -26,6 +31,9 @@
             		</div>
             	</a>
     		</div>
+            <div class="delete-btn-group" hidden>
+                <button type="button" class="btn btn-small btn-default btn-delete">Delete</button>
+            </div>
 		</div>
         {% endfor %}
 
@@ -37,5 +45,58 @@
         <p>Copyright &copy; Team 330</p>
     </div>
 </div>
+
+   <div class="modal fade" id="create-album-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+             <div class="modal-content container">
+                 <div id="modal-create-new">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Create a new album</h4>
+                     </div>
+                     <div class="modal-body">
+                        <form class="form-inline" id="create-album-form">
+                            <div class="form-group">
+                                <label for="name">Name of the album:</label>
+                                <input type="text" name="album_name" class="form-control" placeholder="my album" id="album-name" required>
+                                {% if user.is_authenticated %}
+                                <input type="hidden" name="user_id" value={{ user.id }}>
+                                {% endif %}
+                            </div>
+                            <div><p class="error-info"></p></div>
+                            <div class="modal-btn-group">
+                                <button type="submit" class="btn btn-small btn-default btn-savealbum" id="confirm-create">
+                                    create</button>
+                                <button class="btn btn-small btn-default btn-savealbum" data-dismiss="modal">
+                                    cancel</button>
+                            </div>
+
+                        </form>
+                    </div>
+                 </div>
+             </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="delete-alert" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+             <div class="modal-content container">
+                 <div>
+                     <div class="intro">
+                         <p>Are you sure you want to delete this album?</p>
+                         <p><strong>All of your images in this album will be gone and this cannot be undone.</strong></p>
+                     </div>
+                     <button class="btn btn-small btn-primary btn-alert" id="confirm-delete">Yes! I've made up my mind.</button>
+                     <button class="btn btn-small btn-primary btn-alert" data-dismiss="modal">Let me think twice.</button>
+                 </div>
+             </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block customJS %}
+    {% load static %}
+    <script type="text/javascript" src="{% static "playwithsound/js/album.js" %}"></script>
 
 {% endblock %}

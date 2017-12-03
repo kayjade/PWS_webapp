@@ -5,11 +5,31 @@
     {% block content %}
     <div class="container-fluid mode-header" id="mode2">
         <h1 class="mode-title">It Takes A Song To Be An Artist</h1>
+        <p class="introduction"> Upload an audio file, and we will paint a more complicated and artistic image for you.
+            Have fun!
+        </p>
+    </div>
+    <div class="dash">
+        <hr class="hr-1"/>
+        <label>Have Fun !</label>
+        <hr class="hr-2"/>
     </div>
 
     <div class="container mode-body">
-        <p>To be completed</p>
-        <a href="#" class="btn btn-default btn-small btn-upload">Gimme A Song!</a>
+        <p>Choose an audio file: <span class='label label-info' id="upload-file-info"></span></p>
+        <div id="upload">
+            <label class="btn btn-small btn-primary btn-savefile" >Gimme A Song!
+                <input type="file" id="upload-audio" required onchange="fileInfo(event)" />
+            </label>
+            <span>
+                <button class="btn btn-default btn-small btn-savefile" id="upload-button" type="submit">Upload</button>
+            </span>
+        </div>
+        <div id="result" hidden>
+            <p>Here's your result picture:</p>
+            {% load static %}
+            <img src="{% static "playwithsound/images/example/03-process.jpg" %}" width="960" height="500">
+        </div>
     </div>
 
     <div class="container-fluid text-center" id="unfixed-footer">
@@ -18,3 +38,32 @@
         </div>
     </div>
     {% endblock %}
+
+{% block customJS %}
+    {% load static %}
+
+    <script type="text/javascript" src="{% static "playwithsound/js/FileSaver.js" %}"></script>
+
+    <!-- deep art effects -->
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/axios.standalone.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/hmac-sha256.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/sha256.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/hmac.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/enc-base64.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/url-template.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/sigV4Client.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/apiGatewayClient.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/simpleHttpClient.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/utils.js" %}"></script>
+    <script type="text/javascript" src="{% static "playwithsound/js/deepart/apigClient.js" %}"></script>
+
+    <!-- Fancybox for artwork preview -->
+	<script src="{% static "playwithsound/js/fancybox.js" %}"></script>
+
+	<!-- Image tools -->
+	<script src="{% static "playwithsound/js/imageTools.js" %}"></script>
+
+    <!-- mode2 customer js -->
+    <script type="text/javascript" src="{% static "playwithsound/js/mode2.js" %}"></script>
+
+{% endblock %}

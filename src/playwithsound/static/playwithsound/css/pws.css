@@ -348,8 +348,12 @@ footer {
   background-image: url(../images/pws/index_01.jpg);
 }
 
-#section-gallery/*, #gallery-head*/ {
+#section-gallery {
   background-image: url(../images/pws/index_03.jpg);
+}
+
+#gallery-head {
+  text-align: center;
 }
 
 #gallery-head h1,
@@ -364,6 +368,10 @@ footer {
 
 #gallery-head p {
   padding-bottom: 55px;
+}
+
+#gallery-head button {
+  margin-top: 10px;
 }
 
 #slide-mode1 {
@@ -388,17 +396,8 @@ footer {
   height: 545px;
 }*/
 
-#mode1 {
-  /*background-image: url(../images/pws/mode1_01.jpg);*/
+#mode1, #mode2 {
   color: #212121;
-}
-
-#mode2 {
-  background-image: url(../images/pws/mode2_01.jpg);
-}
-
-#mode3 {
-  background-image: url(../images/pws/mode3_01.jpg);
 }
 
 .introduction{
@@ -417,14 +416,18 @@ footer {
   padding-bottom:15px;
 }
 
-#record-result .btn-savefile {
+ .btn-savefile,
+.btn-manage, .btn-delete {
+  color:white;
   border-style:none;
   letter-spacing: 1px;
   font-size: 13px;
   margin-bottom: 5px;
 }
 
-#record-result .btn-savefile i {
+.btn-savefile i,
+.btn-manage i,
+.btn-delete i {
   font-size: 12px;
 }
 
@@ -474,9 +477,15 @@ footer {
 }
 
 .btn-login, .btn-alert,
-#record-result .btn-savefile,
-#save-modal .btn-savealbum, .btn-signup{
+ .btn-savefile,
+.btn-delete, .btn-manage,
+#save-modal .btn-savealbum, .btn-signup,
+#create-album-modal .btn-savealbum {
   background-color: #a8505f;
+}
+
+.btn-delete, .btn-manage {
+  color:white;
 }
 
 .btn-login{
@@ -489,10 +498,14 @@ footer {
 .btn-login:focus,
 .btn-signup:hover,
 .btn-signup:focus,
-#record-result .btn-savefile:hover,
-#record-result .btn-savefile:focus,
+ .btn-savefile:hover,
+.btn-savefile:focus,
+.btn-manage:hover, .btn-manage:focus,
+.btn-delete:hover, .btn-delete:focus,
 #save-modal .btn-savealbum:hover,
-#save-modal .btn-savealbum:focus {
+#save-modal .btn-savealbum:focus,
+#btn-savealbum .btn-savealbum:hover,
+#btn-savealbum .btn-savealbum:focus {
   background: #eceff1;
   color: #a8505f;
 }
@@ -842,7 +855,9 @@ filter:alpha(opacity=100);
 
 /* ----- login alert modal ----- */
 #login-alert .modal-dialog,
-#save-modal .modal-dialog{
+#delete-alert .modal-dialog,
+#save-modal .modal-dialog,
+#create-album-modal .modal-dialog{
   margin: 0;
   padding-top: 100px; /* Location of the box */
   height: 100%;
@@ -851,7 +866,9 @@ filter:alpha(opacity=100);
 }
 
 #login-alert .modal-content,
-#save-modal .modal-content{
+#delete-alert .modal-content,
+#save-modal .modal-content,
+#create-album-modal .modal-content {
   margin: auto;
   padding: 20px;
   width: 65%;
@@ -862,13 +879,16 @@ filter:alpha(opacity=100);
   border: none;
 }
 
-#login-alert .intro{
+#login-alert .intro,
+#delete-alert .intro{
   text-align: center;
   padding-bottom: 20px;
 }
 
 #login-alert .btn-alert,
-#save-modal .btn-savealbum {
+#delete-alert .btn-alert,
+#save-modal .btn-savealbum,
+#create-album-modal .btn-savealbum{
   color: #fff;
   letter-spacing: 1px;
   border-style:none;
@@ -877,31 +897,40 @@ filter:alpha(opacity=100);
 
 #login-alert .btn-alert:hover,
 #login-alert .btn-alert:focus,
+#delete-alert .btn-alert:hover,
+#delete-alert .btn-alert:focus,
 #save-modal .btn-savealbum:hover,
-#save-modal .btn-savealbum:focus {
+#save-modal .btn-savealbum:focus,
+#create-album-modal .btn-savealbum:hover,
+#create-album-modal .btn-savealbum:focus {
   color: #a8505f;
   background: #eceff1;
 }
 
 /* ----- save modal ----- */
-#save-modal .modal-dialog {
+#save-modal .modal-dialog,
+#create-album-modal .modal-dialog {
   padding-top: 200px; /* Location of the box */
 }
 
-#save-modal .modal-content {
+#save-modal .modal-content,
+#create-album-modal .modal-content {
   width: 50%;
 }
 
-#save-modal .modal-body{
+#save-modal .modal-body,
+#create-album-modal .modal-body{
   padding-top: 30px;
   padding-bottom:30px;
 }
 
-#save-modal .modal-btn-group {
+#save-modal .modal-btn-group,
+#create-album-modal .modal-btn-group {
   padding-top:20px;
 }
 
-#save-modal .modal-btn-group button {
+#save-modal .modal-btn-group button,
+#create-album-modal .modal-btn-group button {
   margin-left:5px;
   margin-right: 5px;
 }
@@ -916,6 +945,7 @@ filter:alpha(opacity=100);
 
 #view-paintings, #view-my-album {
   padding-top: 30px;
+  padding-bottom:50px;
 }
 /*
 #view-paintings .browse-hovereffect {
@@ -1038,4 +1068,15 @@ hr style
     margin: 0 auto !important;
     margin-top: 100px !important;
     font-size:20px;
+}
+
+/* view my album page */
+
+.delete-btn-group {
+  margin-bottom:20px;
+}
+
+/* mode 2 */
+#upload-audio{
+  display: none;
 }
