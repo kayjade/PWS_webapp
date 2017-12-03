@@ -35,12 +35,11 @@ function fileInfo(event) {
     var files = event.target.files;
     file = files[0];
     if(files && file) {
-    	if(file.name.match(/\.wav$/i) || file.name.match(/\.mp3$/i)){
+    	//if(file.name.match(/\.wav$/i) || file.name.match(/\.mp3$/i)){
+    	if(file.name.match(/\.wav$/i)){
 			$('#upload-file-info').html(file.name);
-			console.log(file);
-			// upload file to server
     	}else{
-    		alert('Only *.mp3 and *.wav files are supported currently.');
+    		alert('Sorry, only *.wav files are supported currently.');
 		}
         /*ImageTools.resize(file, {width: maxImageSize, height: maxImageSize},
 	    	function(blob, didItResize) {
