@@ -83,7 +83,9 @@ $(document).ready(function () {
                 $("#confirm-save-btn").unbind('click').on('click', function () {
                     $("#save-modal").modal("hide");
                     var choosen_album = $("#select-album option:selected").text();
-                    saveimage(mn, choosen_album);
+                    var description = $("textarea").val();
+                    saveimage(mn, choosen_album, description);
+                    $("textarea").val("");
                 });
 
                 // create a new album
@@ -138,7 +140,6 @@ $(document).ready(function () {
                 hf.dispatchEvent(event);
             });
 
-            //recorder.getTimeData();
         }
     });
 

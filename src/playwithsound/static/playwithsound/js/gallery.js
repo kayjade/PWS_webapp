@@ -143,6 +143,7 @@ function setPaintingIds(){
 
 // load more paintings
 function loadPainting( res ){
+    console.log(res);
     var paintingList = $("#view-paintings");
     var modalList = $("#single-painting");
     for(var i=0; i< res.paintings.length; i++) {
@@ -156,11 +157,12 @@ function loadPainting( res ){
         // load modal
         var tmpModal = $("#single-painting .painting-modal:first-child").clone(true);
         tmpModal.attr("id", "paintingModal" + res.paintings[i].id);
-        tmpModal.find(".img-responsive").attr("src", "/getimage/" + res.paintings[i].id);
+        tmpModal.find("img").attr("src", "/getimage/" + res.paintings[i].id);
         tmpModal.find("audio").attr("id", "audioModal" + res.paintings[i].id);
         tmpModal.find(".kudos").html(res.paintings[i].kudos);
         tmpModal.find(".paintingUser").html(res.paintings[i].username + " ");
         tmpModal.find(".paintingTime").html(res.paintings[i].time);
+        tmpModal.find(".description").html(res.paintings[i].description);
         if(res.paintings[i].kudos_user){
             var icon = tmpModal.find("i");
             icon.attr("class", "fa fa-heart");

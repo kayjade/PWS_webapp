@@ -42,7 +42,7 @@ function downloadimage(mn) {
     }
 }
 
-function saveimage(mn, choosen_album) {
+function saveimage(mn, choosen_album, description) {
     var fd = new FormData();
     if (mn == 0) {//canvas
         var canvas = d3.select("canvas").node();
@@ -51,6 +51,10 @@ function saveimage(mn, choosen_album) {
         fd.append("ImageData", blob);
         fd.append("AudioData",audioblob);
         fd.append("Album", choosen_album);
+        if(description != ""){
+            fd.append("Description", description);
+            console.log(description);
+        }
         console.log(blob);
         $.ajax({
             url: '/saveimage',
