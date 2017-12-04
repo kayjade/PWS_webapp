@@ -1,29 +1,39 @@
 $(document).ready(function() {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     // like & unlike paintings
   $("#single-painting").on("click", "i", function(event){
-      if($('#is-authenticated').length <= 0){ //unauthorized user
-          alert("Oops! You have to login to give kudos :P");
-      }else{
+      if($('#is-authenticated').length >= 0){ //authorized user
           var paintingId = $(this).closest(".painting-modal").attr("id").substr(13);
           var icon = $(this);
+          console.log(icon);
           if($(this).attr("class")=="fa fa-heart-o"){ // like this painting
               $.post("/like/" + paintingId + "/", function(res) {
+                  console.log(res);
                   if(res.length>0){ // success
                       icon.attr("class", "fa fa-heart");
-                      icon.next().find(".kudos").html(res);
+                      var kudos = icon.parent().find(".kudos");
+                      kudos.html(res);
                   }
               });
           }else{ // unlike this painting
               $.post("/unlike/" + paintingId + "/", function(res) {
                   if(res.length>0){ // success
                       icon.attr("class", "fa fa-heart-o");
-                      icon.next().find(".kudos").html(res);
+                      icon.parent().find(".kudos").html(res);
                   }
               });
           }
       }
   });
+
+  // stop the audio from playing when close the modal
+  $('#single-painting').on('hidden.bs.modal', '.painting-modal',function () {
+  var audio = $(this).find('audio').get(0);
+  audio.pause();
+  audio.currentTime = 0;
+});
 
   $("a[id^='aModal']").each(function(){
       $(this).unbind('click').on('click', function(){
@@ -133,6 +143,7 @@ function setPaintingIds(){
 
 // load more paintings
 function loadPainting( res ){
+    console.log(res);
     var paintingList = $("#view-paintings");
     var modalList = $("#single-painting");
     for(var i=0; i< res.paintings.length; i++) {
@@ -146,18 +157,30 @@ function loadPainting( res ){
         // load modal
         var tmpModal = $("#single-painting .painting-modal:first-child").clone(true);
         tmpModal.attr("id", "paintingModal" + res.paintings[i].id);
-        tmpModal.find(".img-responsive").attr("src", "/getimage/" + res.paintings[i].id);
+        tmpModal.find("img").attr("src", "/getimage/" + res.paintings[i].id);
         tmpModal.find("audio").attr("id", "audioModal" + res.paintings[i].id);
         tmpModal.find(".kudos").html(res.paintings[i].kudos);
         tmpModal.find(".paintingUser").html(res.paintings[i].username + " ");
         tmpModal.find(".paintingTime").html(res.paintings[i].time);
+        tmpModal.find(".description").html(res.paintings[i].description);
         if(res.paintings[i].kudos_user){
-            tmpModal.find("i").attr("class", "fa fa-heart");
+            var icon = tmpModal.find("i");
+            icon.attr("class", "fa fa-heart");
+            icon.attr("data-toggle","");
         }else{
-            tmpModal.find("i").attr("class", "fa fa-heart-o");
+            var icon = tmpModal.find("i");
+            icon.attr("class", "fa fa-heart-o");
+            icon.attr("data-toggle", "tooltip");
+            icon.attr("data-placement","top");
+            if($('#is-authenticated').length <= 0){ //unanthenticated user
+                icon.attr("title","You have to login to give kudos!");
+            }else{
+                icon.attr("title","Like me!");
+            }
         }
         modalList.append(tmpModal);
     }
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function streamLoadPainting( data ){

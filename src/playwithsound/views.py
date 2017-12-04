@@ -265,8 +265,15 @@ def saveimage(request):
         album = request.user.album_set.get(album_name=request.POST['Album'])
         audio = Audio(user = request.user, audio_file = audiofile)
         audio.save()
-        painting = Painting(user=request.user,image=imagefile, audio = audio,album=album)
-        painting.save()
+        if 'Description' in request.POST:
+            description = request.POST['Description']
+            print(description)
+            painting = Painting(user=request.user,image=imagefile, audio = audio,album=album,
+                                description = description)
+            painting.save()
+        else:
+            painting = Painting(user=request.user,image=imagefile, audio = audio,album=album)
+            painting.save()
         return HttpResponse('Success')
     else:
         raise Http404

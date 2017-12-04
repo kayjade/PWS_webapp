@@ -9,13 +9,14 @@ $(document).ready(function () {
 
     init();
 
+    if (recordNum === 0 && $('#is-authenticated').length <= 0) {
+        // unlogged in
+        $('#login-alert').modal('show');
+        recordNum=recordNum+1;
+    }
+
     $("#start-record").click(function () {
         if (isRecording === "0") {
-            if (recordNum === 0 && $('#is-authenticated').length <= 0) {
-                // unlogged in
-                $('#login-alert').modal('show');
-                recordNum=recordNum+1;
-            }
                 var savebutton = $(".record-control").find('button');
                 if (savebutton.length > 0) {
                     savebutton.remove();
@@ -82,7 +83,9 @@ $(document).ready(function () {
                 $("#confirm-save-btn").unbind('click').on('click', function () {
                     $("#save-modal").modal("hide");
                     var choosen_album = $("#select-album option:selected").text();
-                    saveimage(mn, choosen_album);
+                    var description = $("textarea").val();
+                    saveimage(mn, choosen_album, description);
+                    $("textarea").val("");
                 });
 
                 // create a new album
@@ -137,7 +140,6 @@ $(document).ready(function () {
                 hf.dispatchEvent(event);
             });
 
-            //recorder.getTimeData();
         }
     });
 

@@ -60,6 +60,8 @@ class Painting(models.Model):
     kudos_user = models.ManyToManyField(User,
                   related_name="kudos_painting",
                   related_query_name="kudos_painting")
+    description = models.CharField(max_length=420,
+                           default='The creater does not leave anything.')
 
     def __unicode__(self):
         return '%s %s %s' % (self.user.username, self.album.album_name,

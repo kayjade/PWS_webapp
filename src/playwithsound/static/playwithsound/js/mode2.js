@@ -46,7 +46,6 @@ function fileInfo(event) {
 }
 
 $(document).ready(function(){
-
 	if($('#is-authenticated').length <= 0) {
 		$('#login-alert').modal("show");
 	}

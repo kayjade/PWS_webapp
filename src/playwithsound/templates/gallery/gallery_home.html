@@ -12,7 +12,7 @@
 
     <section id="browse">
         <div class="container">
-            <div class="row" id="single-painting">
+            <div class="row" id="view-paintings">
                 {% for painting in paintings %}
                     {% include 'gallery/painting.html' %}
                 {% endfor %}
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div class="single-painting">
+    <div id="single-painting">
         {% for painting in paintings %}
             {% include 'gallery/painting_modal.html' %}
         {% endfor %}
