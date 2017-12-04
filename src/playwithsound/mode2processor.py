@@ -2,15 +2,21 @@
 # import the necessary packages
 from __future__ import print_function
 import cv2
+from Tkinter import *
 import wave as wav
 import numpy as np
+import math
 import random
+import os, codecs
+from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
+import joblib
+from PIL import Image
 from scipy import misc
 import knntrain
 
-w=160
-h=125
+w=80
+h=62
 ###Read and transform wav data###
 def read_wav_data(file_path):
     f=wav.open(file_path,"rb")
@@ -49,10 +55,10 @@ def classify(data):
     p1=transform_classify(d1)
     p2=transform_classify(d2)
     p3=transform_classify(d3)
-    img1=cv2.imread(p1)
-    img2=cv2.imread(p2)
-    img3=cv2.imread(p3)
-    merge=np.hstack((img1,img2,img3))
+    img1 = cv2.imread(p1)
+    img2 = cv2.imread(p2)
+    img3 = cv2.imread(p3)
+    merge = np.hstack((img1, img2, img3))
     return merge
 
 def norm_range(data,lmin,lmax,rmin,rmax):
@@ -67,7 +73,9 @@ def systematic_sampling(dataMat, num):
     samples = [random.sample(dataMat[i*k:(i+1)*k], 1) for i in range(num)]
     return np.array(samples)
 
-def main(path="/Users/flora/Documents/CMU/CLASSES/15637Web/Team330/src/media/music/2017-12-02T19_55_28.929Z.wav"):
+def main(path):
+    path='media/'+path
+    path = os.path.realpath(path)
     wav_data,time=read_wav_data(path)
 
     left_data=wav_data[0]
@@ -75,11 +83,11 @@ def main(path="/Users/flora/Documents/CMU/CLASSES/15637Web/Team330/src/media/mus
 
     right_data=wav_data[1]
     right_data=systematic_sampling(right_data,3*w * h)
-    p1=classify(left_data)
-    p2=classify(right_data)
+    p1 = classify(left_data)
+    p2 = classify(right_data)
     vmerge = np.vstack((p1, p2))
-    plt.imshow(vmerge), plt.show()
-    p='../../../../media/mode2/'+path.split('.',1)[0]+'png'
+
+    p=path.split('.wav',1)[0]+'.png'
     misc.toimage(vmerge, cmin=0, cmax=255).save(p)
     return p
 

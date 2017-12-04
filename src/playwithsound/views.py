@@ -23,6 +23,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 import os
 import time
+import mode2processor
 
 # Create your views here.
 def home(request):
@@ -330,6 +331,8 @@ def upload_audio(request):
         audiofile= request.FILES['audio']
         tmp = TempAudio(data = audiofile)
         tmp.save()
+        name=tmp.data.name
         # call other process method
-
+        img=mode2processor.main(name)
+        print(img)
         return HttpResponse(tmp.data.name)

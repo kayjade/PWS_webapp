@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
 import random
-
-w=160
-h=125
+import os
+w=80
+h=62
 def get_file_name(path):
     filenames = os.listdir(path)
     path_filenames = []
