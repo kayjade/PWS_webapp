@@ -28,7 +28,7 @@
             <i class="fa fa-microphone" aria-hidden="true" id="ongoing-record"></i>
             <i class="glyphicon glyphicon-pause" id="stop-record"></i>
         </div>
-        <div id="record-result"> <!-- upload/download files -->
+        <div id="record-result" hidden> <!-- upload/download files -->
             <audio controls src="" id="usr-audio"></audio>
             <div>
                 <button class="btn btn-small btn-primary btn-savefile" id="saveButton">
@@ -39,6 +39,10 @@
                 download audio</button>
             </div>
         </div>
+        <div id="load-wrapper" hidden>
+            <div class="loader center-block"></div>
+            <p>Please wait, saving your work now...</p>
+        </div> <!-- load -->
         <div class="svg"> <!-- painting area -->
             <!--<svg width="960" height="500"></svg>-->
             <!--<canvas width="960" height="500"></canvas>-->
