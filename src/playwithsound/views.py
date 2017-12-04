@@ -23,7 +23,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 import os
 import time
-import mode2processor
+import base64
+#import mode2processor
 
 # Create your views here.
 def home(request):
@@ -99,6 +100,8 @@ def mode_1(request):
 
 def mode_2(request):
     context={}
+    if request.user.is_authenticated():
+        context['albums'] = request.user.album_set.all()
     return render(request, 'modes/mode2.html', context)
 
 
@@ -328,11 +331,17 @@ def delete_album(request, album_id):
 @transaction.atomic
 def upload_audio(request):
     if request.method == "POST":
-        audiofile= request.FILES['audio']
-        tmp = TempAudio(data = audiofile)
-        tmp.save()
-        name=tmp.data.name
+        #audiofile= request.FILES['audio']
+        #tmp = TempAudio(data = audiofile)
+        #tmp.save()
+        #name=tmp.data.name
         # call other process method
-        img=mode2processor.main(name)
-        print(img)
-        return HttpResponse(tmp.data.name)
+        #img=mode2processor.main(name)
+        #print(img)
+
+        # hard code for test
+        img = 'C:\Users\kayjade\Documents\CMU\\17 Fall\\15637 Web App\Final Project\Team330\src\media\\tmp\\2085862937.jpg'
+        image_data = open(img, "rb").read()
+
+        # send base64 data of image to the front-end
+        return HttpResponse(base64.b64encode(image_data))

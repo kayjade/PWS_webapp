@@ -31,14 +31,15 @@
         </div> <!-- load -->
         <div id="result" hidden>
             <div>
+                {% if user.is_authenticated %}
                 <button class="btn btn-small btn-primary btn-savefile" id="saveButton">
                 save to my album</button>
-                <button class="btn btn-small btn-primary btn-savefile" id="downloadimage">
-                download image</button>
+                {% endif %}
+                <a class="button btn btn-small btn-primary btn-savefile" id="downloadimage" href="" download="playwithsound.jpg">
+                download image</a>
             </div>
             <p>Here's your result picture:</p>
-            {% load static %}
-            <img src="{% static "playwithsound/images/example/03-process.jpg" %}" width="960" height="500">
+            <img class="img-responsive" src="" width="960" height="500">
         </div> <!-- result -->
 
     </div>
@@ -48,6 +49,77 @@
         <p>Copyright &copy; Team 330</p>
         </div>
     </div>
+
+        <div class="modal fade" id="login-alert" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+             <div class="modal-content container">
+                 <div>
+                     <div class="intro">
+                         <p>Don't worry, you can do whatever you like!</p>
+                         <p>But if you would like to save and manage your images and audio, remember to login first.</p>
+                         <p>Enjoy! :)</p>
+                     </div>
+                     <a href="{% url 'login' %}" class="btn btn-small btn-primary btn-alert">Awesome! Take me to login now.</a>
+                     <button class="btn btn-small btn-primary btn-alert" data-dismiss="modal">Thanks, but I just wanna have some fun!</button>
+                 </div>
+             </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+             <div class="modal-content container">
+                 <div id="modal-confirm-save">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Save to album</h4>
+                    </div>
+                    <div class="modal-body">
+                        Choose an album
+                        <span id="select-album">
+                            <select>
+                                {% for album in albums %}
+                                <option>{{ album.album_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </span>
+                        <div class="modal-btn-group">
+                            <button class="btn btn-small btn-primary btn-savealbum" id="create-new-album">create a new album</button>
+                            <button class="btn btn-small btn-primary btn-savealbum" id="confirm-save-btn">save</button>
+                            <button class="btn btn-small btn-primary btn-savealbum" data-dismiss="modal">cancel</button>
+                        </div>
+                    </div>
+                 </div>
+                 <div id="modal-create-new" hidden>
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Create a new album</h4>
+                     </div>
+                     <div class="modal-body">
+                        <form class="form-inline" id="create-album-form">
+                            <div class="form-group">
+                                <label for="name">Name of the album:</label>
+                                <input type="text" name="album_name" class="form-control" placeholder="my album" id="album-name" required>
+                                {% if user.is_authenticated %}
+                                <input type="hidden" name="user_id" value={{ user.id }}>
+                                {% endif %}
+                            </div>
+                            <div><p class="error-info"></p></div>
+                            <div class="modal-btn-group">
+                                <button type="submit" class="btn btn-small btn-default btn-savealbum" id="confirm-create">
+                                    create</button>
+                                <button class="btn btn-small btn-default btn-savealbum" id="cancel-create">
+                                    go back to save</button>
+                                <button class="btn btn-small btn-default btn-savealbum" data-dismiss="modal">
+                                    cancel</button>
+                            </div>
+
+                        </form>
+                    </div>
+                 </div>
+             </div>
+            </div>
+        </div>
     {% endblock %}
 
 {% block customJS %}
