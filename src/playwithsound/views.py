@@ -24,7 +24,7 @@ from django.utils.encoding import force_bytes, force_text
 import os
 import time
 import base64
-#import mode2processor
+import mode2processor
 
 # Create your views here.
 def home(request):
@@ -64,7 +64,7 @@ def register(request):
     """ % (request.get_host(),
            reverse('confirm-email', args=(uidb64, token)))
 
-    send_mail(subject="Verify your email address in Grumblr",
+    send_mail(subject="Verify your email address in PlayWithSound",
               message=email_body,
               from_email="oreoztl@gmail.com",
               recipient_list=[new_user.email])
@@ -72,6 +72,7 @@ def register(request):
     return render(request, 'registration/needemailvalidation.html', context)
 
 
+# confirm registration with email validation
 @transaction.atomic
 def registeration_confirm(request, uidb64, token):
     uid = force_text(urlsafe_base64_decode(uidb64))
@@ -88,6 +89,7 @@ def registeration_confirm(request, uidb64, token):
         return render(request, 'registration/needemailvalidation.html', {})
 
 
+# generate the html page of mode 1
 def mode_1(request):
     context={}
     if request.user.is_authenticated():
@@ -95,9 +97,7 @@ def mode_1(request):
     return render(request, 'modes/mode1.html', context)
 
 
-
-
-
+# generate the html page of mode 2
 def mode_2(request):
     context={}
     if request.user.is_authenticated():
@@ -130,6 +130,7 @@ def gallery_home(request):
     return render(request, 'gallery/gallery_home.html', context)
 
 
+# login users can like a painting image
 @login_required
 @transaction.atomic
 def like_painting(request, paintingId):
@@ -147,6 +148,7 @@ def like_painting(request, paintingId):
     return HttpResponse(p.kudos)
 
 
+# login users can unlike a paining image
 @login_required
 @transaction.atomic
 def unlike_painting(request, paintingId):
@@ -164,6 +166,7 @@ def unlike_painting(request, paintingId):
     return HttpResponse(p.kudos)
 
 
+# generate the html page of popular paintings
 @transaction.atomic
 def gallery_view_popular(request):
     context={}
@@ -173,6 +176,7 @@ def gallery_view_popular(request):
     return render(request, 'gallery/gallery_view_more.html', context)
 
 
+# load more painting in the popular paintings page when user click the button
 @transaction.atomic
 def gallery_popular_load_more(request):
     if request.method =='POST':
@@ -190,6 +194,7 @@ def gallery_popular_load_more(request):
         return JsonResponse(rendered, safe=False)
 
 
+# generate the html page of more paintings
 @transaction.atomic
 def gallery_view_new(request):
     context={}
@@ -199,6 +204,7 @@ def gallery_view_new(request):
     return render(request, 'gallery/gallery_view_more.html', context)
 
 
+# load more painting in the new paintings page when user click the button
 @transaction.atomic
 def gallery_new_load_more(request):
     if request.method=='POST':
@@ -213,6 +219,7 @@ def gallery_new_load_more(request):
         return JsonResponse(rendered, safe=False)
 
 
+# generate the page of my album for login users
 @login_required
 @transaction.atomic
 def gallery_my_album(request):
@@ -221,6 +228,7 @@ def gallery_my_album(request):
     return render(request, 'gallery/gallery_my_album.html', context)
 
 
+# generate the page for viewing paintings inside a specific album for login users
 @login_required
 @transaction.atomic
 def gallery_view_my_album(request, album):
@@ -239,6 +247,7 @@ def gallery_view_my_album(request, album):
     return render(request, 'gallery/gallery_view_my_album.html', context)
 
 
+# load more painting in the album paintings page when user click the button
 def gallery_album_load_more(request):
     if request.method =='POST':
         form = AlbumLoadMoreForm(request.POST)
@@ -254,6 +263,7 @@ def gallery_album_load_more(request):
         return JsonResponse(rendered, safe=False)
 
 
+# save user's painting along with the audio
 @login_required
 @transaction.atomic
 def saveimage(request):
@@ -277,8 +287,6 @@ def saveimage(request):
         return HttpResponse('Success')
     else:
         raise Http404
-    #file=open("/Users/flora/Desktop/mioamiao.wav","wb")
-    #file.writelines(audiofile.readlines())
 
 
 # get image from the database
@@ -297,9 +305,9 @@ def getaudio(request, image_id):
     return HttpResponse(painting.audio.audio_file, content_type='audio/wav')
 
 
+# create a new album
 @login_required
 @transaction.atomic
-# create a new album
 def create_new_album(request):
     if request.method == 'POST':
         context={}
@@ -338,16 +346,16 @@ def delete_album(request, album_id):
 @transaction.atomic
 def upload_audio(request):
     if request.method == "POST":
-        #audiofile= request.FILES['audio']
-        #tmp = TempAudio(data = audiofile)
-        #tmp.save()
-        #name=tmp.data.name
+        audiofile= request.FILES['audio']
+        tmp = TempAudio(data = audiofile)
+        tmp.save()
+        name=tmp.data.name
         # call other process method
-        #img=mode2processor.main(name)
-        #print(img)
+        img=mode2processor.main(name)
+        print(img)
 
         # hard code for test
-        img = 'C:\Users\kayjade\Documents\CMU\\17 Fall\\15637 Web App\Final Project\Team330\src\media\\tmp\\2085862937.jpg'
+        #img = 'C:\Users\kayjade\Documents\CMU\\17 Fall\\15637 Web App\Final Project\Team330\src\media\\tmp\\2085862937.jpg'
         image_data = open(img, "rb").read()
 
         # send base64 data of image to the front-end
