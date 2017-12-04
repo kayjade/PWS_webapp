@@ -2,16 +2,11 @@
 # import the necessary packages
 from __future__ import print_function
 import cv2
-from Tkinter import *
 import wave as wav
 import numpy as np
 import math
 import random
 import os, codecs
-from sklearn.cluster import KMeans
-from matplotlib import pyplot as plt
-import joblib
-from PIL import Image
 from scipy import misc
 import knntrain
 
@@ -73,9 +68,9 @@ def systematic_sampling(dataMat, num):
     samples = [random.sample(dataMat[i*k:(i+1)*k], 1) for i in range(num)]
     return np.array(samples)
 
-def main(path):
-    path='media/'+path
-    path = os.path.realpath(path)
+def main(path='/Users/flora/Documents/CMU/CLASSES/15637Web/Team330/src/media/tmp/1512346185.16.wav'):
+    #path='media/'+path
+    #path = os.path.realpath(path)
     wav_data,time=read_wav_data(path)
 
     left_data=wav_data[0]

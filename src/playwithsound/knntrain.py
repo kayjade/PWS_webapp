@@ -24,7 +24,7 @@ def knn_detect(files, data):
         dist = np.linalg.norm(np.ndarray.flatten(img) - np.ndarray.flatten(data))
         distance.append(dist)
 
-    k=20
+    k=50
     ind = np.argpartition(distance, k)[:k]
     #index = distance.index(min(distance))
     return files[ind[random.randint(0,len(ind)-1)]]

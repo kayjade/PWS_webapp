@@ -27,7 +27,7 @@ SECRET_KEY = '4#=)8fx0lj&5=_bpie6^7cd_5i$yp8xiosia8f5f5c_j@z799!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [u'floravan.com',u'www.floravan.com']
 
 
 # Application definition
