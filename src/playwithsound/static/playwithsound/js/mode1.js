@@ -106,8 +106,10 @@ $(document).ready(function () {
                         $("input#album-name:text").val("");
                     }
                     var formData = $("#create-album-form").serialize();
-                    $.post("/create-new-album/", formData, function(data){
-                        if(data['success']){
+                    $.post("/create-new-album/", formData, function(res){
+                        data = JSON.parse(res);
+                        if(data.success){
+                            console.log('success');
                             // create new album success
                             // update album list
                             var album_list = $('#select-album select');
