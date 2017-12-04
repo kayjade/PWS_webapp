@@ -177,7 +177,7 @@ function uploadImage(styleId) {
 		'styleId': styleId,
 		'imageBase64Encoded': imageBinary,
 		'optimizeForPrint': true,
-		'useOriginalColors': true,
+		'useOriginalColors': false,
 		'imageSize': maxImageSize
 	};
 
@@ -245,11 +245,16 @@ function getResultImage(imgUrl) {
 function uploadToServer() {
 	if(file && resultImg) {
 		var choosen_album = $("#select-album option:selected").text();
+		var description = $("textarea").val();
 		var fd = new FormData();
 		// send request to server
 		fd.append("ImageData", resultImg);
         fd.append("AudioData", file);
         fd.append("Album", choosen_album);
+        if(description != ""){
+            fd.append("Description", description);
+            console.log(description);
+        }
         $.ajax({
             url: '/saveimage',
             type: 'POST',
