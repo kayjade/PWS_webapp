@@ -17,6 +17,7 @@
 
     <div class="container mode-body">
         <p>Choose an audio file (*.wav): <span class='label label-info' id="upload-file-info"></span></p>
+        <p>P.S. You can use our mode 1 to record and download some wav files!</p>
         <div id="upload">
             <label class="btn btn-small btn-primary btn-savefile" >Gimme A Song!
                 <input type="file" id="upload-audio" required onchange="fileInfo(event)" />
@@ -27,10 +28,10 @@
         </div> <!-- upload -->
         <div id="load-wrapper" hidden>
             <div class="loader center-block"></div>
-            <p>Hold on tight! Your artwork is on the way...</p>
+            <p></p>
         </div> <!-- load -->
         <div id="result" hidden>
-            <div>
+            <div id="result-btn-group">
                 {% if user.is_authenticated %}
                 <button class="btn btn-small btn-primary btn-savefile" id="saveButton">
                 save to my album</button>

@@ -8,6 +8,7 @@ var submissionId;
 const maxImageSize = 960;
 const imgWidth=960;
 const imgHeight=500;
+const maxFileSize = 31457280;
 
 var deepArtEffectsClient = apigClientFactory.newClient({
 	apiKey: 'Bj8MWIjI823neCfVMAsKg9w8Yov00ECNj9c8GWHi',
@@ -38,7 +39,11 @@ function fileInfo(event) {
     if(files && file) {
     	//if(file.name.match(/\.wav$/i) || file.name.match(/\.mp3$/i)){
     	if(file.name.match(/\.wav$/i)){
-			$('#upload-file-info').html(file.name);
+    		if(file.size<maxFileSize){
+    			$('#upload-file-info').html(file.name);
+			}else{
+    			alert("Sorry, we are broke so we only afford to process audio files no larger than 30MB :(");
+			}
     	}else{
     		alert('Sorry, only *.wav files are supported currently.');
 		}
@@ -53,23 +58,28 @@ $(document).ready(function(){
 	// upload audio file
      $("#upload-button").on("click", function(){
      	// upload the audio file to the server
+		 $('#result').hide();
 		if(file){
+			$('#upload').hide();
+			$('#load-wrapper p').html("Hold on tight! Your artwork is on the way...");
+			$('#load-wrapper').show();
 			var formData = new FormData();
 			formData.append('audio', file);
 			$.ajax({
-            url: '/upload-audio/',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false
-        }).done(function (data) {
-        	imageBinary = data;
-        	// uoload file to deep art effect
-			styleId = Math.round(Math.random()*100)%styles.length;
-			uploadImage(styles[styleId], data);
-			$('#result').hide();
-            $('#load-wrapper').show();
-        }).fail(function (data) {
+            	url: '/upload-audio/',
+            	type: 'POST',
+            	data: formData,
+            	processData: false,
+            	contentType: false
+        	}).done(function (data) {
+        		imageBinary = data;
+        		// uoload file to deep art effect
+				styleId = Math.round(Math.random()*100)%styles.length;
+				uploadImage(styles[styleId], data);
+        	}).fail(function (data) {
+        		$('#load-wrapper').hide();
+        		alert('Oops! Something went wrong :(');
+        		$('#upload').show();
         });
 		} else {
 			alert("Please choose a file first!");
@@ -82,6 +92,9 @@ $(document).ready(function(){
 		 // confirm save to album
 		 $("#confirm-save-btn").unbind('click').on('click', function () {
 			 $("#save-modal").modal("hide");
+			 $('#load-wrapper p').html("Please wait, saving your work now...");
+            $('#load-wrapper').show();
+            $('#result-btn-group').hide();
 			 uploadToServer();
 		 });
 
@@ -190,7 +203,7 @@ function uploadImage(styleId) {
 	}).catch(function(result){
         //This is where you would put an error callback
         console.log("Error uploading image");
-        console.log(result);
+        $('#upload').show();
     });
 }
 
@@ -210,9 +223,9 @@ function imageReadyCheck() {
 			$("#result").show();
 			clearInterval(resultCheck);
 			getResultImage(result.data.url);
+			$('#upload').show();
 		}
 	}).catch(function(result){
-		console.log(result);
         console.log("Error checking status");
     });
 }
@@ -263,12 +276,16 @@ function uploadToServer() {
             processData: false,
             contentType: false
         }).done(function (data) {
+        	$('#load-wrapper').hide();
+        	$('#result-btn-group').show();
             if (data === "Success") {
-                alert('Success')
+                alert('Success');
             } else {
                 alert('Failed to save image');
             }
         }).fail(function (data) {
+        	$('#load-wrapper').hide();
+        	$('#result-btn-group').show();
         	alert("fail to save image");
         });
 	}else{
