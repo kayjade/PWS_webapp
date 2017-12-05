@@ -21,7 +21,7 @@ images.
 
 The two modes are described as follows.
 
-1. Real-Time image generation with microphone recording
+**1. Real-Time image generation with microphone recording**
 In our mode 1, "What You Sing Is What You See", users can record their sound 
 through microphone once they grant the permisson of the access to their 
 microphone to our website, and we will display an image generated in 
@@ -33,7 +33,7 @@ Since the image is generated in real-time, we are unable to conduct calculations
 that are too complex, thus the images generated in mode 1 are also relatively 
 simpler compared to the images generated in mode 2.
 
-2. More complex image generation with user uploading file
+**2. More complex image generation with user uploading file**
 In our mode 2, "It Takes A Song To Be An Artist", users can upload an audio 
 file(in *.wav formation), and a more complexed image will be generated after 
 some processing and analyzing of the uploaded audio file.
@@ -50,7 +50,7 @@ only.
 # Model
 We have 4 customed models except from the Django's built-in User model.
 
-1. Painting
+**1. Painting**
 
 The Painting model represents the images generated for users.
 
@@ -65,7 +65,7 @@ The Painting model represents the images generated for users.
 | kudos_user(ManyToManyField) | the set of users who like this painting | 
 | description | the description of the painting |
 
-2。 Album
+**2. Album**
 
 The Album model represents the albums which are created by the user and used to 
 manage the paintings.
@@ -76,7 +76,7 @@ manage the paintings.
 | album_name | the name of this album |
 | time | the timestamp at which this painting is created |
 
-3。 Audio
+**3. Audio**
 
 The Audio model wraps up the audio files that are associated one to one with the 
 painting objects.
@@ -87,7 +87,7 @@ painting objects.
 | time | the timestamp at which this audio is created |
 | audio_file | the file that contains the content of this audio |
 
-4. TempAudio
+**4. TempAudio**
 
 The TempAudio is also a wrapper of the audio files, except it does not has a user 
 field, and is used to hold the temporary uploaded audio files in mode 2.
@@ -100,7 +100,7 @@ field, and is used to hold the temporary uploaded audio files in mode 2.
 In this part we mainly explained how we manage to convert images from audio in our 
 two modes.
 
-1. Image generated with real-time microphone recording
+**1. Image generated with real-time microphone recording**
 Our thought of path for implementing mode 1 is quite straight-forward. This process 
 can be divided into 2 steps:
 
@@ -114,7 +114,7 @@ to record the audio stream and export it as *.wav files.
 In step 2, we use **[D3.js](https://d3js.org/)** to generate graphics according 
 to the data we extracted in step 2. Both cavans and SVG are used.
 
-2. Image generated with uploaded user file
+**2. Image generated with uploaded user file**
 
 The process of mode 2 can be divided into 2 parts. In part 1, we generated a 
 spliced image after analyzing the audio file, then we apply a style transfer 
