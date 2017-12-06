@@ -8,7 +8,7 @@ web site: [PlayWithSound](https://floravan.com/)
 # Project
 
 Our website, PlayWithSound, is an application based on Django frame that can 
-transformed user-input audio data into images and let users have fun. Users 
+transform user-input audio data into images and let users have fun. Users 
 can input their audio data through either microphone recording or uploading 
 audio files. Each mode will generate a different kind of image for the user. 
 Our website can be visited at the following url: https://floravan.com/
