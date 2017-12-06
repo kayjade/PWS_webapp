@@ -6,13 +6,15 @@ web site: [PlayWithSound](https://floravan.com/)
 
 
 # Project
-Our website, PlayWithSound, is an application that can transformed user-input
- audio data into images and let users have fun. Users can input their audio data
- through either microphone recording or uploading audio files. Each mode will
- generate a different kind of image for the user. Our website can be visited at
- the following url: https://floravan.com/
+
+Our website, PlayWithSound, is an application based on Django frame that can 
+transformed user-input audio data into images and let users have fun. Users 
+can input their audio data through either microphone recording or uploading 
+audio files. Each mode will generate a different kind of image for the user. 
+Our website can be visited at the following url: https://floravan.com/
  
 # Function
+
 Our website provides two modes for users to generate images from audio. Our 
 website also provides access to guests, meaning users do not have to register 
 or login to use our website. Guests can also views the images created by other 
@@ -22,6 +24,7 @@ images.
 The two modes are described as follows.
 
 **1. Real-Time image generation with microphone recording**
+
 In our mode 1, "What You Sing Is What You See", users can record their sound 
 through microphone once they grant the permisson of the access to their 
 microphone to our website, and we will display an image generated in 
@@ -29,14 +32,23 @@ real-time, from which the data are extracted from the user-recorded audio
 stream, and the image we generate can demonstrate the change in the audio 
 stream to some extent.
 
+An image generated in mode 1 would be look like:
+
+[Sample image generated in mode 1](https://github.com/CMU-Web-Application-Development/Team330/tree/master/sprint-presentations/mode_1.png)
+
 Since the image is generated in real-time, we are unable to conduct calculations
 that are too complex, thus the images generated in mode 1 are also relatively 
 simpler compared to the images generated in mode 2.
 
 **2. More complex image generation with user uploading file**
+
 In our mode 2, "It Takes A Song To Be An Artist", users can upload an audio 
 file(in *.wav formation), and a more complexed image will be generated after 
 some processing and analyzing of the uploaded audio file.
+
+An image generated in mode 2 would be look like:
+
+[Sample image generated in mode 2](https://github.com/CMU-Web-Application-Development/Team330/tree/master/sprint-presentations/mode_1.jpg)
 
 In both modes, after the images are generated, authenticated users can download 
 their audio/image to local disk, or save the image with the audio to the server.
@@ -48,6 +60,7 @@ their own. Authenticated users can also give kudos to the images in the gallery,
 only.
 
 # Model
+
 We have 4 customed models except from the Django's built-in User model.
 
 **1. Painting**
@@ -97,10 +110,12 @@ field, and is used to hold the temporary uploaded audio files in mode 2.
 | audio_file | the ile that contains the content of this audio |
 
 # Implementation
+
 In this part we mainly explained how we manage to convert images from audio in our 
 two modes.
 
 **1. Image generated with real-time microphone recording**
+
 Our thought of path for implementing mode 1 is quite straight-forward. This process 
 can be divided into 2 steps:
 
@@ -137,10 +152,14 @@ Because we would have to send request to the server of Deep Art Effects, we
 use a CORS proxy to deal with the CORS problem.
 
 # Deployment
+
 Our website is deployed on an AWS m4.xlarge EC2 instance, with Linux installed 
 on the instance. And we use mysql for the database backend.
 
 # Reference
+
+[Django 1.11 Document](https://docs.djangoproject.com/en/1.11/)
+
 [alvarotrigo/fullPage.js](https://github.com/alvarotrigo/fullPage.js)
 
 [Hover effect](https://miketricking.github.io/bootstrap-image-hover/)
