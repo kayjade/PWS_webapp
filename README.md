@@ -34,7 +34,7 @@ stream to some extent.
 
 An image generated in mode 1 would be look like:
 
-[Sample image generated in mode 1](https://github.com/CMU-Web-Application-Development/Team330/tree/master/sprint-presentations/mode_1.png)
+![Sample image generated in mode 1](https://github.com/CMU-Web-Application-Development/Team330/tree/master/sprint-presentations/mode_1.png)
 
 Since the image is generated in real-time, we are unable to conduct calculations
 that are too complex, thus the images generated in mode 1 are also relatively 
@@ -48,7 +48,7 @@ some processing and analyzing of the uploaded audio file.
 
 An image generated in mode 2 would be look like:
 
-[Sample image generated in mode 2](https://github.com/CMU-Web-Application-Development/Team330/tree/master/sprint-presentations/mode_1.jpg)
+![Sample image generated in mode 2](https://github.com/CMU-Web-Application-Development/Team330/tree/master/sprint-presentations/mode_1.jpg)
 
 In both modes, after the images are generated, authenticated users can download 
 their audio/image to local disk, or save the image with the audio to the server.
