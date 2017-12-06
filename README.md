@@ -142,8 +142,8 @@ the spectral data of a small piece of image in our pre-defined database. Finally
 we put all 6 matched piece images together to form a spliced image. This 
 process runs in the server and **[OpenCv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/)**
  is used. When trying to match the segment of audio and the piece image, we use 
-**[knn](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)** 
-algorithm to find the 'closest' image to the audio segment.
+**[knn algorithm ](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)** 
+to find the 'closest' image to the audio segment.
 
 To make the different pieces of image share a common feel in a spliced image, 
 we then apply a style transfer to the spliced image and return the stylized 
