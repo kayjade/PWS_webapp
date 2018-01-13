@@ -21,6 +21,8 @@ or login to use our website. Guests can also views the images created by other
 users, however, only authenticated users can save and manage their generated 
 images.
 
+![Sample UI image](/sprint-presentations/UI_Sample.png)
+
 The two modes are described as follows.
 
 **1. Real-Time image generation with microphone recording**
