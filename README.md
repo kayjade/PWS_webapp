@@ -11,7 +11,7 @@ Our website, PlayWithSound, is an application based on Django frame that can
 transform user-input audio data into images and let users have fun. Users 
 can input their audio data through either microphone recording or uploading 
 audio files. Each mode will generate a different kind of image for the user. 
-Our website can be visited at the following url: https://floravan.com/
+Our website can be visited at the following url: (It's closed now).
  
 # Function
 
@@ -48,7 +48,7 @@ some processing and analyzing of the uploaded audio file.
 
 An image generated in mode 2 would be look like:
 
-![Sample image generated in mode 2](https://raw.githubusercontent.com/CMU-Web-Application-Development/Team330/master/sprint-presentations/mode_2.jpg?token=AZHFqo2LfHCOGsW9-eaqSvJpRcbH8pxqks5aMKU5wA%3D%3D)
+![Sample image generated in mode 2](/sprint-presentations/mode_2.jpg)
 
 In both modes, after the images are generated, authenticated users can download 
 their audio/image to local disk, or save the image with the audio to the server.
