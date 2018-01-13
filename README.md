@@ -2,7 +2,7 @@ This repository is for your course final project. Your project team
 should complete all project work using this repository.
 
 Before your project demo, add to this file a link to your deployed
-web site: [PlayWithSound](https://floravan.com/)
+web site:(It's closed now)
 
 
 # Project
@@ -34,7 +34,7 @@ stream to some extent.
 
 An image generated in mode 1 would be look like:
 
-![Sample image generated in mode 1](https://raw.githubusercontent.com/CMU-Web-Application-Development/Team330/master/sprint-presentations/mode_1.png?token=AZHFqvgVBvVu8Yl0598KLleNOhCknqyUks5aMKTPwA%3D%3D)
+![Sample image generated in mode 1](/sprint-presentations/mode_1.png)
 
 Since the image is generated in real-time, we are unable to conduct calculations
 that are too complex, thus the images generated in mode 1 are also relatively 
